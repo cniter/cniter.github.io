@@ -6,14 +6,14 @@
   <title>GitHub+Hexo搭建个人博客 | Shaun Yuan&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本人系统环境：Win10_x64。 前言　　本来是想在国内某网站上继续写的，毕竟完全不需要自己管理，只需要负责写好文档就可以了，但某一天，该网站由于响应国家的号召，要实名验证，本来实名验证也没什么，就输入手机号，并填写验证码即可，但该网站实名验证的方式给人的感觉特别不爽，于是就决定自己搭建博客，这样虽然有点麻烦，但由于完全是自己管理，自己完全拥有该文档的所有权，也不用担心哪天别的网站突然出现的各种">
-<meta name="keywords" content="github,hexo">
+<meta name="keywords" content="hexo,github">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub+Hexo搭建个人博客">
 <meta property="og:url" content="http://cniter.github.io/2017/08/26/GitHub-Hexo搭建个人博客/index.html">
 <meta property="og:site_name" content="Shaun Yuan&#39;blog">
 <meta property="og:description" content="本人系统环境：Win10_x64。 前言　　本来是想在国内某网站上继续写的，毕竟完全不需要自己管理，只需要负责写好文档就可以了，但某一天，该网站由于响应国家的号召，要实名验证，本来实名验证也没什么，就输入手机号，并填写验证码即可，但该网站实名验证的方式给人的感觉特别不爽，于是就决定自己搭建博客，这样虽然有点麻烦，但由于完全是自己管理，自己完全拥有该文档的所有权，也不用担心哪天别的网站突然出现的各种">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-26T12:11:19.362Z">
+<meta property="og:updated_time" content="2017-08-28T07:23:01.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub+Hexo搭建个人博客">
 <meta name="twitter:description" content="本人系统环境：Win10_x64。 前言　　本来是想在国内某网站上继续写的，毕竟完全不需要自己管理，只需要负责写好文档就可以了，但某一天，该网站由于响应国家的号召，要实名验证，本来实名验证也没什么，就输入手机号，并填写验证码即可，但该网站实名验证的方式给人的感觉特别不爽，于是就决定自己搭建博客，这样虽然有点麻烦，但由于完全是自己管理，自己完全拥有该文档的所有权，也不用担心哪天别的网站突然出现的各种">
@@ -140,7 +140,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a>
+                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a>
                     </div>
                 </section>
                 
@@ -257,7 +257,7 @@
 <p>　　1、需要安装node.js。（电脑上没有安装怎么办，没有安装就去<a href="http://nodejs.cn/download/" target="_blank" rel="external">下载</a>（<a href="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a> ）安装啊）</p>
 <p>　　2、需要安装git。（没有安装就去<a href="https://git-scm.com/downloads" target="_blank" rel="external">下载</a>安装，附<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">git学习教程</a>）</p>
 <h3 id="GitHub篇"><a href="#GitHub篇" class="headerlink" title="GitHub篇"></a>GitHub篇</h3><p>　　满足上文的要求之后，就可以开始搭建了，首先在GitHub中新建一个仓库（<strong>New repository</strong>），在<strong>Repository name</strong>下填写<strong>&lt;yourname&gt;.github.io</strong>，其它可默认，点击Create repository。</p>
-<p>　　新建仓库完成后，点击<strong>Create new file</strong>新建一个<strong>README.md</strong>文件，随便写点什么，比如“It\’s my blog website”。</p>
+<p>　　新建仓库完成后，点击<strong>Create new file</strong>新建一个<strong>README.md</strong>文件，随便写点什么，比如“It&#39;s my blog website”。</p>
 <p>　　点击上方横条选项中的<strong>Settings</strong>，查看<strong>GitHub Pages</strong>里的设置，上方应该有绿色框，框中“<strong>Your site is published at <a href="https://&lt;yourname&gt;.github.io" target="_blank" rel="external">https://&lt;yourname&gt;.github.io</a></strong>”，该网址即为博客主页，<strong>Source</strong>应该是<strong>master branch</strong>，自此GitHub上的设置可以算是完成了，但为了方便和防止误删，一般把Hexo文件也放入GitHub中，为方便管理，可以新建另一分支专门放Hexo文件。</p>
 <p>　　在仓库code界面中点击<strong>Branch：master</strong>，在出现的框中输入hexo新建hexo分支，在<strong>branches</strong>中<strong>Change default branch</strong>设置hexo为默认分支。</p>
 <h3 id="Hexo篇"><a href="#Hexo篇" class="headerlink" title="Hexo篇"></a>Hexo篇</h3><p>　　将刚才新建的仓库克隆到本地：<code>git clone https://github.com/&lt;yourname&gt;/&lt;yourname&gt;.github.io.git</code>当前在hexo分支。</p>
@@ -332,7 +332,7 @@
         <p><span>本文标题:</span><a href="/2017/08/26/GitHub-Hexo搭建个人博客/">GitHub+Hexo搭建个人博客</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年08月26日 - 16时51分</p>
-        <p><span>最后更新:</span>2017年08月26日 - 20时11分</p>
+        <p><span>最后更新:</span>2017年08月28日 - 15时23分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/08/26/GitHub-Hexo搭建个人博客/" title="GitHub+Hexo搭建个人博客">http://cniter.github.io/2017/08/26/GitHub-Hexo搭建个人博客/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/08/26/GitHub-Hexo搭建个人博客/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -449,7 +449,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/">写上篇文档“GitHub+Hexo搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/GitHub-Hexo搭建个人博客/">GitHub+Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/">写上篇文档“GitHub+Hexo搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/GitHub-Hexo搭建个人博客/">GitHub+Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
