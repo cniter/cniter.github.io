@@ -14,7 +14,7 @@
 <meta property="og:description" content="本人系统环境：Win10_x64 英文企业版；VS2013-update5 英文旗舰版；CMake-3.6.3-win64-x64 免安装版；Qt-opensource-windows-x86-msvc2013-5.6.2。 　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20161115134305655">
-<meta property="og:updated_time" content="2017-08-29T06:32:16.026Z">
+<meta property="og:updated_time" content="2017-08-30T09:28:56.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0">
 <meta name="twitter:description" content="本人系统环境：Win10_x64 英文企业版；VS2013-update5 英文旗舰版；CMake-3.6.3-win64-x64 免安装版；Qt-opensource-windows-x86-msvc2013-5.6.2。 　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方">
@@ -142,7 +142,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a>
+                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 15px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a>
                     </div>
                 </section>
                 
@@ -254,7 +254,7 @@
 <p>　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方的Win32平台选择x64平台；想编译release版的可以在用VS2013编译时将上方的Debug模式选择Release模式；想编译静态库的可以在用CMake生成时取消勾选<strong>BUILD_SHARED_LIBS</strong>选项即可。:-P）</p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　因为OpenCV-3.2官方的release版只有支持VS2015的库，而且不包括扩展包（opencv_contrib）中的库，而由于某些历史原因，本人目前使用的编译器还是VS2013，又想用用扩展包中一些有趣的算法，在加上上个月opencv-3.3还没有正式release，所以上个月本人就利用VS2013对opencv-3.2进行编译。具体编译过程如下：</p>
 <a id="more"></a>
-<h2 id="准备篇"><a href="#准备篇" class="headerlink" title="准备篇"></a>准备篇</h2><p>　　先在GitHub上下载对应的opencv源码包：<a href="https://github.com/opencv/opencv/archive/3.2.0.zip" target="_blank" rel="external">opencv-3.2.0</a>和<a href="https://github.com/opencv/opencv_contrib/archive/3.2.0.zip" target="_blank" rel="external">opencv_contrib-3.2.0</a>（<a href="https://github.com/opencv" target="_blank" rel="external">https://github.com/opencv</a> ），扩展包版本一定要和opencv版本相同。本人为了添加Qt后端显示支持（为了好看和方便:-P），所以还下载安装了支持VS2013的<a href="http://download.qt.io/archive/qt/5.6/5.6.2/qt-opensource-windows-x86-msvc2013-5.6.2.exe" target="_blank" rel="external">Qt-5.6.2</a>（<a href="http://download.qt.io/archive/qt/" target="_blank" rel="external">http://download.qt.io/archive/qt/</a> ）。</p>
+<h2 id="准备篇"><a href="#准备篇" class="headerlink" title="准备篇"></a>准备篇</h2><p>　　先在GitHub上下载对应的opencv源码包：<a href="https://github.com/opencv/opencv/archive/3.2.0.zip" target="_blank" rel="external">opencv-3.2.0</a>和<a href="https://github.com/opencv/opencv_contrib/archive/3.2.0.zip" target="_blank" rel="external">opencv_contrib-3.2.0</a>（<a href="https://github.com/opencv" target="_blank" rel="external">https://github.com/opencv</a> ），扩展包版本一定要和opencv版本相同。本人为了添加Qt后端显示支持（为了好看和方便:-P），所以还下载安装了支持VS2013的<a href="http://download.qt.io/archive/qt/5.6/5.6.2/qt-opensource-windows-x86-msvc2013-5.6.2.exe" target="_blank" rel="external">Qt-5.6.2</a>（<a href="http://download.qt.io/archive/qt/" target="_blank" rel="external">http://download.qt.io/archive/qt/</a> ）。再<a href="https://cmake.org/files/v3.6/cmake-3.6.3-win64-x64.zip" target="_blank" rel="external">下载CMake-3.6.3-win64-x64 免安装版</a>（<a href="https://cmake.org/files/" target="_blank" rel="external">https://cmake.org/files/</a> ）。至于微软的东西，推荐直接去<a href="https://msdn.itellyou.cn/" target="_blank" rel="external">MSDN 我告诉你</a>去下载。</p>
 <p>　　由于网上有的资料（具体是哪篇文章本人忘记了o(╯□╰)o）说编译时的文件结构可能会影响编译是否成功，再加上为了方便编译管理，本人的编译时的文件结构为：</p>
 <blockquote>
 <p>opencv-3.2.0_build<br>├──  build<br>└──  sources<br>​     　　├── opencv-3.2.0<br>​     　　└── opencv_contrib-3.2.0</p>
@@ -392,7 +392,7 @@
         <p><span>本文标题:</span><a href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年08月28日 - 15时38分</p>
-        <p><span>最后更新:</span>2017年08月29日 - 14时32分</p>
+        <p><span>最后更新:</span>2017年08月30日 - 17时28分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/" title="Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0">http://cniter.github.io/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -407,6 +407,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/2017/08/31/用OpenCV显示OpenGL图形/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          用OpenCV显示OpenGL图形
+        
+      </div>
+    </a>
   
   
     <a href="/2017/08/26/写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/" id="article-nav-older" class="article-nav-link-wrap">
@@ -489,7 +498,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/08/31/用OpenCV显示OpenGL图形/" title="上一篇: 用OpenCV显示OpenGL图形">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
@@ -498,7 +509,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/">写上篇文档“GitHub+Hexo搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/GitHub-Hexo搭建个人博客/">GitHub+Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/用OpenCV显示OpenGL图形/">用OpenCV显示OpenGL图形</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/">写上篇文档“GitHub+Hexo搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/GitHub-Hexo搭建个人博客/">GitHub+Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
