@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cniter.github.io/"/>
-  <updated>2017-08-31T01:47:00.024Z</updated>
+  <updated>2017-08-31T01:56:17.755Z</updated>
   <id>http://cniter.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://cniter.github.io/2017/08/31/%E7%94%A8OpenCV%E6%98%BE%E7%A4%BAOpenGL%E5%9B%BE%E5%BD%A2/"/>
     <id>http://cniter.github.io/2017/08/31/用OpenCV显示OpenGL图形/</id>
     <published>2017-08-31T01:40:31.000Z</published>
-    <updated>2017-08-31T01:47:00.024Z</updated>
+    <updated>2017-08-31T01:56:17.755Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本文就是一个小实验，试验OpenCV到底能不能支持OpenGL图形显示。</p>
 <a id="more"></a>
