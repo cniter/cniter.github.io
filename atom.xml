@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cniter.github.io/"/>
-  <updated>2017-09-13T11:24:29.871Z</updated>
+  <updated>2017-09-15T13:16:28.334Z</updated>
   <id>http://cniter.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo添加各种小部件</title>
+    <link href="http://cniter.github.io/2017/09/15/Hexo%E6%B7%BB%E5%8A%A0%E5%90%84%E7%A7%8D%E5%B0%8F%E9%83%A8%E4%BB%B6/"/>
+    <id>http://cniter.github.io/2017/09/15/Hexo添加各种小部件/</id>
+    <published>2017-09-15T12:23:05.000Z</published>
+    <updated>2017-09-15T13:16:28.334Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人目前还在使用对Hexo的主题<strong>SPFK</strong>自行魔改的那个主题（所谓的魔改也就是对照着<strong>black-blue</strong>主题修改了部分CSS，然后又添加了一个站内搜索功能(&gt;&#94;ω&#94;&lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。</p>
+<a id="more"></a>
+<h2 id="添加QQ邮箱联系"><a href="#添加QQ邮箱联系" class="headerlink" title="添加QQ邮箱联系"></a>添加QQ邮箱联系</h2><p>　　进入<a href="http://openmail.qq.com/" target="_blank" rel="external">QQ邮箱开放平台</a>，点击“<strong>获取邮我按钮</strong>”，登录QQ之后继续点击该按钮，因为本人不需要其样式，只需要其链接即可，所以就默认样式，直接点击“<strong>获取代码</strong>”即可，本人默认的“<strong>HTML代码</strong>”为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ"</span> <span class="attr">style</span>=<span class="string">"text-decoration:none;"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>提取其中的href，即<code>http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ</code>，将该链接添加到<strong>主题配置文件</strong>中，具体如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">subnav:</span></div><div class="line"><span class="attr">  mail:</span> <span class="string">"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ"</span></div></pre></td></tr></table></figure>
+<p>重新部署站点即可发现对应的邮箱图标，点击该图标可直接给本人发邮件。</p>
+<h2 id="添加QQ交谈链接"><a href="#添加QQ交谈链接" class="headerlink" title="添加QQ交谈链接"></a>添加QQ交谈链接</h2><p>　　进入<a href="http://shang.qq.com/v3/widget.html" target="_blank" rel="external">QQ推广</a>，点击上方的“<strong>推广工具</strong>”，若没登录QQ则先登录QQ，组件样式同样默认即可，这里需要注意的是，需要点击左边的“<strong>设置</strong>”，下滚页面，找到“<strong>安全级别设置</strong>”，如下</p>
+<blockquote>
+<h><strong>安全级别设置</strong></h>
+
+<p>   <input name="qq_security" type="radio">  完全公开（推荐商家，客服等用户使用，代码中显示QQ号码，易于推广）</p>
+<p>   <input name="qq_security" type="radio">  安全加密（推荐博主，论坛用户等使用，代码中不显示QQ号码）</p>
+</blockquote>
+<p>选中“<strong>安全加密</strong>”，不然该选项默认的为完全公开，这样QQ号码就直接会显示在代码中，不利于隐私保护，选中之后，点击“<strong>保存</strong>”。保存之后，再次点击“<strong>推广工具</strong>”，即可发现下方的复制代码区域的HTML代码已看不到明码显示的QQ号，（若还是能看到QQ号，没有任何变化，可关闭该界面，重启浏览器重新进入该界面），本人的“<strong>复制这段代码并将其粘贴到您的网页上</strong>”下方区域的默认的代码为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"http://sighttp.qq.com/authd?IDKEY=b1afd83745b30922bc98e020847b86a5148d2114e62e8422"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">border</span>=<span class="string">"0"</span>  <span class="attr">src</span>=<span class="string">"http://wpa.qq.com/imgd?IDKEY=b1afd83745b30922bc98e020847b86a5148d2114e62e8422&amp;pic=52"</span> <span class="attr">alt</span>=<span class="string">"点击这里给我发消息"</span> <span class="attr">title</span>=<span class="string">"点击这里给我发消息"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>提取其中的href，即<code>http://sighttp.qq.com/authd?IDKEY=b1afd83745b30922bc98e020847b86a5148d2114e62e8422</code>，将该链接添加到<strong>主题配置文件</strong>中，具体如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">subnav:</span></div><div class="line"><span class="attr">  QQ:</span> <span class="string">"http://sighttp.qq.com/authd?IDKEY=4faf682653b3b7f5f47b9cb6d2bb8b81de8fa7a8fb8cee12"</span></div></pre></td></tr></table></figure>
+<p>重新部署站点即可发现对应的QQ图标，点击该图标可直接给本人发临时QQ消息。</p>
+<hr>
+<p>待续。。。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　目前就添加这些小组件，以后应该会陆续添加一些其它的小东西↖(&#94;ω&#94;)↗。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://jingyan.baidu.com/article/dca1fa6fb5b637f1a44052b4.html" target="_blank" rel="external">如何在自己网站上或者博客上放置QQ邮箱联系反馈</a>（<a href="http://jingyan.baidu.com/tag?tagName=%E9%82%AE%E7%AE%B1" target="_blank" rel="external">http://jingyan.baidu.com/tag?tagName=%E9%82%AE%E7%AE%B1</a> ）</p>
+<p>[2] <a href="http://www.29mo.com/wltg/363.html" target="_blank" rel="external">如何在自己的博客添加QQ组件</a>（<a href="http://www.29mo.com/category/wltg" target="_blank" rel="external">http://www.29mo.com/category/wltg</a> ）</p>
+<p>[3] <a href="http://www.feizl.com/html/29610.htm" target="_blank" rel="external">一步一步教你给自己博客添加QQ在线</a>（<a href="http://www.feizl.com/feizhuliu/QQbaodian/" target="_blank" rel="external">http://www.feizl.com/feizhuliu/QQbaodian/</a> ）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;　　本人目前还在使用对Hexo的主题&lt;strong&gt;SPFK&lt;/strong&gt;自行魔改的那个主题（所谓的魔改也就是对照着&lt;strong&gt;black-blue&lt;/strong&gt;主题修改了部分CSS，然后又添加了一个站内搜索功能(&amp;gt;&amp;#94;ω&amp;#94;&amp;lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="建站小记" scheme="http://cniter.github.io/categories/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
+    
+    
+      <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenCV中显著性检测算法的使用</title>
@@ -518,9 +565,9 @@
       <category term="建站小记" scheme="http://cniter.github.io/categories/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
     
     
-      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
     
   </entry>
   
