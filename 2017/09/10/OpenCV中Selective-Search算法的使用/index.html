@@ -5,18 +5,18 @@
   
   <title>OpenCV中Selective Search算法的使用 | Shaun Yuan&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文所用的OpenCV版本为opencv-3.2.0，编程语言为C++。  前言　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好，所以本人参考其官方文档及其官方示例程序写下此文。">
+  <meta name="description" content="本文所用的OpenCV版本为opencv-3.2.0，编程语言为C++。  前言　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好（本人编程水平有限，粗浅评价，勿怪(*&amp;#94;__&amp;#94; *) 嘻嘻……），所以本人参考其官方文档及其官方示例程序写">
 <meta name="keywords" content="opencv">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV中Selective Search算法的使用">
 <meta property="og:url" content="http://cniter.github.io/2017/09/10/OpenCV中Selective-Search算法的使用/index.html">
 <meta property="og:site_name" content="Shaun Yuan&#39;blog">
-<meta property="og:description" content="本文所用的OpenCV版本为opencv-3.2.0，编程语言为C++。  前言　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好，所以本人参考其官方文档及其官方示例程序写下此文。">
+<meta property="og:description" content="本文所用的OpenCV版本为opencv-3.2.0，编程语言为C++。  前言　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好（本人编程水平有限，粗浅评价，勿怪(*&amp;#94;__&amp;#94; *) 嘻嘻……），所以本人参考其官方文档及其官方示例程序写">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-10T12:39:34.034Z">
+<meta property="og:updated_time" content="2017-09-13T11:30:12.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV中Selective Search算法的使用">
-<meta name="twitter:description" content="本文所用的OpenCV版本为opencv-3.2.0，编程语言为C++。  前言　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好，所以本人参考其官方文档及其官方示例程序写下此文。">
+<meta name="twitter:description" content="本文所用的OpenCV版本为opencv-3.2.0，编程语言为C++。  前言　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好（本人编程水平有限，粗浅评价，勿怪(*&amp;#94;__&amp;#94; *) 嘻嘻……），所以本人参考其官方文档及其官方示例程序写">
   
     <link rel="alternative" href="/atom.xml" title="Shaun Yuan&#39;blog" type="application/atom+xml">
   
@@ -136,9 +136,13 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ" title="mail">mail</a>
+                            
                                 <a class="fl github" target="_blank" href="https://github.com/cniter" title="github">github</a>
                             
                                 <a class="fl rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                                <a class="fl QQ" target="_blank" href="http://sighttp.qq.com/authd?IDKEY=4faf682653b3b7f5f47b9cb6d2bb8b81de8fa7a8fb8cee12" title="QQ">QQ</a>
                             
                         </ul>
                     </nav>
@@ -204,9 +208,13 @@
             <nav class="header-nav">
                 <div class="social">
                     
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ" title="mail">mail</a>
+                    
                         <a class="github" target="_blank" href="https://github.com/cniter" title="github">github</a>
                     
                         <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                        <a class="QQ" target="_blank" href="http://sighttp.qq.com/authd?IDKEY=4faf682653b3b7f5f47b9cb6d2bb8b81de8fa7a8fb8cee12" title="QQ">QQ</a>
                     
                 </div>
             </nav>
@@ -257,7 +265,7 @@
           
         <font color="#FA8072">本文所用的OpenCV版本为opencv-3.2.0，编程语言为C++。</font>
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好，所以本人参考其<a href="http://docs.opencv.org/3.2.0/d5/df0/group__ximgproc__segmentation.html" target="_blank" rel="external">官方文档</a>及其<a href="https://github.com/opencv/opencv_contrib/blob/master/modules/ximgproc/samples/selectivesearchsegmentation_demo.cpp" target="_blank" rel="external">官方示例程序</a>写下此文。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　OpenCV-3.2中的Selective Search算法是在其扩展包中，所以要想使用该算法需自行编译opencv_contrib-3.2.0。由于扩展包中的示例程序有点简陋，对初学者也不友好（本人编程水平有限，粗浅评价，勿怪(*&#94;__&#94; *) 嘻嘻……），所以本人参考其<a href="http://docs.opencv.org/3.2.0/d5/df0/group__ximgproc__segmentation.html" target="_blank" rel="external">官方文档</a>及其<a href="https://github.com/opencv/opencv_contrib/blob/master/modules/ximgproc/samples/selectivesearchsegmentation_demo.cpp" target="_blank" rel="external">官方示例程序</a>写下此文。</p>
 <a id="more"></a>
 <h2 id="Selective-Search算法"><a href="#Selective-Search算法" class="headerlink" title="Selective Search算法"></a>Selective Search算法</h2><p>　　该算法是选取region proposal（一般翻译成候选区域 / 区域建议）领域中的<em>state-of-the-art</em>。其算法具体思想出自<strong>Jasper RR Uijlings, Koen EA van de Sande, Theo Gevers, and Arnold WM Smeulders. Selective search for object recognition. <em>International journal of computer vision</em>, 104(2):154–171, 2013.</strong>，若英文水平不够，还想了解其中文思想请参考文末参考资料。</p>
 <h2 id="代码篇"><a href="#代码篇" class="headerlink" title="代码篇"></a>代码篇</h2><p>　　使用Selective Search算法需包含<code>#include &lt;opencv2/ximgproc.hpp&gt;</code>，完整示例程序如下：</p>
@@ -278,7 +286,7 @@
         <p><span>本文标题:</span><a href="/2017/09/10/OpenCV中Selective-Search算法的使用/">OpenCV中Selective Search算法的使用</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年09月10日 - 20时31分</p>
-        <p><span>最后更新:</span>2017年09月10日 - 20时39分</p>
+        <p><span>最后更新:</span>2017年09月13日 - 19时30分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/09/10/OpenCV中Selective-Search算法的使用/" title="OpenCV中Selective Search算法的使用">http://cniter.github.io/2017/09/10/OpenCV中Selective-Search算法的使用/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/10/OpenCV中Selective-Search算法的使用/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -395,7 +403,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/OpenCV中显著性检测算法的使用/">OpenCV中显著性检测算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/10/OpenCV中Selective-Search算法的使用/">OpenCV中Selective Search算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Win10以树形结构显示文件目录结构/">Win10以树形结构显示文件目录结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/01/Hexo添加站内本地搜索/">Hexo添加站内本地搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/用OpenCV显示OpenGL图形/">用OpenCV显示OpenGL图形</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/">写上篇文档“GitHub+Hexo搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/GitHub-Hexo搭建个人博客/">GitHub+Hexo搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/OpenCV中显著性检测算法的使用/">OpenCV中显著性检测算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/10/OpenCV中Selective-Search算法的使用/">OpenCV中Selective Search算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Win10以树形结构显示文件目录结构/">Win10以树形结构显示文件目录结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/01/Hexo添加站内本地搜索/">Hexo添加站内本地搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/用OpenCV显示OpenGL图形/">用OpenCV显示OpenGL图形</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/解决写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/">解决写上篇文档“GitHub+Hexo搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/Hexo-GitHub搭建个人博客/">Hexo+GitHub搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
