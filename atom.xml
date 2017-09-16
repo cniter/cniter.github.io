@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cniter.github.io/"/>
-  <updated>2017-09-15T13:16:28.334Z</updated>
+  <updated>2017-09-16T08:11:25.286Z</updated>
   <id>http://cniter.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题</title>
+    <link href="http://cniter.github.io/2017/09/16/%E8%A7%A3%E5%86%B3OpenCV-2.4.11%E8%B0%83%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4%E6%98%BE%E7%A4%BA%E6%8B%8D%E6%91%84%E8%A7%86%E9%A2%91%E5%87%BA%E9%94%99%E9%97%AE%E9%A2%98/"/>
+    <id>http://cniter.github.io/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/</id>
+    <published>2017-09-16T07:56:16.000Z</published>
+    <updated>2017-09-16T08:11:25.286Z</updated>
+    
+    <content type="html"><![CDATA[<font color="#FA8072">本文所用的OpenCV版本为opencv-2.4.11，编程语言为C++。</font>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本文其实是以前在刚学OpenCV时遇到的一个问题，当时我的环境还是：Win7，VS2010，opencv-2.4.11。当初就记录了下来，现在再来重新梳理一下。</p>
+<a id="more"></a>
+<h2 id="问题篇"><a href="#问题篇" class="headerlink" title="问题篇"></a>问题篇</h2><p><strong>问题描述：</strong>使用OpenCV-2.4.11调用摄像头显示拍摄视频时报<font color="#FA8072">runtime error</font>，控制台窗口出现<font color="#FA8072">OpenCV Error: Assertion failed (size.width&gt;0 &amp;&amp; size.height&gt;0) in cv::imshow, file ……..\opencv\modules\highgui\src\window.cpp, line 261</font>。 </p>
+<p><strong>解决办法：</strong>在显示图片时先判断是否有图像数据，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!image.empty()) </div><div class="line">&#123;</div><div class="line">    imshow(<span class="string">"window"</span>, image);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (image.data) </div><div class="line">&#123;</div><div class="line">    imshow(<span class="string">"window"</span>, image);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>原因可能是：</strong>用imshow()显示图像时，其image必须有数据，如果它为空则程序会报错，而一般打开摄像头会有一定时间的延迟，这时程序已经启动，而摄像头由于启动延迟，不一定能及时获取图像，造成要显示的image为空，因此报错。个人粗浅理解，板砖轻拍⊙﹏⊙b。</p>
+<p>而网上有人也认为：</p>
+<blockquote>
+<ol>
+<li>我也是遇到这个问题，不过看到一个帖子写得不错（英文的），里面给出了一个可能的理由，就是我们用opencv打开视频的时候，会自动先监测摄像头有没有读到帧，如果没有，就会报错，然后再执行你的程序，加一个if判断就是跳过系统自己的判断，直接执行我们的程序。来自：<a href="https://zhidao.baidu.com/question/1831122325089024420.html" target="_blank" rel="external">https://zhidao.baidu.com/question/1831122325089024420.html</a></li>
+<li>有人说的原因是在VideoCapture刚开始获取摄像头视频流的过程不返回信号，所以判断Mat是否为空，并不断循环去获取Mat。来自：<a href="http://www.cnblogs.com/tiny656/p/3538115.html" target="_blank" rel="external">http://www.cnblogs.com/tiny656/p/3538115.html</a></li>
+</ol>
+</blockquote>
+<p>附最终完整示例程序：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/core/core.hpp&gt;  </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/imgproc/imgproc.hpp&gt; </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">// 调用摄像头</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">videoCaptureTest</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">//cv::VideoCapture cap(0);  // 打开默认摄像头，参数0代表默认摄像头的ID</span></div><div class="line">    cv::VideoCapture cap;</div><div class="line">    cap.open(<span class="number">0</span>);</div><div class="line">    <span class="comment">// 设置摄像头</span></div><div class="line">    cap.<span class="built_in">set</span>(CV_CAP_PROP_FRAME_WIDTH,<span class="number">640</span>);</div><div class="line">    cap.<span class="built_in">set</span>(CV_CAP_PROP_FRAME_HEIGHT,<span class="number">480</span>);</div><div class="line">    <span class="comment">// 确认是否成功打开摄像头</span></div><div class="line">    <span class="keyword">if</span> (!cap.isOpened())</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"打开摄像头失败，退出！\n"</span>);</div><div class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">    cv::namedWindow(<span class="string">"Capture"</span>, CV_WINDOW_AUTOSIZE|CV_WINDOW_FREERATIO);</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        cv::Mat frame;</div><div class="line">        cap &gt;&gt; frame;   <span class="comment">// 获取帧</span></div><div class="line"></div><div class="line">        <span class="comment">// 对摄像头获取的帧进行各种处理</span></div><div class="line">        <span class="keyword">if</span> (!frame.empty()) <span class="comment">// 最好加上该判断，并在该判断中对帧进行处理</span></div><div class="line">        &#123;</div><div class="line">            cv::imshow(<span class="string">"Capture"</span>, frame);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(cv::waitKey(<span class="number">30</span>) &gt;= <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">// 每30ms取一帧</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    videoCaptureTest();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　其实也可以通过在获取帧时，反复获取帧，直到取到的帧有数据为止，这样就不需要判断语句了，直接显示即可，具体代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">do</span></div><div class="line">&#123;</div><div class="line">    cap &gt;&gt; frame;</div><div class="line">&#125;<span class="keyword">while</span>(frame.empty());</div><div class="line"></div><div class="line">cv::imshow(<span class="string">"Capture"</span>, frame);</div></pre></td></tr></table></figure>
+<p>参考自：<a href="https://stackoverflow.com/a/9285151" target="_blank" rel="external">https://stackoverflow.com/a/9285151</a> 。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　本文还是当初在国内某平台写博客时写的，但现在再回头看，又稍微有了点新的思路，温故确实能知新(*&#94;__&#94;*) 嘻嘻……。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.sina.com.cn/s/blog_a3e7ccd6010105yn.html" target="_blank" rel="external">OpenCV2.3使用摄像头和视频</a>（<a href="http://blog.sina.com.cn/s/articlelist_2749877462_3_1.html" target="_blank" rel="external">http://blog.sina.com.cn/s/articlelist_2749877462_3_1.html</a> ）</p>
+<p>[2] <a href="http://zhidao.baidu.com/link?url=pIM9Hr0-Yalk-uj8cm5ml0y91X92jJmPAXMKQ-1h7FXSPsrwTiD6_9Ngfq72hmxbVDjNE0aYTOmXCCVEryZvhNBJGW6FbsqjO6dbjVLEZt3" target="_blank" rel="external">OpenCV Error: Assertion failed (size.width&gt;0 &amp;&amp; size.height&gt;0) in cv::imshow, fi 这个问题怎么办？</a></p>
+<p>[3] <a href="http://blog.csdn.net/czl389/article/details/51031100" target="_blank" rel="external">OpenCV打开摄像头出现运行错误OpenCV Error：Assertion failed (size.width&gt;0&amp;&amp;size.height&gt;0)in cv::imshow，…… </a>（<a href="http://blog.csdn.net/czl389/article/category/6381887" target="_blank" rel="external">http://blog.csdn.net/czl389/article/category/6381887</a> ）</p>
+<p>[4] <a href="http://www.cnblogs.com/tiny656/p/3538115.html" target="_blank" rel="external">[OpenCV]获取摄像头视频</a>（<a href="http://www.cnblogs.com/tiny656/category/550972.html" target="_blank" rel="external">http://www.cnblogs.com/tiny656/category/550972.html</a> ）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;font color=&quot;#FA8072&quot;&gt;本文所用的OpenCV版本为opencv-2.4.11，编程语言为C++。&lt;/font&gt;
+
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;　　本文其实是以前在刚学OpenCV时遇到的一个问题，当时我的环境还是：Win7，VS2010，opencv-2.4.11。当初就记录了下来，现在再来重新梳理一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Problems" scheme="http://cniter.github.io/categories/Problems/"/>
+    
+    
+      <category term="opencv" scheme="http://cniter.github.io/tags/opencv/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo添加各种小部件</title>
