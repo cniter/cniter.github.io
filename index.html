@@ -149,7 +149,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
+                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
                     </div>
                 </section>
                 
@@ -220,6 +220,73 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/" class="article-date">
+      <time datetime="2017-09-16T08:16:08.000Z" itemprop="datePublished">2017-09-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/">解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　曾写过一个程序，需要有一个界面，但本人不想使用MFC，因缘巧合，在网上看到Qt，就尝试用了一下，遂有此文。本人的Qt版本为qt-opensource-windows-x86-msvc2013-5.6.2，看其名字就知道该版本的Qt可以通过Visual Studio 2013开发Qt程序（各位看官猜的没错，本人并没有直接使用Qt Creator开发Qt程序，而是通过VS开发Qt程序的\(&#94;o&#94;)/），一来是熟悉VS开发，对Qt Creator完全没用过；二来是已经在VS配好全套的开发环境了（画外音：说白了就是懒嘛╭(╯^╰)╮）。但是在VS中开发Qt程序还需要一些其它的配置。</p>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Problems/">Problems</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qt/">qt</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -816,74 +883,6 @@
       
         <p class="article-more-link">
           <a  href="/2017/08/26/解决写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hexo-GitHub搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/08/26/Hexo-GitHub搭建个人博客/" class="article-date">
-      <time datetime="2017-08-26T08:51:13.000Z" itemprop="datePublished">2017-08-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/26/Hexo-GitHub搭建个人博客/">Hexo+GitHub搭建个人博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>本人系统环境：Win10_x64。</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本来是想在国内某网站上继续写的，毕竟完全不需要自己管理，只需要负责写好文档就可以了，但某一天，该网站由于响应国家的号召，要实名验证，本来实名验证也没什么，就输入手机号，并填写验证码即可，但该网站实名验证的方式给人的感觉特别不爽，于是就决定自己搭建博客，这样虽然有点麻烦，但由于完全是自己管理，自己完全拥有该文档的所有权，也不用担心哪天别的网站突然出现的各种破问题，相比这种完全自由支配、无比爽快的感觉，管理这种麻烦就是小事了。</p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/建站小记/">建站小记</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/08/26/Hexo-GitHub搭建个人博客/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>
