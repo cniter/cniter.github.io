@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Shaun Yuan&#39;blog">
 <meta property="og:description" content="前言　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-16T10:34:23.535Z">
+<meta property="og:updated_time" content="2017-09-17T11:35:01.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo的SPFK主题修改小记">
 <meta name="twitter:description" content="前言　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。">
@@ -53,7 +53,7 @@
 <body>
   <div id="container">
     <div class="left-col">
-    <div class="overlay"></div>
+    <!-- <div class="overlay"></div> -->
 <div class="intrude-less">
     <header id="header" class="inner">
         <a href="/" class="profilepic">
@@ -270,7 +270,9 @@
 <p><strong>需求描述：</strong>本人为了使<strong>aboutme</strong>排版好看一点，使“<strong>关于我</strong>”的内容更有段落感，本人尝试在主题配置文件中aboutme对象的内容添加各种换行转义符号均于事无补，如<code>\n</code>、<code>\r\n</code>、<code>&amp;#13;</code>、<code>&amp;#10;</code>、<code>&lt;br /&gt;</code>等，站点不仅不会换行，还会直接将转义符号都显示出来(╯﹏╰）。</p>
 <p><strong>解决办法：</strong>既然本人基本把所有的换行方法都试过了，还没有任何作用，那就只能是问题出在其它地方了。本人首先找到显示aboutme内容的地方，其位于主题文件夹下<code>\layout\_partial\left-col.ejs</code>，显示aboutme内容的代码为<code>&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%=theme.aboutme%&gt;&lt;/div&gt;</code>，查阅相关资料，具体为<a href="https://cnodejs.org/topic/5711aec2238ae0ac1e3a6a26" target="_blank" rel="external">与大家分享ejs源码阅读心得</a>，其中有这样一段话：</p>
 <blockquote>
-<h2 id="关于ejs模板的五种模式对应几种指令"><a href="#关于ejs模板的五种模式对应几种指令" class="headerlink" title="关于ejs模板的五种模式对应几种指令"></a><strong>关于ejs模板的五种模式对应几种指令</strong></h2><p><code>ejs</code>主要提供了如下几种指令:</p>
+<h><strong>关于ejs模板的五种模式对应几种指令</strong></h>
+
+<p><code>ejs</code>主要提供了如下几种指令:</p>
 <ul>
 <li><code>&lt;%</code>, 该指令主要通过js中的<code>eval</code>来执行js代码, 如上模板代码<code>&lt;% [1,2].forEach(function(v){ %&gt;</code>将通过<code>eval</code>编译成<code>; [1,2].forEach(function(v){</code>即直接可执行的js代码, 并且不会存放到<code>__output</code>函数中输出.</li>
 <li><strong><code>&lt;%=</code>, 该指令主要用于输出变量内容, 如上模板代码<code>&lt;%= v %&gt;</code>将通过<code>escape</code>函数编译成<code>__append(escape(v))</code>, 可以看到该指令用于输出变量内容, 最后将通过<code>__output</code>输出内容.</strong></li>
@@ -296,7 +298,7 @@
         <p><span>本文标题:</span><a href="/2017/09/16/Hexo的SPFK主题修改小记/">Hexo的SPFK主题修改小记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年09月16日 - 18时26分</p>
-        <p><span>最后更新:</span>2017年09月16日 - 18时34分</p>
+        <p><span>最后更新:</span>2017年09月17日 - 19时35分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/09/16/Hexo的SPFK主题修改小记/" title="Hexo的SPFK主题修改小记">http://cniter.github.io/2017/09/16/Hexo的SPFK主题修改小记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/16/Hexo的SPFK主题修改小记/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -325,7 +327,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改篇"><span class="toc-number">2.</span> <span class="toc-text">修改篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于ejs模板的五种模式对应几种指令"><span class="toc-number">3.</span> <span class="toc-text">关于ejs模板的五种模式对应几种指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">4.</span> <span class="toc-text">后记</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改篇"><span class="toc-number">2.</span> <span class="toc-text">修改篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 

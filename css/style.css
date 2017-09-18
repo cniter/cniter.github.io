@@ -260,6 +260,7 @@ a {
   -ms-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   height: 100%;
+  overflow: auto;
 }
 #container .left-col .overlay {
   width: 100%;
@@ -274,7 +275,6 @@ a {
   padding-top: 10px;
   text-align: center;
   margin: 40px auto 0;
-  overflow: auto;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -286,6 +286,7 @@ a {
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  height: 80%;
 }
 #container .mid-col {
   position: absolute;
@@ -2063,7 +2064,7 @@ a {
   width: 100%;
   overflow: hidden;
   color: #4094c3;
-  min-height: 300px;
+  min-height: 200px;
   font-size: 14px;
 }
 #header .switch-area .switch-wrap {

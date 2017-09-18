@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Hexo的SPFK主题修改小记]]></title>
     <url>%2F2017%2F09%2F16%2FHexo%E7%9A%84SPFK%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[前言 本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。 修改篇1、修改aboutme排版问题。 需求描述：本人为了使aboutme排版好看一点，使“关于我”的内容更有段落感，本人尝试在主题配置文件中aboutme对象的内容添加各种换行转义符号均于事无补，如\n、\r\n、&amp;#13;、&amp;#10;、&lt;br /&gt;等，站点不仅不会换行，还会直接将转义符号都显示出来(╯﹏╰）。 解决办法：既然本人基本把所有的换行方法都试过了，还没有任何作用，那就只能是问题出在其它地方了。本人首先找到显示aboutme内容的地方，其位于主题文件夹下\layout\_partial\left-col.ejs，显示aboutme内容的代码为&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%=theme.aboutme%&gt;&lt;/div&gt;，查阅相关资料，具体为与大家分享ejs源码阅读心得，其中有这样一段话： 关于ejs模板的五种模式对应几种指令ejs主要提供了如下几种指令: &lt;%, 该指令主要通过js中的eval来执行js代码, 如上模板代码&lt;% [1,2].forEach(function(v){ %&gt;将通过eval编译成; [1,2].forEach(function(v){即直接可执行的js代码, 并且不会存放到__output函数中输出. &lt;%=, 该指令主要用于输出变量内容, 如上模板代码&lt;%= v %&gt;将通过escape函数编译成__append(escape(v)), 可以看到该指令用于输出变量内容, 最后将通过__output输出内容. &lt;%-, 该指令与&lt;%=区别是, &lt;%=指令使用escape函数来对特殊字符进行编码, 如将&gt;转为%3E, 查看关于escape函数. &lt;%#, 该指令主要用于模板内注释, 既不会执行也不会输出. &lt;%%, 主要用于输出字面值%. 关于以上各个指令对应的解析, 可参考ejs源码根目录lib/ejs.js文件中的scanLine函数. 从中可得知&lt;%=指令会将变量内容中一些特殊字符先转义，再原封不动的输出，所以本人无论怎么修改主题配置文件中aboutme对象的值，其输出内容都会是原封不动的aboutme对象的值。为了让其输出内容可以有相应的特殊格式，就不能让其转义，只能用&lt;%-指令，将其修改为&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%-theme.aboutme%&gt;&lt;/div&gt;，这样就能使输出内容可以自定义特殊格式，本人最后在aboutme对象的内容中需要换行的地方添加了&lt;br /&gt;，实测如此修改后可以换行。 待续。。。 后记 先就写到这里，如后续修改中发现问题再继续记录吧↖(&#94;ω&#94;)↗。]]></content>
+    <content type="text"><![CDATA[前言 本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。 修改篇1、修改aboutme排版问题。 需求描述：本人为了使aboutme排版好看一点，使“关于我”的内容更有段落感，本人尝试在主题配置文件中aboutme对象的内容添加各种换行转义符号均于事无补，如\n、\r\n、&amp;#13;、&amp;#10;、&lt;br /&gt;等，站点不仅不会换行，还会直接将转义符号都显示出来(╯﹏╰）。 解决办法：既然本人基本把所有的换行方法都试过了，还没有任何作用，那就只能是问题出在其它地方了。本人首先找到显示aboutme内容的地方，其位于主题文件夹下\layout\_partial\left-col.ejs，显示aboutme内容的代码为&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%=theme.aboutme%&gt;&lt;/div&gt;，查阅相关资料，具体为与大家分享ejs源码阅读心得，其中有这样一段话： 关于ejs模板的五种模式对应几种指令 ejs主要提供了如下几种指令: &lt;%, 该指令主要通过js中的eval来执行js代码, 如上模板代码&lt;% [1,2].forEach(function(v){ %&gt;将通过eval编译成; [1,2].forEach(function(v){即直接可执行的js代码, 并且不会存放到__output函数中输出. &lt;%=, 该指令主要用于输出变量内容, 如上模板代码&lt;%= v %&gt;将通过escape函数编译成__append(escape(v)), 可以看到该指令用于输出变量内容, 最后将通过__output输出内容. &lt;%-, 该指令与&lt;%=区别是, &lt;%=指令使用escape函数来对特殊字符进行编码, 如将&gt;转为%3E, 查看关于escape函数. &lt;%#, 该指令主要用于模板内注释, 既不会执行也不会输出. &lt;%%, 主要用于输出字面值%. 关于以上各个指令对应的解析, 可参考ejs源码根目录lib/ejs.js文件中的scanLine函数. 从中可得知&lt;%=指令会将变量内容中一些特殊字符先转义，再原封不动的输出，所以本人无论怎么修改主题配置文件中aboutme对象的值，其输出内容都会是原封不动的aboutme对象的值。为了让其输出内容可以有相应的特殊格式，就不能让其转义，只能用&lt;%-指令，将其修改为&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%-theme.aboutme%&gt;&lt;/div&gt;，这样就能使输出内容可以自定义特殊格式，本人最后在aboutme对象的内容中需要换行的地方添加了&lt;br /&gt;，实测如此修改后可以换行。 待续。。。 后记 先就写到这里，如后续修改中发现问题再继续记录吧↖(&#94;ω&#94;)↗。]]></content>
       <categories>
         <category>建站小记</category>
       </categories>
@@ -132,8 +132,8 @@
         <category>建站小记</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>github</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
