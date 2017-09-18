@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Shaun Yuan&#39;blog">
 <meta property="og:description" content="前言　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T11:35:01.706Z">
+<meta property="og:updated_time" content="2017-09-18T12:14:39.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo的SPFK主题修改小记">
 <meta name="twitter:description" content="前言　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。">
@@ -265,9 +265,7 @@
           
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。</p>
 <a id="more"></a>
-<h2 id="修改篇"><a href="#修改篇" class="headerlink" title="修改篇"></a>修改篇</h2><font color="#FA8072">1、修改<strong>aboutme</strong>排版问题。</font>
-
-<p><strong>需求描述：</strong>本人为了使<strong>aboutme</strong>排版好看一点，使“<strong>关于我</strong>”的内容更有段落感，本人尝试在主题配置文件中aboutme对象的内容添加各种换行转义符号均于事无补，如<code>\n</code>、<code>\r\n</code>、<code>&amp;#13;</code>、<code>&amp;#10;</code>、<code>&lt;br /&gt;</code>等，站点不仅不会换行，还会直接将转义符号都显示出来(╯﹏╰）。</p>
+<h2 id="修改篇"><a href="#修改篇" class="headerlink" title="修改篇"></a>修改篇</h2><h3 id="1、修改aboutme排版问题。"><a href="#1、修改aboutme排版问题。" class="headerlink" title="1、修改aboutme排版问题。"></a><font color="#FA8072">1、修改<strong>aboutme</strong>排版问题。</font></h3><p><strong>需求描述：</strong>本人为了使<strong>aboutme</strong>排版好看一点，使“<strong>关于我</strong>”的内容更有段落感，本人尝试在主题配置文件中aboutme对象的内容添加各种换行转义符号均于事无补，如<code>\n</code>、<code>\r\n</code>、<code>&amp;#13;</code>、<code>&amp;#10;</code>、<code>&lt;br /&gt;</code>等，站点不仅不会换行，还会直接将转义符号都显示出来(╯﹏╰）。</p>
 <p><strong>解决办法：</strong>既然本人基本把所有的换行方法都试过了，还没有任何作用，那就只能是问题出在其它地方了。本人首先找到显示aboutme内容的地方，其位于主题文件夹下<code>\layout\_partial\left-col.ejs</code>，显示aboutme内容的代码为<code>&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%=theme.aboutme%&gt;&lt;/div&gt;</code>，查阅相关资料，具体为<a href="https://cnodejs.org/topic/5711aec2238ae0ac1e3a6a26" target="_blank" rel="external">与大家分享ejs源码阅读心得</a>，其中有这样一段话：</p>
 <blockquote>
 <h><strong>关于ejs模板的五种模式对应几种指令</strong></h>
@@ -283,6 +281,8 @@
 <p>关于以上各个指令对应的解析, 可参考<code>ejs</code>源码根目录<code>lib/ejs.js</code>文件中的<code>scanLine</code>函数.</p>
 </blockquote>
 <p>从中可得知<code>&lt;%=</code>指令会将变量内容中一些特殊字符先转义，再原封不动的输出，所以本人无论怎么修改主题配置文件中aboutme对象的值，其输出内容都会是原封不动的aboutme对象的值。为了让其输出内容可以有相应的特殊格式，就不能让其转义，只能用<code>&lt;%-</code>指令，将其修改为<code>&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%-theme.aboutme%&gt;&lt;/div&gt;</code>，这样就能使输出内容可以自定义特殊格式，本人最后在aboutme对象的内容中需要换行的地方添加了<code>&lt;br /&gt;</code>，实测如此修改后可以换行。</p>
+<h3 id="2、给左栏添加滚动条。"><a href="#2、给左栏添加滚动条。" class="headerlink" title="2、给左栏添加滚动条。"></a><font color="#FA8072">2、给左栏添加滚动条。</font></h3><p><strong>需求描述：</strong>SPFK主题是双栏的主题。因为左栏主要是用来显示一些菜单和头像等内容，这些内容也不多，所以原作者就没有添加滚动条。但是由于本人添加了个本地搜索功能，在刚开始文章少的时候还不受影响，但是随着文章的增多，搜索功能就会影响左栏的布局，这是就必须添加一个滚动条了。本以为添加滚动条很简单，就是添加一个<code>overflow: auto;</code>，谁知道还没这么简单╮(╯﹏╰）╭。</p>
+<p><strong>解决办法：</strong>本人对问题的定位没问题，就是修改主题文件夹下的<code>\source\css\_partial\main.styl</code>文件中<em>.left-col</em>样式，问题在于怎么修改，本想直接在其中加入<code>overflow: auto;</code>，按道理说问题就能解决的，但是本人去搜索试试，发现搜索框上方的头像，文字等全部消失了，滚动条没起到作用，而下方的菜单可以通过滚动条看到。于是本人觉得可能是div上界没撑开，而超出的地方却隐藏了，但下界为什么能撑开，本人这里还是很不明白?_?。既然是这里隐藏了，本人就去看相关标签有没有<code>overflow: hidden;</code>属性，谁知道要么是没有，要么是即是关闭了也没有作用，那问题应该不是出在这里。就只能是这些元素所在的子div里了，本人找到其子div属性<em>.intrude-less</em>，其中虽有overflow: auto;但没设置height属性，所以就不能发挥其作用，本人于是给它加上height属性，搜索后发现有两个滚动条，这显然不简约，于是本人把<em>.intrude-less</em>的overflow: auto;属性注释掉，没想到居然能完美解决问题，可能是因为加上高度属性之后就能撑大父元素div了吧（来自某业余前端的猜测(⊙_⊙)）。后面为了更美观，本人把下方菜单区域的div样式<em>.switch-area</em>高度min-height改小了一点，顺便也把主题文件夹下的<code>\layout\_partial\left-col.ejs</code>文件中首行注释掉<code>&lt;!-- &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt; --&gt;</code>。本人也曾想把height改为min-height，谁知道又出现相同的问题，不得不又改回去。虽然这次已经解决了问题，但有些细节问题还是不太明白，只有等以后前端水平上去了再去想了，如有大佬知道还望不吝赐教(&#94;人&#94;)。</p>
 <hr>
 <p>待续。。。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　先就写到这里，如后续修改中发现问题再继续记录吧↖(&#94;ω&#94;)↗。</p>
@@ -298,7 +298,7 @@
         <p><span>本文标题:</span><a href="/2017/09/16/Hexo的SPFK主题修改小记/">Hexo的SPFK主题修改小记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年09月16日 - 18时26分</p>
-        <p><span>最后更新:</span>2017年09月17日 - 19时35分</p>
+        <p><span>最后更新:</span>2017年09月18日 - 20时14分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/09/16/Hexo的SPFK主题修改小记/" title="Hexo的SPFK主题修改小记">http://cniter.github.io/2017/09/16/Hexo的SPFK主题修改小记/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/16/Hexo的SPFK主题修改小记/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -327,7 +327,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改篇"><span class="toc-number">2.</span> <span class="toc-text">修改篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改篇"><span class="toc-number">2.</span> <span class="toc-text">修改篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、修改aboutme排版问题。"><span class="toc-number">2.1.</span> <span class="toc-text">1、修改aboutme排版问题。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、给左栏添加滚动条。"><span class="toc-number">2.2.</span> <span class="toc-text">2、给左栏添加滚动条。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
