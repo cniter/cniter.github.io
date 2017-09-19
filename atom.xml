@@ -591,11 +591,11 @@
   </entry>
   
   <entry>
-    <title>解决写上篇文档“GitHub+Hexo搭建个人博客”遇到的问题</title>
-    <link href="http://cniter.github.io/2017/08/26/%E8%A7%A3%E5%86%B3%E5%86%99%E4%B8%8A%E7%AF%87%E6%96%87%E6%A1%A3%E2%80%9CGitHub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E2%80%9D%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://cniter.github.io/2017/08/26/解决写上篇文档“GitHub-Hexo搭建个人博客”遇到的问题/</id>
+    <title>解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题</title>
+    <link href="http://cniter.github.io/2017/08/26/%E8%A7%A3%E5%86%B3%E5%86%99%E4%B8%8A%E7%AF%87%E6%96%87%E6%A1%A3%E2%80%9CHexo+GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E2%80%9D%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://cniter.github.io/2017/08/26/解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题/</id>
     <published>2017-08-26T12:20:51.000Z</published>
-    <updated>2017-09-13T12:52:00.246Z</updated>
+    <updated>2017-09-19T01:10:07.336Z</updated>
     
     <content type="html"><![CDATA[<h2 id="超链接网址问题"><a href="#超链接网址问题" class="headerlink" title="超链接网址问题"></a>超链接网址问题</h2><p>　　<strong>问题描述：</strong>使用正常的markdown超链接格式<code>[]()</code>没问题，然而当直接将一个网址链接放入该文档时，它会将该链接后面的文字也当成是该链接的一部分，直接点击链接时，会将后面的文字也放入浏览器地址栏，从而出现网页404错误：<em>404: Page could not be found</em>。</p>
 <p>　　<strong>解决办法：</strong>在网址链接后输入一个空格以隔开网址链接和后面的文字。</p>
@@ -630,8 +630,8 @@
   
   <entry>
     <title>Hexo+GitHub搭建个人博客</title>
-    <link href="http://cniter.github.io/2017/08/26/Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://cniter.github.io/2017/08/26/Hexo-GitHub搭建个人博客/</id>
+    <link href="http://cniter.github.io/2017/08/26/Hexo+GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://cniter.github.io/2017/08/26/Hexo+GitHub搭建个人博客/</id>
     <published>2017-08-26T08:51:13.000Z</published>
     <updated>2017-09-14T13:21:58.362Z</updated>
     
