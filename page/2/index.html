@@ -149,7 +149,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
+                        <a href="/tags/gfw/" style="font-size: 10px;">gfw</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/record/" style="font-size: 10px;">record</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
                     </div>
                 </section>
                 
@@ -220,6 +220,75 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/" class="article-date">
+      <time datetime="2017-08-28T07:38:39.000Z" itemprop="datePublished">2017-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>本人系统环境：Win10_x64 英文企业版；VS2013-update5 英文旗舰版；CMake-3.6.3-win64-x64 免安装版；Qt-opensource-windows-x86-msvc2013-5.6.2。</p>
+<p>　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方的Win32平台选择x64平台；想编译release版的可以在用VS2013编译时将上方的Debug模式选择Release模式；想编译静态库的可以在用CMake生成时取消勾选<strong>BUILD_SHARED_LIBS</strong>选项即可。:-P）</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　因为OpenCV-3.2官方的release版只有支持VS2015的库，而且不包括扩展包（opencv_contrib）中的库，而由于某些历史原因，本人目前使用的编译器还是VS2013，又想用用扩展包中一些有趣的算法，在加上上个月opencv-3.3还没有正式release，所以上个月本人就利用VS2013对opencv-3.2进行编译。具体编译过程如下：</p>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Study/">Study</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题" class="article article-type-post" itemscope itemprop="blogPost">
   

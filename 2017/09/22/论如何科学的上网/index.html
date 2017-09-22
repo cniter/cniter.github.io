@@ -3,22 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0 | Shaun Yuan&#39;blog</title>
+  <title>论如何科学的上网 | Shaun Yuan&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本人系统环境：Win10_x64 英文企业版；VS2013-update5 英文旗舰版；CMake-3.6.3-win64-x64 免安装版；Qt-opensource-windows-x86-msvc2013-5.6.2。 　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方">
-<meta name="keywords" content="opencv">
+  <meta name="description" content="科学式上网推荐组合：Chrome，Proxy SwitchyOmega，Lantern等代理工具。 前言　　所谓的科学式上网，懂的自然懂，本人也就不做过多解释了。本来一直在用别人免费提供的pac代理，但最近可能别人关掉了，上不了google了，就只能另寻他路了。所谓的另寻他路也就是尝试云端框架网站站长枂下提供的另外几种科学式上网攻略。本文只是对枂下站长的攻略做一下实验记录，若想看原滋原味的攻略，还">
+<meta name="keywords" content="gfw,record">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0">
-<meta property="og:url" content="http://cniter.github.io/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/index.html">
+<meta property="og:title" content="论如何科学的上网">
+<meta property="og:url" content="http://cniter.github.io/2017/09/22/论如何科学的上网/index.html">
 <meta property="og:site_name" content="Shaun Yuan&#39;blog">
-<meta property="og:description" content="本人系统环境：Win10_x64 英文企业版；VS2013-update5 英文旗舰版；CMake-3.6.3-win64-x64 免安装版；Qt-opensource-windows-x86-msvc2013-5.6.2。 　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方">
+<meta property="og:description" content="科学式上网推荐组合：Chrome，Proxy SwitchyOmega，Lantern等代理工具。 前言　　所谓的科学式上网，懂的自然懂，本人也就不做过多解释了。本来一直在用别人免费提供的pac代理，但最近可能别人关掉了，上不了google了，就只能另寻他路了。所谓的另寻他路也就是尝试云端框架网站站长枂下提供的另外几种科学式上网攻略。本文只是对枂下站长的攻略做一下实验记录，若想看原滋原味的攻略，还">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20161115134305655">
-<meta property="og:updated_time" content="2017-08-30T09:28:56.696Z">
+<meta property="og:updated_time" content="2017-09-22T07:46:30.394Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0">
-<meta name="twitter:description" content="本人系统环境：Win10_x64 英文企业版；VS2013-update5 英文旗舰版；CMake-3.6.3-win64-x64 免安装版；Qt-opensource-windows-x86-msvc2013-5.6.2。 　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20161115134305655">
+<meta name="twitter:title" content="论如何科学的上网">
+<meta name="twitter:description" content="科学式上网推荐组合：Chrome，Proxy SwitchyOmega，Lantern等代理工具。 前言　　所谓的科学式上网，懂的自然懂，本人也就不做过多解释了。本来一直在用别人免费提供的pac代理，但最近可能别人关掉了，上不了google了，就只能另寻他路了。所谓的另寻他路也就是尝试云端框架网站站长枂下提供的另外几种科学式上网攻略。本文只是对枂下站长的攻略做一下实验记录，若想看原滋原味的攻略，还">
   
     <link rel="alternative" href="/atom.xml" title="Shaun Yuan&#39;blog" type="application/atom+xml">
   
@@ -223,11 +221,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-论如何科学的上网" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/" class="article-date">
-      <time datetime="2017-08-28T07:38:39.000Z" itemprop="datePublished">2017-08-28</time>
+      <a href="/2017/09/22/论如何科学的上网/" class="article-date">
+      <time datetime="2017-09-22T07:36:43.000Z" itemprop="datePublished">2017-09-22</time>
 </a>
     </div>
   
@@ -240,7 +238,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0
+      论如何科学的上网
     </h1>
   
 
@@ -255,7 +253,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gfw/">gfw</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/record/">record</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -265,136 +263,96 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>本人系统环境：Win10_x64 英文企业版；VS2013-update5 英文旗舰版；CMake-3.6.3-win64-x64 免安装版；Qt-opensource-windows-x86-msvc2013-5.6.2。</p>
-<p>　　*注：本人写的这篇文档主要用来编译x86版的动态debug库，想编译其它类型的库请自行参考其它资料，做相关改变。（其实如果想编译x64版的可以在用VS2013编译时将上方的Win32平台选择x64平台；想编译release版的可以在用VS2013编译时将上方的Debug模式选择Release模式；想编译静态库的可以在用CMake生成时取消勾选<strong>BUILD_SHARED_LIBS</strong>选项即可。:-P）</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　因为OpenCV-3.2官方的release版只有支持VS2015的库，而且不包括扩展包（opencv_contrib）中的库，而由于某些历史原因，本人目前使用的编译器还是VS2013，又想用用扩展包中一些有趣的算法，在加上上个月opencv-3.3还没有正式release，所以上个月本人就利用VS2013对opencv-3.2进行编译。具体编译过程如下：</p>
+        <p>科学式上网推荐组合：Chrome，Proxy SwitchyOmega，Lantern等代理工具。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　所谓的科学式上网，懂的自然懂，本人也就不做过多解释了。本来一直在用别人免费提供的pac代理，但最近可能别人关掉了，上不了google了，就只能另寻他路了。所谓的另寻他路也就是尝试云端框架网站站长<strong><em>枂下</em></strong>提供的另外几种科学式上网攻略。本文只是对<strong><em>枂下</em></strong>站长的攻略做一下实验记录，若想看原滋原味的攻略，还请移步<a href="https://cloudfra.com/" target="_blank" rel="external">云端框架</a>。</p>
 <a id="more"></a>
-<h2 id="准备篇"><a href="#准备篇" class="headerlink" title="准备篇"></a>准备篇</h2><p>　　先在GitHub上下载对应的opencv源码包：<a href="https://github.com/opencv/opencv/archive/3.2.0.zip" target="_blank" rel="external">opencv-3.2.0</a>和<a href="https://github.com/opencv/opencv_contrib/archive/3.2.0.zip" target="_blank" rel="external">opencv_contrib-3.2.0</a>（<a href="https://github.com/opencv" target="_blank" rel="external">https://github.com/opencv</a> ），扩展包版本一定要和opencv版本相同。本人为了添加Qt后端显示支持（为了好看和方便:-P），所以还下载安装了支持VS2013的<a href="http://download.qt.io/archive/qt/5.6/5.6.2/qt-opensource-windows-x86-msvc2013-5.6.2.exe" target="_blank" rel="external">Qt-5.6.2</a>（<a href="http://download.qt.io/archive/qt/" target="_blank" rel="external">http://download.qt.io/archive/qt/</a> ）。再<a href="https://cmake.org/files/v3.6/cmake-3.6.3-win64-x64.zip" target="_blank" rel="external">下载CMake-3.6.3-win64-x64 免安装版</a>（<a href="https://cmake.org/files/" target="_blank" rel="external">https://cmake.org/files/</a> ）。至于微软的东西，推荐直接去<a href="https://msdn.itellyou.cn/" target="_blank" rel="external">MSDN 我告诉你</a>去下载。</p>
-<p>　　由于网上有的资料（具体是哪篇文章本人忘记了o(╯□╰)o）说编译时的文件结构可能会影响编译是否成功，再加上为了方便编译管理，本人的编译时的文件结构为：</p>
+<h2 id="科学的上网方法"><a href="#科学的上网方法" class="headerlink" title="科学的上网方法"></a>科学的上网方法</h2><p>　　尽量使用Chrome进行科学式上网，因为其有一个代理管理插件Proxy SwitchyOmega，该插件称之为代理切换神器也不为过，网上大量的教程和配置文件也是基于该神器做的。使用Proxy SwitchyOmega需要进行配置，这对初学者有一定的难度，这里本人推荐直接使用站长<strong><em>枂下</em></strong>提供的配置文件，至于SwitchyOmega的配置文件可以去站长的<a href="https://cloudfra.com/" target="_blank" rel="external">云端框架</a>网站上去下，也可以联系本人。至于代理工具请看下文，本人目前也只尝试过使用以下几种工具。</p>
+<h3 id="lantern"><a href="#lantern" class="headerlink" title="lantern"></a>lantern</h3><p>　　其实本人最先尝试的工具是XX-NET，但是其配置起来稍显繁琐，而且在第一步的时候必须处在科学式上网环境，而Lantern就比较简单了，只要装上之后再稍微动动手脚就可以了，所以就把lantern写在第一位了。从站长<strong><em>枂下</em></strong>那下载【蓝】灯电脑破解版压缩包，不过本人觉得应该随便在哪里下载个原版lantern-2.2.5安装都可以，只要后续的破解方法一样即可。</p>
+<p>　　具体破解方法为：主要是令lantern一直保持在2.2.5版本不变。但是一般来说lantern在安装之后会自动更新到最新版（本人在两台电脑上都安装过lantern，其中一台安装完之后打开lantern安装文件夹发现其已更新，而另一台却没有更新，这就有点玄学了-_-!），至于判断lantern有没有更新的办法是：首先进入lantern的安装文件夹：<code>C:\Users\XXX\AppData\Roaming\Lantern</code>（将XXX改成自己的用户名），1、看lantern.exe文件的修改日期，如果还是2016年的，就说明其还没更新；2、显示隐藏文件，看有没有.lantern.exe.old文件，如果没有，则也还没更新。如果已经更新了，参考站长<strong><em>枂下</em></strong>的说法：</p>
 <blockquote>
-<p>opencv-3.2.0_build<br>├──  build<br>└──  sources<br>​     　　├── opencv-3.2.0<br>​     　　└── opencv_contrib-3.2.0</p>
-<p>4 directories, 0 files</p>
+<p>删除lantern.exe文件，修改.lantern.exe.old为lantern.exe</p>
 </blockquote>
-<p>其中opencv-3.2.0用来装opencv-3.2.0.zip解压后的源码；opencv_contrib-3.2.0用来装opencv_contrib-3.2.0.zip解压后的源码；build用来装CMake编译完成后的文件。</p>
-<h2 id="编译篇"><a href="#编译篇" class="headerlink" title="编译篇"></a>编译篇</h2><p>　　打开/cmake-3.6.3-win64-x64/bin/cmake-gui.exe，在<strong>Where is the source code</strong>文本框中选择/opencv-3.2.0_build/sources/opencv-3.2.0；在<strong>Where to build the binaris</strong>文本框中选择/opencv-3.2.0_build/build，点击<strong>Configure</strong>，在弹出的编译器选择框中选择<strong>Visual Studio 12 2013</strong>，一直<strong>Configure</strong>直到红色的条变白。</p>
-<p>　　网上有人在这一步可能会出现<code>ffmpeg not downloaded</code>和<code>“ippicv_windows_20151201.zip”not downloaded</code>这两个问题，本人没出现这两个问题，所以没有机会验证<a href="http://livezingy.com/compile-opencv-and-opencv_contrib/" target="_blank" rel="external">cmake-gui和vs2013编译opencv和opencv_contrib源码</a>中的解决办法是否正确。</p>
-<p>　　接下来就是添加扩展包，在白色条中找到<strong>OPENCV_EXTRA_MODULES_PATH</strong>文本框，在其中选择opencv_contrib源码中modeles所在路径：/opencv-3.2.0_build/sources/opencv_contrib-3.2.0/modules。</p>
-<p>　　至于想要支持OpenGL和Qt就需要勾选<strong>WITH_OPENGL</strong>和<strong>WITH_QT</strong>并<strong>Configure</strong>后选择好Qt的安装目录，如果配置好Qt的环境变量Cmake将会自动选择好Qt所在路径。</p>
-<p>　　随后再次反复<strong>Configure</strong>直到界面不再出现红色背景，之后单击<strong>Generate</strong>。不出意外的话，你会看到<strong>Configure done</strong>和<strong>Generate done</strong>。</p>
-<p>　　本人在这一步出现了<a href="http://livezingy.com/build_shared_libs/" target="_blank" rel="external">VS2013_CMake_opencv3.1动态库与静态库的配置与编译</a>中的问题，原因是同时勾选了同时勾选了<strong>BUILD_opencv_world</strong>和<strong>BUILD_opencv_contirb_world</strong>，本人的解决办法是将它们全部取消勾选，再次<strong>Configure</strong>和<strong>Generate</strong>。</p>
-<p>　　如果上面一切顺利的话就可以进行下一步了：使用VS2013编译OpenCV。打开/opencv-3.2.0_build/build目录，将会看到一大堆文件和文件夹，双击/opencv-3.2.0_build/build目录下的<strong>OpenCV.sln</strong>，用VS2013打开。找到<strong>CMakeTargets</strong>中的<strong>INSTALL</strong>，然后右键选择“Project Only”–&gt;“Build Only INSTALL”。</p>
-<p>漫长的等待。。。。。。(╯﹏╰)b</p>
-<p>　　本人在这一步出现了一个问题，具体问题和解决方法详见问题篇。</p>
-<p>　　一切顺利的话，应该会比本人下面的库多两个，本人最后生成的Debug库为：</p>
+<p>这样就又可以回退至lantern-2.2.5版。如果没更新的话就不用进行删除回退这一步，直接进行下一步。</p>
+<p>　　下一步为修改lantern-2.2.5.yaml文件中的更新路径<code>updateserverurl</code>，使lantern永远不再更新，一直维持在2.2.5版本不变。具体更改方式为：</p>
 <blockquote>
-<p>opencv_aruco320d.lib</p>
-<p>opencv_bgsegm320d.lib</p>
-<p>opencv_bioinspired320d.lib</p>
-<p>opencv_calib3d320d.lib</p>
-<p>opencv_ccalib320d.lib</p>
-<p>opencv_core320d.lib</p>
-<p>opencv_datasets320d.lib</p>
-<p>opencv_dnn320d.lib</p>
-<p>opencv_dpm320d.lib</p>
-<p>opencv_face320d.lib</p>
-<p>opencv_features2d320d.lib</p>
-<p>opencv_flann320d.lib</p>
-<p>opencv_fuzzy320d.lib</p>
-<p>opencv_highgui320d.lib</p>
-<p>opencv_imgcodecs320d.lib</p>
-<p>opencv_imgproc320d.lib</p>
-<p>opencv_line_descriptor320d.lib</p>
-<p>opencv_ml320d.lib</p>
-<p>opencv_objdetect320d.lib</p>
-<p>opencv_optflow320d.lib</p>
-<p>opencv_phase_unwrapping320d.lib</p>
-<p>opencv_photo320d.lib</p>
-<p>opencv_plot320d.lib</p>
-<p>opencv_reg320d.lib</p>
-<p>opencv_rgbd320d.lib</p>
-<p>opencv_saliency320d.lib</p>
-<p>opencv_shape320d.lib</p>
-<p>opencv_stereo320d.lib</p>
-<p>opencv_stitching320d.lib</p>
-<p>opencv_structured_light320d.lib</p>
-<p>opencv_superres320d.lib</p>
-<p>opencv_surface_matching320d.lib</p>
-<p>opencv_text320d.lib</p>
-<p>opencv_tracking320d.lib</p>
-<p>opencv_video320d.lib</p>
-<p>opencv_videoio320d.lib</p>
-<p>opencv_videostab320d.lib</p>
-<p>opencv_xfeatures2d320d.lib</p>
-<p>opencv_ximgproc320d.lib</p>
-<p>opencv_xobjdetect320d.lib</p>
-<p>opencv_xphoto320d.lib</p>
-<p>共41个。</p>
+<p>将其中的</p>
+<p><code>updateserverurl: https://update.getlantern.org</code></p>
+<p>修改为</p>
+<p><code>updateserverurl: https://pic.black1ce.com</code></p>
 </blockquote>
-<h2 id="配置篇"><a href="#配置篇" class="headerlink" title="配置篇"></a>配置篇</h2><p>　　因为本人只编译了x86版动态debug库，所以以下环境配置都只针对x86版动态debug库。（其实要配置x64的库就只需将x86换成x64即可；要配置release模式的库就只需在添加附加依赖项中的库文件选择release模式的库（即数字后没有d的lib）；若要配置静态库就需要选择静态库文件夹以及在附加依赖项中添加相应的静态库文件。:-P）</p>
-<p>　　首先把/opencv-3.2.0_build/build/install中的文件都提取出来，这和OpenCV官方release的opencv文件结构差不多，具体两层结构如下</p>
+<p>修改完之后保存退出。这里本人觉得可以随便将其修改成其它路径即可，毕竟只是让其不更新而已，这个路径应该除了更新就没有其它作用了，这纯属本人拙劣的猜测，有（ai）兴（gao）趣（shi）的童靴可以试试:-P。</p>
+<p>　　原本以为到这一步就完成了，但是<strong><em>枂下</em></strong>站长后来又补发了一步，就是上面几步只是让lantern不再更新，而500M流量之后限速的问题仍然存在（本人目前还没超过500M，所以不知道这个问题，但抱着有备无患的心态先把<strong><em>枂下</em></strong>站长的攻略记一下O(∩_∩)O~），所以接下来才是上正菜，破解“限制500M流量”问题的具体方法为：当使用lantern流量超过500M时，打开lantern的安装目录，打开lantern-2.2.5.yaml文件，</p>
 <blockquote>
-<p>.<br>├── bin<br>│　&ensp;└── opencv_waldboost_detectord.exe<br>├── etc<br>│　&ensp;├── haarcascades<br>│　&ensp;└── lbpcascades<br>├── include<br>│　&ensp;├── opencv<br>│　&ensp;└── opencv2<br>├── LICENSE<br>├── OpenCVConfig.cmake<br>├── OpenCVConfig-version.cmake<br>└── x86<br>​     　　└── vc12</p>
-<p>9 directories, 4 files</p>
+<p>修改其中第九行的设备号，随意更换一个数字或者字母即可。</p>
 </blockquote>
-<p>x86文件夹就是VS2013生成的对应VS版本32位的各种库，include文件夹就是opencv的各项模块。本人将其中提取出的文件全部放入了C:\Program Files\OpenCV\3.2.0\build文件夹中。</p>
-<p>　　首先配置环境变量，系统（或用户）环境变量如下：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">变量名</th>
-<th>变量值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Path</td>
-<td>C:\Program Files\OpenCV\3.2.0\build\x86\vc12\bin</td>
-</tr>
-<tr>
-<td style="text-align:center">OPENCV</td>
-<td>C:\Program Files\OpenCV\3.2.0\build</td>
-</tr>
-</tbody>
-</table>
-<p>不然可能会报错：<font color="#FA8072">程序“XXXXXX”已退出，返回值为 -1073741701 (0xc000007b)</font>。其中下面那行可以选择不要添加。</p>
-<p>　　然后在VS中配置环境。新建工程，然后在“<strong>属性管理器</strong>”中对应项目下<strong>Debug | Win32</strong>文件夹右键“<strong>添加新项目属性表</strong>”。（方便一次配置，多次使用，以后再使用只要在相应项目下右键“<strong>添加现有属性表</strong>”即可），本人新项目属性表取名为：opencv-3.2.0_msvc2013_x86d.props。</p>
-<p>接下来就是真正的VS环境配置了：</p>
-<p>　　双击打开刚才新建的属性表，选中“<strong>VC++目录</strong>”，<font color="#FA8072">注意在进行以下配置时建议都勾选左下角的“<strong>从父级或项目默认设置继承</strong>”</font></p>
-<p>“<strong>可执行文件目录</strong>”中添加：</p>
+<p>按<strong><em>枂下</em></strong>站长的说法是8位随机字母数字大小写均可，只是为方便起见推荐只改动某位即可。</p>
+<p>eg：本人目前第9行为：<code>deviceid: Gu25Sfoz</code>，一旦500M流量用完了，本人就只需要将其修改为<code>deviceid: Gu25Sfoa</code>即可。</p>
+<p>到这一步lantern的破解算是基本完成了吧，如果<strong><em>枂下</em></strong>站长有新的更新且被本人看到的话再进行实验更新吧。</p>
+<hr>
+<h3 id="XX-NET"><a href="#XX-NET" class="headerlink" title="XX-NET"></a>XX-NET</h3><p>　　该工具应该是本人尝试配置的首款代理工具，不得不说其配置和lantern相比实在是太复杂了，而且其中有一步还必须处在科学式网络环境中，本人还是借助别人的VPN上的（当时还没用lantern，所以没用其500M免费不限速的流量~~o(&gt;_&lt;)o ~~）。本人经过实测XX-NET无法在Firefox中用google搜索，一用google搜就会报错：</p>
 <blockquote>
-<p>C:\Program Files\OpenCV\3.2.0\build\x86\vc12\bin</p>
-</blockquote>
-<p>“<strong>包含目录</strong>”中添加：</p>
-<blockquote>
-<p>C:\Program Files\OpenCV\3.2.0\build\include</p>
-<p>C:\Program Files\OpenCV\3.2.0\build\include\opencv</p>
-<p>C:\Program Files\OpenCV\3.2.0\build\include\opencv2</p>
-</blockquote>
-<p>“<strong>库目录</strong>”中添加：</p>
-<blockquote>
-<p>C:\Program Files\OpenCV\3.2.0\build\x86\vc12\lib</p>
-</blockquote>
-<p>选中“<strong>链接器</strong>”  –&gt; “<strong>常规</strong>”，“<strong>附加库目录</strong>”中添加：</p>
-<blockquote>
-<p>C:\Program Files\OpenCV\3.2.0\build\x86\vc12\lib</p>
-</blockquote>
-<p>“<strong>链接器</strong>” –&gt; “<strong>输入</strong>”，“<strong>附加依赖项</strong>”中添加<code>C:\Program Files\OpenCV\3.2.0\build\x86\vc12\lib</code>中数字后带d的库文件，即编译篇中本人最后生成的41个库文件。</p>
-<p>　　<font color="#FA8072">配置完之后不要忘了右键该属性表进行保存处理</font>，以便下个项目直接使用，不需要再重复进行配置。</p>
-<p>最后附示例程序：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;  </span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	cv::Mat lena = cv::imread(<span class="string">"lena.jpg"</span>); <span class="comment">//载入图像到Mat，jpg文件和该cpp在同一文件夹</span></div><div class="line">	cv::namedWindow(<span class="string">"lena"</span>); <span class="comment">//创建一个名为 "lean"的窗口   </span></div><div class="line">	cv::imshow(<span class="string">"lena"</span>, lena);    <span class="comment">//显示名为 "lena"的窗口</span></div><div class="line">	cv::waitKey(<span class="number">5000</span>);  <span class="comment">// 只对窗口机制起作用（显示5000ms，随后返回-1，即窗口关闭），若在此期间有按键按下，则马上返回按键的ASCII码。</span></div><div class="line">	<span class="comment">//system("pause");</span></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里必须在imshow后加入waitkey，因为WaitKey不止是Wait Key 而已，它其实还涉及到消息响应，有这个函数cv内部的WndProc函数才能起作用，才会更新窗口。</p>
-<p>　　最后程序运行成功并显示lena图，则说明编译和配置没问题。</p>
-<h2 id="问题篇"><a href="#问题篇" class="headerlink" title="问题篇"></a>问题篇</h2><font color="#FA8072">1、用VS2013编译OpenCV在漫长的等待阶段出现的问题。</font>
+<font size="7" face="黑体"><strong>您的连接并不安全</strong></font>
 
-<p>　　<strong>问题描述：</strong>CVV模块报错，TS模块编译不出来，好在这两个模块都不是很重要，可以忽略，本人强迫症也没到这种程度O(∩_∩)O~。</p>
-<p>　　<strong>解决办法：</strong> 在CVV模块报错后可在CMake（不知道具体是<strong>INSTALL</strong>下的<strong>CMake Rules</strong>中的<strong>INSTALL_force.rule</strong>，还是<strong>ALL_BUILD</strong>下的<strong>CMakeLists.txt</strong>，忘记了o(╯□╰)o）中添加<code>-DBUILD_opencv_cvv=OFF</code>忽略CVV模块，从而正常编译其它模块。参考<a href="https://github.com/opencv/opencv_contrib/issues/577" target="_blank" rel="external">errors on build opencv with cvv module and qt5 #577</a>。如果实在不行的话就在CMake生成的时候取消勾选出错模块，若是用CMake重新生成的话不要忘了先把/opencv-3.2.0_build/build目录下的文件全部删除干净。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　这是以前写的两篇文档，现在再来整理成一篇。</p>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>　　既然能看到这里，说明是想在VS下使用OpenCV，这里推荐一款VS下OpenCV开发调试神器：<a href="https://marketplace.visualstudio.com/items?itemName=WolfKienzle.ImageWatch" target="_blank" rel="external">Image Watch</a>，效果谁用谁知道。Image Watch是VS的一个插件，不过它只支持VS2012及以上版本。使用方法为先设置断点（F9），随后在调试（F5）模式下，鼠标指针悬停在<code>cv::Mat</code>类型变量上，即可出现<img src="http://img.blog.csdn.net/20161115134305655" alt="插件调试标签">，点击查看图标即可显示相应图像。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://livezingy.com/compile-opencv-and-opencv_contrib/" target="_blank" rel="external">cmake-gui和vs2013编译opencv和opencv_contrib源码</a>（<a href="http://livezingy.com/category/opencv/" target="_blank" rel="external">http://livezingy.com/category/opencv/</a> ）</p>
-<p>[2] <a href="http://livezingy.com/build_shared_libs/" target="_blank" rel="external">VS2013_CMake_opencv3.1动态库与静态库的配置与编译</a>（<a href="http://livezingy.com/category/opencv/" target="_blank" rel="external">http://livezingy.com/category/opencv/</a> ）</p>
-<p>[3] <a href="https://wenku.baidu.com/view/ef3081e3a5e9856a561260d1.html" target="_blank" rel="external">使用VS2015编译以及静态编译opencv3记录</a></p>
-<p>[4]  <a href="https://github.com/opencv/opencv_contrib/issues/577" target="_blank" rel="external">errors on build opencv with cvv module and qt5 #577</a></p>
-<p>[5] <a href="http://blog.csdn.net/fengbingchun/article/details/46756373" target="_blank" rel="external">VS2013中Image Watch插件的使用(OpenCV)</a>（<a href="http://blog.csdn.net/fengbingchun/article/category/721609" target="_blank" rel="external">http://blog.csdn.net/fengbingchun/article/category/721609</a> ）</p>
+<p>www.google.com 的网站管理员未正确配置网站。为避免您的信息被窃，Firefox 没有与该网站建立连接。</p>
+<p>此网站采用了 HTTP 严格传输安全（HSTS）机制，要求 Firefox 只能与其建立安全连接。正因如此，您也不能将此证书加入例外列表。</p>
+<blockquote>
+<p>www.google.com 使用了无效的安全证书。 该证书因为其颁发者证书未知而不被信任。 该服务器可能未发送相应的中间证书。 可能需要导入一个额外的根证书。 错误代码: SEC_ERROR_UNKNOWN_ISSUER</p>
+<blockquote>
+<p><a href="https://www.google.com/search?q=test&amp;ie=utf-8&amp;oe=utf-8" target="_blank" rel="external">https://www.google.com/search?q=test&amp;ie=utf-8&amp;oe=utf-8</a></p>
+<p>对等端的证书颁发者不受认可。</p>
+<p>HTTP 严格传输安全（HSTS）：false<br>HTTP 公钥钉扎：true</p>
+<p>证书链：</p>
+<p>—–BEGIN CERTIFICATE—–<br>MIIDkzCCAnugAwIBAgIQSu4RvcIwnqiEQE6Z68FlaDANBgkqhkiG9w0BAQsFADBz<br>MQswCQYDVQQGEwJDTjERMA8GA1UECAwISW50ZXJuZXQxDzANBgNVBAcMBkNlcm5l<br>dDEQMA4GA1UECgwHR29BZ2VudDEVMBMGA1UECwwMR29BZ2VudCBSb290MRcwFQYD<br>VQQDDA5Hb0FnZW50IFhYLU5ldDAeFw0xNzA5MTYxNDIzMjRaFw0yNzA5MTQxNDMz<br>MjRaMHgxCzAJBgNVBAYTAkNOMREwDwYDVQQIDAhJbnRlcm5ldDEPMA0GA1UEBwwG<br>Q2VybmV0MRcwFQYDVQQLDA5Hb0FnZW50IEJyYW5jaDEVMBMGA1UEAwwMKi5nb29n<br>bGUuY29tMRUwEwYDVQQKDAwqLmdvb2dsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUA<br>A4IBDwAwggEKAoIBAQDL3K1OgwalKOJPtO4urpAiu+lioGNax/EIaYR1D2kH66AJ<br>lpal0pYFhXF6MOYCUNfpZIqP5qAQs7JGuRmFdo7rWaLHZ+3S+TlIHdZkoLvyYBcX<br>ENVBcLQvZ7IL7DDUZObK/R7OOKz82dEoITQnT+q/lecR9wQ7QNdNVNqn0xS0NPt7<br>bS76irMxkJcO2q7Lu4R56ImCox/G7dUEepjL0Po516l6fLKG3qi5org2z6ap0yl2<br>Etu8cRfqiqaqhO0HI1Twz+Rbp/8KUdUBgnNkjcod83HE+jJKxIUDmn18+l7J8sBi<br>a0JvWSIYy2ccFXoR8L4lfvIa8PhTuMmpxyDkwDdPAgMBAAGjHjAcMBoGA1UdEQEB<br>/wQQMA6CDCouZ29vZ2xlLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEADiM6yWCaGNLn<br>ggirjN0b34j5JmjgYYx3bRaKDe4We2emjlLsdskBo2ztkd/tPBfUa7DWExgFPvVq<br>B2FeEf85Zj72kMmc2JikJBtPF1qK9fa4O1gST4VE0xIF99zGrgkDhGaYd1ocElWS<br>qfBNQfzwsO+nl2OQf99ATMqMSCGacN7z+LJBLn65de+ODzYUkIHzhU5/xJMian3y<br>fQzNFCAgK8OMf16excqRUcX8zfGPfvtAafDrdOYEXcGayLIvt4tGr8T+tii+MtCR<br>O5hXK8/ABMLGI74zgLYloVFjJv21VsLrNCvvD43T5E3c+8d1MENozdEnsyzWkTkp<br>knP4aEiLOQ==<br>—–END CERTIFICATE—–</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>本人不知道为什么(+﹏+)~。所以为了能正常使用科学式网络，还是老老实实的用Chrome吧，何况其还有Switchyomega神器，并且建议把Chrome设置为默认浏览器。具体配置流程如下：</p>
+<p>　　从<strong><em>枂下</em></strong>站长那下载XX-NET（本人其实最先是直接在GitHub上下载最新的XX-NET，但本人由于在Firefox上尝试失败了，当时也没在Chrome上尝试，以为最新版XX-NET有问题，后来用上<strong><em>枂下</em></strong>站长那下的XX-NET在Chrome上试了下可以，而Firefox不行，就知道可能是Firefox的问题，而既然已经能用了，本人也没用最新的XX-NET在Chrome上尝试了），直接解压到某个文件夹，然后将XX-Net-3.3.6文件夹重命名为XX-Net，即去掉末尾的版本号，据<strong><em>枂下</em></strong>站长说法是为了减少后续XX-NET出错（本人这里老老实实的照<strong><em>枂下</em></strong>站长说的做了，所以也不知道如果没去掉版本号会有什么后果）。接着以管理员身份运行XX-Net目录下的start.vbs文件（这里右键是没有“<strong>以管理员身份运行</strong>”选项的，要想以管理员身份运行就只有使用Windows命令行了，具体做法就是以管理员身份运行“<strong>命令提示符</strong>”，再在其中运行start.vbs文件即可），运行成功后将弹出</p>
+<blockquote>
+<p>已经导入GoAgent证书,请重启浏览器.</p>
+</blockquote>
+<p>点击确定即可。再次启动默认（Chrome）浏览器，将打开127.0.0.1:8085页面，即为XX-NET的配置界面。将看到GAEProxy状态信息（可能是由于google取消了公共APPID，所以本人看到的不是“<strong>您正在使用公共APPID，….</strong>”这条消息，而是另外一条消息（具体什么消息本人忘记了o(╯□╰)o）），打开显示详细信息（其实也没用，本人并看不懂这么多-_-|||），先放这里吧，部分信息以后再说，先进入正式配置步骤。</p>
+<ol>
+<li>首先点击左边的“<strong>高级</strong>”选项，据<strong><em>枂下</em></strong>站长说，将自动调整扫描线程数关掉，最大扫描线程数设为200，点击提交（可能这样连接速度更快一些）。本人这里这里没有照做，而是保持默认设置，本人只是要求能上就可以了，对速度要求可以稍微放松一点（或许以后会调成站长推荐的配置）。</li>
+<li>接下来点击“<strong>部署服务端</strong>”选项，填写AppID，点击“<strong>开始部署</strong>”。但是这一步，本人并没有AppID，所以只能上google申请，这样最麻烦的一步就来了。照着<strong><em>枂下</em></strong>站长的指引，本人一步步的申请了AppID。具体申请步骤如下（这一步需要登录google账号，必须处于科学式网络环境）：<ol>
+<li>点击<a href="https://appengine.google.com" target="_blank" rel="external">打开Appid申请页面</a>，登录google账号，创建项目，并在新建项目中修改项目ID（这就是第一个AppID），为方便，建议直接以“项目名-00”的方式按顺序命名AppID，创建成功后继续点击“<strong>Google Cloud Platform</strong>”旁的一个小三角，点击弹框的“<strong>+</strong>”，按上述方式进行创建新的AppID，如此重复，本人总共创建10个AppID，10个之后会提示配额已用完，硬是要创建只会覆盖掉第一个AppID。</li>
+<li>接下来就是需要选择语言和地区，只有为每个AppID选择语言和地区之后，该AppID才会生效。语言和地区的选择界面可以从“<strong>App Engine</strong>”界面中进入，也可以直接在添加AppID界面的那个弹框中点击相应的AppID进入，当然如果是第一个AppID选择语言可以直接点击界面上的“<strong>选择一种语言</strong>” 。语言选择Python，地区选择亚洲（asia-northeast1），选错了后果自负（当然可以覆盖掉该AppID重新设置）。其实可以照<strong><em>枂下</em></strong>站长那样设置完第一个AppID的语言和地区之后直接修改浏览器的地址栏的url以快速设置AppID的语言和地区。具体修改方法为：将url地址末尾的project参数的值改为你想要设置的下一个AppID，eg:本人当前AppID为test-00，对应的浏览器url地址末尾的参数为<code>lang=python&amp;project=test-00</code>，本人想设置的下一个AppID为test-01，则只需将其修改为<code>lang=python&amp;project=test-01</code>回车即可快速设置test-01的语言和地区。如此重复，就可以设置完全部的AppID语言和地区。设置完之后，这些AppID就能进行部署了（据说每个AppID每天有1G的流量可以使用，并于每天下午三点更新，也就是本人每天有10G流量，一般是够用了:-D）。</li>
+</ol>
+</li>
+<li>将上文申请并设置完成的AppID放入“<strong>GAE AppID</strong>”文本框中，多个AppID可以按这样的格式放入：<code>test-01|test-02|test-03</code>，两个AppID以<code>|</code>分隔即可。点击“<strong>开始部署</strong>”，会弹出一个登录google账号的标签页，登录并允许即可，等待2~5分钟，可发现日志页面出现<code>Done!</code>和<code>Deploy 10 appid successed.</code>等字样即表示服务端部署成功。</li>
+<li>点击“<strong>部署</strong>”选项，将上面部署服务端的AppID以相同格式输入“<strong>GAE AppID</strong>”文本框中，点击“<strong>保存</strong>”即可。保存完之后，即可在状态信息界面显示详细信息中Appid发现当前工作AppID就是部署的AppID，至于那个配置下的监听代理就是设置代理的地址和端口。</li>
+</ol>
+<p>这样XX-NET就算是配置完成了，至于<strong><em>枂下</em></strong>站长说的扫描ip，本人就没做实验了，因为这样配置完就可以科学式上网了。</p>
+<hr>
+<p>　　以上代理工具配置完成后，即可在Chrome中畅游Internet了，但是正确的科学式上网姿势应该是：国内的网站走本地连接，而国外被屏蔽的网站才走代理。这就需要Proxy SwitchyOmega这款插件了，它能按照一定的规则自动选择走本地还是走代理，这样既不会浪费流量，也能使国内的网站联网速度不受影响。导入前文推荐的配置文件后，就可选择对应的代理方式。这里当然是选择自动切换，至于虚拟切换是选择<strong>Lantern for 8787</strong>还是<strong>XXNET for GAE</strong>就随便个人的喜好了（在走代理的时候别忘了把相应的代理工具开启）；如果直接选择其中一种代理方式就相当于全局代理，这也就失去这款插件的作用，只有自动切换加上虚拟切换才能充分发挥这款神器的真正作用。</p>
+<h2 id="匿名网络"><a href="#匿名网络" class="headerlink" title="匿名网络"></a>匿名网络</h2><p>　　要想使用匿名网络，当然少不了专用的浏览器：<a href="https://www.torproject.org/" target="_blank" rel="external">Tor Browser</a>，下载并安装（下载时需要身处科学式网络环境，安装时最好改变一下目录，而且路径中最好不要有中文）。接下来就是配置了Tor网络了。具体配置流程如下：</p>
+<p>　　首先，它问直接连接Tor网络还是配置网桥或代理，这里当然是选择<strong>配置</strong>；其次它问互联网服务提供商(ISP)是否对Tor网络连接进行了封锁或审查，这里选<strong>否</strong>，据<strong><em>枂下</em></strong>站长所说因为国内网桥大部分已失效，连接网桥没有意义还会拖慢速度；然后它问是否本地代理访问互联网，这里当然选择<strong>是</strong>；最后填写本地代理配置，这里需要注意，<strong><em>枂下</em></strong>站长提供的部分代理配置是：</p>
+<blockquote>
+<p>SSR/SS          Socks5//127.0.0.1 : 1080</p>
+<p>Seed            HTTP//127.0.0.1 : 1080</p>
+<p>Lantern         Socks5//127.0.0.1 : 8287（2系列），三系列的在Lantern设置页面查看</p>
+<p>Psiphon         可以在配置页面自定义</p>
+</blockquote>
+<p>　　其中经本人实测，上面Lantern的代理配置是连接不上的，本人后来参考SwitchyOmega配置文件中Lantern的代理为HTTP//127.0.0.1 : 8787，经尝试如此配置可以连接Tor网络，所以Lantern的正确配置应为：</p>
+<blockquote>
+<p>Lantern         HTTP//127.0.0.1 : 8787（2系列），三系列的在Lantern设置页面查看</p>
+</blockquote>
+<p>设置完成后等待片刻就能连上Tor网络了，最好就保持原来的<em>DuckDuckGo</em>搜索引擎，不要更改，接下来就可随心所欲的畅游Internet了。</p>
+<p>　　至于想访问暗网，可以参考<a href="https://github.com/ckjbug/Hacking/blob/master/%E6%95%B4%E7%90%86%E7%9A%84%E6%9A%97%E7%BD%91%E7%BD%91%E5%9D%80Tor.txt" target="_blank" rel="external">Hacking/整理的暗网网址Tor.txt</a>和<a href="https://sites.google.com/site/howtoaccessthedeepnet/working-links-to-the-deep-web" target="_blank" rel="external">Working Links to the Deep Web</a>或者直接用站长<strong><em>枂下</em></strong>给的网址：<code>torlinkbgs6aabns.onion</code>和<code>xmh57jrzrnw6insl.onion</code>。</p>
+<p>据<strong><em>枂下</em></strong>站长回答：</p>
+<blockquote>
+<p>XX-Net可以作tor的前置代理吗？不行的，xx-net是假http协议</p>
+</blockquote>
+<p>所以XX-NET不能用作Tor的代理配置。</p>
+<p>　　最后再简要记录一下Chrome调用Tor Browser的代理吧。本人没有像<strong><em>枂下</em></strong>站长那样用命令行去实验，只是享受了一下ta的试验成果（O(∩_∩)O谢谢）。总而言之，还是利用SwitchyOmega，代理方式选择<strong>Tor for 9150</strong>，就可以在Chrome中调用Tor Browser的代理，畅游Internet了。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　最后的匿名网络是本人弄着好玩的，像暗网这种东西本人这种遵纪守法的好公民才不会访问呢(ಡωಡ)。等以后时机到了再去买个国外VPS自己搭建一个科学式上网环境吧。最后感谢<strong><em>枂下</em></strong>站长的无私分享。</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>　　原本还以为本人搭建的Hexo+GitHub个人博客站点还是个深网，没想到搞完科学式上网后用google搜索竟然能搜到，虽然本人没做什么，但google仍然能搜到，google的蜘蛛还挺厉害的，不过如果百度的蜘蛛没被GitHub屏蔽的话百度可能也能搜到（从某些原因上来说，GitHub把百度屏蔽掉也好O(∩_∩)O~）。既然已经被google收录了，本人也就不去搞那个站点地图了，等以后想搞SEO了再去做吧。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://cloudfra.com/switchyomega-chrome-firefox.html" target="_blank" rel="external">Switchyomega超详细教程之Chrome与Firefox版本</a></p>
+<p>[2] <a href="https://cloudfra.com/lantern-windows.html" target="_blank" rel="external">【蓝】灯电脑破解版之2系列禁止自动升级最终办法</a></p>
+<p>[3] <a href="https://cloudfra.com/xx-net-important.html" target="_blank" rel="external">XX-NET史上最详细完整教程</a> </p>
+<p>[4] <a href="https://cloudfra.com/xx-net-appid-1.html" target="_blank" rel="external">XX-NET史上最详细完整教程之第一部分：Appid创建部分</a></p>
+<p>[5] <a href="https://cloudfra.com/tor-browser-windows.html" target="_blank" rel="external">Tor Browser在国内Windows平台下的超详细教程</a></p>
+<p>[6] <a href="https://cloudfra.com/tor-browser-chrome.html" target="_blank" rel="external">Chrome等其他程序如何完美调用Tor Browser的代理来上网</a></p>
 
       
       
@@ -404,13 +362,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></p>
+        <p><span>本文标题:</span><a href="/2017/09/22/论如何科学的上网/">论如何科学的上网</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
-        <p><span>发布时间:</span>2017年08月28日 - 15时38分</p>
-        <p><span>最后更新:</span>2017年08月30日 - 17时28分</p>
+        <p><span>发布时间:</span>2017年09月22日 - 15时36分</p>
+        <p><span>最后更新:</span>2017年09月22日 - 15时46分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/" title="Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0">http://cniter.github.io/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/22/论如何科学的上网/" title="论如何科学的上网">http://cniter.github.io/2017/09/22/论如何科学的上网/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/22/论如何科学的上网/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -423,18 +381,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/08/31/用OpenCV显示OpenGL图形/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          用OpenCV显示OpenGL图形
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/26/解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题</div>
+    <a href="/2017/09/16/Hexo的SPFK主题修改小记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo的SPFK主题修改小记</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -445,7 +394,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备篇"><span class="toc-number">2.</span> <span class="toc-text">准备篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译篇"><span class="toc-number">3.</span> <span class="toc-text">编译篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置篇"><span class="toc-number">4.</span> <span class="toc-text">配置篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题篇"><span class="toc-number">5.</span> <span class="toc-text">问题篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">6.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录"><span class="toc-number">7.</span> <span class="toc-text">附录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">8.</span> <span class="toc-text">参考资料</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#科学的上网方法"><span class="toc-number">2.</span> <span class="toc-text">科学的上网方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lantern"><span class="toc-number">2.1.</span> <span class="toc-text">lantern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XX-NET"><span class="toc-number">2.2.</span> <span class="toc-text">XX-NET</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匿名网络"><span class="toc-number">3.</span> <span class="toc-text">匿名网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">4.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录"><span class="toc-number">5.</span> <span class="toc-text">附录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">6.</span> <span class="toc-text">参考资料</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -513,13 +462,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/31/用OpenCV显示OpenGL图形/" title="上一篇: 用OpenCV显示OpenGL图形">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/08/26/解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题/" title="下一篇: 解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题">
+            <a href="/2017/09/16/Hexo的SPFK主题修改小记/" title="下一篇: Hexo的SPFK主题修改小记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
