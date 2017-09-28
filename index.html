@@ -149,7 +149,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/gfw/" style="font-size: 10px;">gfw</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/record/" style="font-size: 10px;">record</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
+                        <a href="/tags/c-cpp/" style="font-size: 10px;">c/cpp</a> <a href="/tags/gfw/" style="font-size: 10px;">gfw</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/record/" style="font-size: 10px;">record</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
                     </div>
                 </section>
                 
@@ -220,6 +220,73 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-利用回调函数计算函数运行时间" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/28/利用回调函数计算函数运行时间/" class="article-date">
+      <time datetime="2017-09-28T07:36:16.000Z" itemprop="datePublished">2017-09-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/28/利用回调函数计算函数运行时间/">利用回调函数计算函数运行时间</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要计算运行时间的代码段放入一个函数中，并将其作为回调函数，用事先写好的计算时间函数调用它，从而方便计算该代码段的运行时间。</p>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Study/">Study</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-cpp/">c/cpp</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/09/28/利用回调函数计算函数运行时间/#more">查看更多 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-论如何科学的上网" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -814,73 +881,6 @@
       
         <p class="article-more-link">
           <a  href="/2017/09/01/Hexo添加站内本地搜索/#more">查看更多 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-用OpenCV显示OpenGL图形" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/08/31/用OpenCV显示OpenGL图形/" class="article-date">
-      <time datetime="2017-08-31T01:40:31.000Z" itemprop="datePublished">2017-08-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/31/用OpenCV显示OpenGL图形/">用OpenCV显示OpenGL图形</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本文就是一个小实验，试验OpenCV到底能不能支持OpenGL图形显示。</p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Study/">Study</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/08/31/用OpenCV显示OpenGL图形/#more">查看更多 >></a>
         </p>
       
       <div class="clearfix"></div>

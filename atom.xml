@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cniter.github.io/"/>
-  <updated>2017-09-22T07:46:30.394Z</updated>
+  <updated>2017-09-28T07:43:43.753Z</updated>
   <id>http://cniter.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用回调函数计算函数运行时间</title>
+    <link href="http://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/"/>
+    <id>http://cniter.github.io/2017/09/28/利用回调函数计算函数运行时间/</id>
+    <published>2017-09-28T07:36:16.000Z</published>
+    <updated>2017-09-28T07:43:43.753Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要计算运行时间的代码段放入一个函数中，并将其作为回调函数，用事先写好的计算时间函数调用它，从而方便计算该代码段的运行时间。</p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>Show u the code，具体C++实现代码为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _CALLED_ printf(<span class="meta-string">"The function %s"</span>, __FUNCTION__);</span></div><div class="line"></div><div class="line"><span class="comment">// 使用回调函数计算一段代码执行时间</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">computeTotalTime</span><span class="params">(<span class="keyword">void</span>(*processingCallback)</span><span class="params">()</span> </span>= <span class="number">0</span>)</div><div class="line">&#123;</div><div class="line">	<span class="keyword">clock_t</span> start_time = clock();</div><div class="line">	processingCallback();</div><div class="line">	<span class="keyword">clock_t</span> end_time = clock();</div><div class="line">	<span class="built_in">printf</span>(<span class="string">" takes: %fs.\n"</span>, (<span class="keyword">double</span>)(end_time - start_time) / CLOCKS_PER_SEC);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);</div><div class="line">	&#125;</div><div class="line">	_CALLED_;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	computeTotalTime(test);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　本来是想在网上找一个的，谁知道并没有找到，就只有自己动手实现一个了╮(╯_╰)╭。后面使用了一下该函数，发现好像并没有提高生产力o(╯□╰)o，所以就没人放在网上？-_-!，不过确实从实现过程中学到了一些东西↖(&#94;ω^)↗。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://www.cnblogs.com/danshui/archive/2012/01/02/2310114.html" target="_blank" rel="external">C/C++之回调函数</a>（<a href="http://www.cnblogs.com/danshui/category/345046.html" target="_blank" rel="external">http://www.cnblogs.com/danshui/category/345046.html</a> ）</p>
+<p>[2] <a href="http://blog.csdn.net/coder_xia/article/details/6566708" target="_blank" rel="external">c/c++在windows下获取时间和计算时间差的几种方法总结</a>（<a href="http://blog.csdn.net/coder_xia/article/category/837943" target="_blank" rel="external">http://blog.csdn.net/coder_xia/article/category/837943</a> ）</p>
+<p>[3] <a href="http://www.cnblogs.com/steady/archive/2011/03/08/1977029.html" target="_blank" rel="external">(转)用宏获取函数名</a>（<a href="http://www.cnblogs.com/steady/category/264974.html" target="_blank" rel="external">http://www.cnblogs.com/steady/category/264974.html</a> ）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要计算运行时间的代码段放入一个函数中，并将其作为回调函数，用事先写好的计算时间函数调用它，从而方便计算该代码段的运行时间。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Study" scheme="http://cniter.github.io/categories/Study/"/>
+    
+    
+      <category term="c/cpp" scheme="http://cniter.github.io/tags/c-cpp/"/>
+    
+  </entry>
   
   <entry>
     <title>论如何科学的上网</title>
@@ -834,9 +864,9 @@
       <category term="建站小记" scheme="http://cniter.github.io/categories/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
     
     
-      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
     
   </entry>
   

@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Shaun Yuan&#39;s Blog</title>
+  <title>利用回调函数计算函数运行时间 | Shaun Yuan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Shaun Yuan&#39;s Blog">
-<meta property="og:url" content="http://cniter.github.io/archives/index.html">
+  <meta name="description" content="前言　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要">
+<meta name="keywords" content="c&#x2F;cpp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用回调函数计算函数运行时间">
+<meta property="og:url" content="http://cniter.github.io/2017/09/28/利用回调函数计算函数运行时间/index.html">
 <meta property="og:site_name" content="Shaun Yuan&#39;s Blog">
+<meta property="og:description" content="前言　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-28T07:43:43.753Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shaun Yuan&#39;s Blog">
+<meta name="twitter:title" content="利用回调函数计算函数运行时间">
+<meta name="twitter:description" content="前言　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要">
   
     <link rel="alternative" href="/atom.xml" title="Shaun Yuan&#39;s Blog" type="application/atom+xml">
   
@@ -37,8 +42,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: false
@@ -216,377 +221,199 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-利用回调函数计算函数运行时间" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/28/利用回调函数计算函数运行时间/" class="archive-article-date">
-      <time datetime="2017-09-28T07:36:16.000Z" itemprop="datePublished">09-28</time>
+    <div class="article-meta">
+      <a href="/2017/09/28/利用回调函数计算函数运行时间/" class="article-date">
+      <time datetime="2017-09-28T07:36:16.000Z" itemprop="datePublished">2017-09-28</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/28/利用回调函数计算函数运行时间/">利用回调函数计算函数运行时间</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用回调函数计算函数运行时间
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/Study/">Study</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-cpp/">c/cpp</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要计算运行时间的代码段放入一个函数中，并将其作为回调函数，用事先写好的计算时间函数调用它，从而方便计算该代码段的运行时间。</p>
+<a id="more"></a>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>Show u the code，具体C++实现代码为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _CALLED_ printf(<span class="meta-string">"The function %s"</span>, __FUNCTION__);</span></div><div class="line"></div><div class="line"><span class="comment">// 使用回调函数计算一段代码执行时间</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">computeTotalTime</span><span class="params">(<span class="keyword">void</span>(*processingCallback)</span><span class="params">()</span> </span>= <span class="number">0</span>)</div><div class="line">&#123;</div><div class="line">	<span class="keyword">clock_t</span> start_time = clock();</div><div class="line">	processingCallback();</div><div class="line">	<span class="keyword">clock_t</span> end_time = clock();</div><div class="line">	<span class="built_in">printf</span>(<span class="string">" takes: %fs.\n"</span>, (<span class="keyword">double</span>)(end_time - start_time) / CLOCKS_PER_SEC);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);</div><div class="line">	&#125;</div><div class="line">	_CALLED_;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	computeTotalTime(test);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　本来是想在网上找一个的，谁知道并没有找到，就只有自己动手实现一个了╮(╯_╰)╭。后面使用了一下该函数，发现好像并没有提高生产力o(╯□╰)o，所以就没人放在网上？-_-!，不过确实从实现过程中学到了一些东西↖(&#94;ω^)↗。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://www.cnblogs.com/danshui/archive/2012/01/02/2310114.html" target="_blank" rel="external">C/C++之回调函数</a>（<a href="http://www.cnblogs.com/danshui/category/345046.html" target="_blank" rel="external">http://www.cnblogs.com/danshui/category/345046.html</a> ）</p>
+<p>[2] <a href="http://blog.csdn.net/coder_xia/article/details/6566708" target="_blank" rel="external">c/c++在windows下获取时间和计算时间差的几种方法总结</a>（<a href="http://blog.csdn.net/coder_xia/article/category/837943" target="_blank" rel="external">http://blog.csdn.net/coder_xia/article/category/837943</a> ）</p>
+<p>[3] <a href="http://www.cnblogs.com/steady/archive/2011/03/08/1977029.html" target="_blank" rel="external">(转)用宏获取函数名</a>（<a href="http://www.cnblogs.com/steady/category/264974.html" target="_blank" rel="external">http://www.cnblogs.com/steady/category/264974.html</a> ）</p>
+
+      
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/09/28/利用回调函数计算函数运行时间/">利用回调函数计算函数运行时间</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
+        <p><span>发布时间:</span>2017年09月28日 - 15时36分</p>
+        <p><span>最后更新:</span>2017年09月28日 - 15时43分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/28/利用回调函数计算函数运行时间/" title="利用回调函数计算函数运行时间">http://cniter.github.io/2017/09/28/利用回调函数计算函数运行时间/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/28/利用回调函数计算函数运行时间/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/22/论如何科学的上网/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论如何科学的上网</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/22/论如何科学的上网/" class="archive-article-date">
-      <time datetime="2017-09-22T07:36:43.000Z" itemprop="datePublished">09-22</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/22/论如何科学的上网/">论如何科学的上网</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Study/">Study</a>
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="gitment" id="comments">
+  <div id="gitments"></div>
+  <script src="/js/gitment.browser.js"></script>
+  <script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'cniter',
+      repo: 'cniter.github.io',
+      oauth: {
+        client_id: '76d001d82d863f78c669',
+        client_secret: '534278ea4305b544600e074e5739005cf073b0fa',
+      },
+    })
+    gitment.render('gitments')
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/09/22/论如何科学的上网/" title="下一篇: 论如何科学的上网">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/28/利用回调函数计算函数运行时间/">利用回调函数计算函数运行时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/论如何科学的上网/">论如何科学的上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/Hexo的SPFK主题修改小记/">Hexo的SPFK主题修改小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/">解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/">解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/15/Hexo添加各种小部件/">Hexo添加各种小部件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/OpenCV中显著性检测算法的使用/">OpenCV中显著性检测算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/10/OpenCV中Selective-Search算法的使用/">OpenCV中Selective Search算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Win10以树形结构显示文件目录结构/">Win10以树形结构显示文件目录结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/01/Hexo添加站内本地搜索/">Hexo添加站内本地搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/用OpenCV显示OpenGL图形/">用OpenCV显示OpenGL图形</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题/">解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/Hexo+GitHub搭建个人博客/">Hexo+GitHub搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gfw/">gfw</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/record/">record</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/16/Hexo的SPFK主题修改小记/" class="archive-article-date">
-      <time datetime="2017-09-16T10:26:23.000Z" itemprop="datePublished">09-16</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/16/Hexo的SPFK主题修改小记/">Hexo的SPFK主题修改小记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/建站小记/">建站小记</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/" class="archive-article-date">
-      <time datetime="2017-09-16T08:16:08.000Z" itemprop="datePublished">09-16</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/">解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Problems/">Problems</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qt/">qt</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/" class="archive-article-date">
-      <time datetime="2017-09-16T07:56:16.000Z" itemprop="datePublished">09-16</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/">解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Problems/">Problems</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/15/Hexo添加各种小部件/" class="archive-article-date">
-      <time datetime="2017-09-15T12:23:05.000Z" itemprop="datePublished">09-15</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/15/Hexo添加各种小部件/">Hexo添加各种小部件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/建站小记/">建站小记</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/12/OpenCV中显著性检测算法的使用/" class="archive-article-date">
-      <time datetime="2017-09-12T10:36:26.000Z" itemprop="datePublished">09-12</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/12/OpenCV中显著性检测算法的使用/">OpenCV中显著性检测算法的使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Study/">Study</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/10/OpenCV中Selective-Search算法的使用/" class="archive-article-date">
-      <time datetime="2017-09-10T12:31:03.000Z" itemprop="datePublished">09-10</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/OpenCV中Selective-Search算法的使用/">OpenCV中Selective Search算法的使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Study/">Study</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/05/Win10以树形结构显示文件目录结构/" class="archive-article-date">
-      <time datetime="2017-09-05T09:08:34.000Z" itemprop="datePublished">09-05</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/05/Win10以树形结构显示文件目录结构/">Win10以树形结构显示文件目录结构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Study/">Study</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unix-like/">unix-like</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/09/01/Hexo添加站内本地搜索/" class="archive-article-date">
-      <time datetime="2017-09-01T08:23:39.000Z" itemprop="datePublished">09-01</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/01/Hexo添加站内本地搜索/">Hexo添加站内本地搜索</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/建站小记/">建站小记</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
-  
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -681,17 +508,6 @@ MathJax.Hub.Queue(function() {
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 开关</button>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js">
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
