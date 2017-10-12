@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Shaun Yuan&#39;s Blog">
 <meta property="og:description" content="前言　　本人目前还在使用对Hexo的主题SPFK自行魔改的那个主题（所谓的魔改也就是对照着black-blue主题修改了部分CSS，然后又添加了一个站内搜索功能(&amp;gt;&amp;#94;ω&amp;#94;&amp;lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-15T13:16:28.334Z">
+<meta property="og:updated_time" content="2017-10-12T07:38:06.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo添加各种小部件">
 <meta name="twitter:description" content="前言　　本人目前还在使用对Hexo的主题SPFK自行魔改的那个主题（所谓的魔改也就是对照着black-blue主题修改了部分CSS，然后又添加了一个站内搜索功能(&amp;gt;&amp;#94;ω&amp;#94;&amp;lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。">
@@ -104,6 +104,9 @@
                             <div class="shoulder"></div>
                         </div>
                         
+                        <div class="icon-wrap icon-globe hide" data-idx="4">
+                            <i class="fa fa-globe fa-spin fa-2x" aria-hidden="true"></i>         
+                        </div>
                     </div>
                     
                 </div>
@@ -118,6 +121,7 @@
                         
                         <li>关于我</li>
                         
+                        <li>访问情况</li>
                     </ul>
                 </div>
             </div>
@@ -173,6 +177,10 @@
                     <div id="js-aboutme">姓名：袁旭<br />CS小硕一名，学以致用，学习使我快乐！</div>
                 </section>
                 
+
+                <section class="switch-part switch-part5">
+                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
+                </section>
             </div>
         </div>
     </header>                
@@ -282,6 +290,31 @@
 <p>提取其中的href，即<code>http://sighttp.qq.com/authd?IDKEY=b1afd83745b30922bc98e020847b86a5148d2114e62e8422</code>，将该链接添加到<strong>主题配置文件</strong>中，具体如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">subnav:</span></div><div class="line"><span class="attr">  QQ:</span> <span class="string">"http://sighttp.qq.com/authd?IDKEY=4faf682653b3b7f5f47b9cb6d2bb8b81de8fa7a8fb8cee12"</span></div></pre></td></tr></table></figure>
 <p>重新部署站点即可发现对应的QQ图标，点击该图标可直接给本人发临时QQ消息。</p>
+<h2 id="添加用户访问统计信息小工具——RevolverMaps"><a href="#添加用户访问统计信息小工具——RevolverMaps" class="headerlink" title="添加用户访问统计信息小工具——RevolverMaps"></a>添加用户访问统计信息小工具——RevolverMaps</h2><p>　　由于本人暂时不想搞SEO，所以就没有搞站点地图，更没有将本人的站点提交到百度和Google的站长平台上。但本人又想查看用户访问信息（是不是很矛盾o(╯□╰)o），而正好本人看到有个很酷炫的3D地球能满足本人的需求（其实很酷炫才是主要原因O(∩_∩)O~），所以本人决定将其加入本人的站点中（当做一部分装饰品๑乛◡乛๑）。该插件的名称为<a href="http://www.revolvermaps.com/?target=gallery" target="_blank" rel="external">RevolverMaps</a>，具体样式可以去其官网看，本人就不贴图了。设置完前三步之后，第四步让用户复制代码到自己的站点上，注意第四步会让你选“<strong>new map</strong>”还是“<strong>update</strong>”，由于本人是初次使用，当然是选择默认的“<strong>new map</strong>”，如果是以前使用过，就选择“<strong>update</strong>”，并将原来使用的script代码输入出现的文本框并提交，这样就只是更改3D地球样式而不会丢失用户访问信息数据。<br>　　具体添加方法为：将复制的script代码放入想显示的某个div中。本人得到的script代码为：</p>
+<blockquote>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;amp;m=7&amp;amp;c=ff0000&amp;amp;cr1=ffffff&amp;amp;f=arial&amp;amp;l=49&quot; async=&quot;async&quot;&gt;&lt;/script&gt;</code></p>
+</blockquote>
+<p>　　由于本人的博客是双栏的，本人当然是把RevolverMaps放入左栏中，本人刚开始是把得到的script代码放入主题文件夹下\layout_partial\left-col.ejs文件末尾的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> <span class="tag">&lt;/<span class="name">header</span>&gt;</span>                </div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>&lt;/header&gt;</code>标签之前（即在header的最下端显示RevolverMaps），但实际用起来有点不好看；本人又想干脆另外创造一个div放置地球，具体思路为：在birdhouse图标旁创建一个新的地球图标，再做一个像birdhouse图标一样的动画，鼠标移到地球图标时，出现一个div，该div用来放置RevolverMaps，这一步做到一半（即将一个新的地球图标并排放在birdhouse图标旁）发现这个效果感觉更不好看了，如果要改就需要大改了，有点麻烦o(︶︿︶)o唉；于是本人看到鼠标放在birdhouse图标出现的菜单栏上，想到何不如将该菜单栏在添加一栏，创建一个div用来显示RevolverMaps？事不宜迟，马上就动手添加该div，具体添加步骤如下：</p>
+<ol>
+<li><p>首先当然是添加一个“<strong>访问情况</strong>”的列表名称，在主题文件夹下<code>\layout\_partial\left-col.ejs</code>文件中<code>&lt;ul class=&quot;tips-inner&quot;&gt;</code>下最后一个<code>&lt;li&gt;</code>后即<code>&lt;/ul&gt;</code>前添加<code>&lt;li&gt;访问情况&lt;/li&gt;</code>；</p>
+</li>
+<li><p>接着像其它的列表一样（点击该列表birdhouse图标就会改变成相应的图标），点击“<strong>访问情况</strong>”会将birdhouse图标改变成一个地球小图标，经查阅相应的css文件，其它的列表对应的图标好像是利用div的边框属性画出来的（某业余前端的猜测+_+），本人目前还没有这样的才能，就只有投机的采用Font Awesome中的<a href="http://fontawesome.io/icon/globe/" target="_blank" rel="external">globe</a>图标了。在主题文件夹下<code>\layout\_partial\left-col.ejs</code>文件中<code>&lt;div class=&quot;icon-ctn&quot;&gt;</code>下最末尾即其对应的<code>&lt;/div&gt;</code>前添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"icon-wrap icon-globe hide"</span> <span class="attr">data-idx</span>=<span class="string">"4"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-globe fa-spin fa-2x"</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这样点击“<strong>访问情况</strong>”会将birdhouse图标变成一个旋转的地球小图标了；</p>
+</li>
+<li><p>接下来就需要创建“<strong>访问情况</strong>”对应的div了，在主题文件夹下<code>\layout\_partial\left-col.ejs</code>文件中<code>&lt;div class=&quot;switch-wrap&quot;&gt;</code>下最末尾即其对应的<code>&lt;/div&gt;</code>前添加：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"switch-part switch-part5"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;amp;m=7&amp;amp;c=ff0000&amp;amp;cr1=ffffff&amp;amp;f=arial&amp;amp;l=49"</span> <span class="attr">async</span>=<span class="string">"async"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这样点击“<strong>访问情况</strong>”就能出现酷炫的3D地球了，才怪:p。这样只能让3D地球出现在菜单界面，还需要添加修改相应的css；</p>
+</li>
+<li><p>最后就是改css样式了，本以为这一步很简单，没想到这一步花费本人最多时间╮(╯_╰)╭，修改的样式位于主题文件夹下<code>\source\css_partial\main.styl</code>文件中，首先为switch-part5添加对应的样式，在.switch-part4样式后添加：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.switch-part5&#123;</div><div class="line">        left: 400%;</div><div class="line">        width: 100%;</div><div class="line">    	//height: 200px;</div><div class="line">        //margin-left: 47px;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p> 做完这一步会发现3D地球显示不完全，下面会缺一点，所以还需要继续修改，修改过程如下：本人曾将该width减小（如上面代码中的注释），这样确实能让3D地球显示完全，但有点小，不是很好看；后面想到没显示完全可能是上层div（.switch-area）太小且设置了<code>overflow: hidden;</code>，于是这里本人首先增加了.switch-area的高度,这样确实能解决问题，但会使左栏的滚动条显示出来；所以本人接着尝试将.switch-area的<code>overflow: hidden;</code>注释掉，谁想注释掉之后出现了横向滚动条，这样更不好了，于是本人又更改为<code>overflow-x: hidden;</code>，谁想.switch-area又出现了竖直滚动条（感觉像拆东墙补西墙-_-|||），查阅<a href="http://blog.csdn.net/qiqingjin/article/details/50413691" target="_blank" rel="external">相关资料</a>得知若overflow-x为hidden，overflow-y不为hidden，则overflow-y将会自动重置为auto，所以这里不能这样改，但<code>overflow: hidden;</code>还是得注释掉，不然上层div撑不开，而且不增加高度的话，还是不能完全显示3D地球，因为超出就隐藏了嘛；因为注释掉之后会出现横向滚动条，而又不能修改.switch-area的overflow-x，所以就只能改更上层的div，这里本人突然想起上次给左栏添加滚动条时，在.left-col下添加了<code>overflow: auto;</code>，这次不如还修改这里，毕竟本人只想要竖直滚动条（其实不要滚动条却能滚动最好，但本人目前还没找到好的解决方案(╯﹏╰)b），不要横向滚动条，于是将其修改为：</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">overflow-y</span>: <span class="selector-tag">auto</span>;</div><div class="line"><span class="selector-tag">overflow-x</span>: <span class="selector-tag">hidden</span>;</div></pre></td></tr></table></figure>
+<p> 没想到这样也能解决问题，虽然还是会在左栏出现滚动条，但这样感觉比增加.switch-area的高度要好（嗯，应该要好吧(～ o ～)Y）。看以后能不能改成点击“<strong>访问情况</strong>”时才出现滚动条，点击其它列表则不出现滚动条（其实把滚动条隐藏最好，但网上那个两个div嵌套的方法本人尝试过会出现一些奇怪的问题，等以后再试试吧↖((&#94;ω^)↗）。</p>
+</li>
+</ol>
 <hr>
 <p>待续。。。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　目前就添加这些小组件，以后应该会陆续添加一些其它的小东西↖(&#94;ω&#94;)↗。</p>
@@ -300,7 +333,7 @@
         <p><span>本文标题:</span><a href="/2017/09/15/Hexo添加各种小部件/">Hexo添加各种小部件</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年09月15日 - 20时23分</p>
-        <p><span>最后更新:</span>2017年09月15日 - 21时16分</p>
+        <p><span>最后更新:</span>2017年10月12日 - 15时38分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/09/15/Hexo添加各种小部件/" title="Hexo添加各种小部件">http://cniter.github.io/2017/09/15/Hexo添加各种小部件/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/15/Hexo添加各种小部件/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -338,7 +371,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加QQ邮箱联系"><span class="toc-number">2.</span> <span class="toc-text">添加QQ邮箱联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加QQ交谈链接"><span class="toc-number">3.</span> <span class="toc-text">添加QQ交谈链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">4.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加QQ邮箱联系"><span class="toc-number">2.</span> <span class="toc-text">添加QQ邮箱联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加QQ交谈链接"><span class="toc-number">3.</span> <span class="toc-text">添加QQ交谈链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加用户访问统计信息小工具——RevolverMaps"><span class="toc-number">4.</span> <span class="toc-text">添加用户访问统计信息小工具——RevolverMaps</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">6.</span> <span class="toc-text">参考资料</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
