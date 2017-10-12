@@ -260,7 +260,8 @@ a {
   -ms-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 #container .left-col .overlay {
   width: 100%;
@@ -2062,7 +2063,6 @@ a {
 #header .switch-area {
   position: relative;
   width: 100%;
-  overflow: hidden;
   color: #4094c3;
   min-height: 200px;
   font-size: 14px;
@@ -2225,6 +2225,10 @@ a {
 #header .switch-part4 div {
   padding: 0 12px;
   text-align: center;
+}
+#header .switch-part5 {
+  left: 400%;
+  width: 100%;
 }
 #scroll {
   right: 0;
