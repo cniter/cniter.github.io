@@ -388,7 +388,7 @@
     <link href="http://cniter.github.io/2017/09/15/Hexo%E6%B7%BB%E5%8A%A0%E5%90%84%E7%A7%8D%E5%B0%8F%E9%83%A8%E4%BB%B6/"/>
     <id>http://cniter.github.io/2017/09/15/Hexo添加各种小部件/</id>
     <published>2017-09-15T12:23:05.000Z</published>
-    <updated>2017-10-12T07:38:06.788Z</updated>
+    <updated>2017-10-12T08:20:27.890Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人目前还在使用对Hexo的主题<strong>SPFK</strong>自行魔改的那个主题（所谓的魔改也就是对照着<strong>black-blue</strong>主题修改了部分CSS，然后又添加了一个站内搜索功能(&gt;&#94;ω&#94;&lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。</p>
 <a id="more"></a>
