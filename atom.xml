@@ -89,7 +89,7 @@
     <link href="http://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/"/>
     <id>http://cniter.github.io/2017/09/28/利用回调函数计算函数运行时间/</id>
     <published>2017-09-28T07:36:16.000Z</published>
-    <updated>2017-09-28T07:43:43.753Z</updated>
+    <updated>2017-10-12T13:26:40.960Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　曾有一段时间在写一个小程序，由于其对运行时间有要求，所以每写一段代码就要测试一下运行时间，如果超出就需要优化一下代码或换一种方法和算法。但是每次都需要插在某两个位置插两段代码感觉有点烦，也有点浪费时间，毕竟浪费时间就是浪费生命，本着保尔柯察金关于生命的言论，本人不愿虚度年华，所以只得寻找一个方便简洁的方法计算运行时间（说了这么多，说到底其实就是懒吧*/ω\*）。后面就想到了回调函数，将想要计算运行时间的代码段放入一个函数中，并将其作为回调函数，用事先写好的计算时间函数调用它，从而方便计算该代码段的运行时间。</p>
 <a id="more"></a>
@@ -234,11 +234,11 @@
     <link href="http://cniter.github.io/2017/09/16/Hexo%E7%9A%84SPFK%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%B0%8F%E8%AE%B0/"/>
     <id>http://cniter.github.io/2017/09/16/Hexo的SPFK主题修改小记/</id>
     <published>2017-09-16T10:26:23.000Z</published>
-    <updated>2017-09-18T12:14:39.284Z</updated>
+    <updated>2017-10-13T08:04:25.702Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。</p>
 <a id="more"></a>
-<h2 id="修改篇"><a href="#修改篇" class="headerlink" title="修改篇"></a>修改篇</h2><h3 id="1、修改aboutme排版问题。"><a href="#1、修改aboutme排版问题。" class="headerlink" title="1、修改aboutme排版问题。"></a><font color="#FA8072">1、修改<strong>aboutme</strong>排版问题。</font></h3><p><strong>需求描述：</strong>本人为了使<strong>aboutme</strong>排版好看一点，使“<strong>关于我</strong>”的内容更有段落感，本人尝试在主题配置文件中aboutme对象的内容添加各种换行转义符号均于事无补，如<code>\n</code>、<code>\r\n</code>、<code>&amp;#13;</code>、<code>&amp;#10;</code>、<code>&lt;br /&gt;</code>等，站点不仅不会换行，还会直接将转义符号都显示出来(╯﹏╰）。</p>
+<h2 id="修改篇"><a href="#修改篇" class="headerlink" title="修改篇"></a>修改篇</h2><h3 id="1、修改aboutme排版问题"><a href="#1、修改aboutme排版问题" class="headerlink" title="1、修改aboutme排版问题"></a><font color="#FA8072">1、修改<strong>aboutme</strong>排版问题</font></h3><p><strong>需求描述：</strong>本人为了使<strong>aboutme</strong>排版好看一点，使“<strong>关于我</strong>”的内容更有段落感，本人尝试在主题配置文件中aboutme对象的内容添加各种换行转义符号均于事无补，如<code>\n</code>、<code>\r\n</code>、<code>&amp;#13;</code>、<code>&amp;#10;</code>、<code>&lt;br /&gt;</code>等，站点不仅不会换行，还会直接将转义符号都显示出来(╯﹏╰）。</p>
 <p><strong>解决办法：</strong>既然本人基本把所有的换行方法都试过了，还没有任何作用，那就只能是问题出在其它地方了。本人首先找到显示aboutme内容的地方，其位于主题文件夹下<code>\layout\_partial\left-col.ejs</code>，显示aboutme内容的代码为<code>&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%=theme.aboutme%&gt;&lt;/div&gt;</code>，查阅相关资料，具体为<a href="https://cnodejs.org/topic/5711aec2238ae0ac1e3a6a26" target="_blank" rel="external">与大家分享ejs源码阅读心得</a>，其中有这样一段话：</p>
 <blockquote>
 <h><strong>关于ejs模板的五种模式对应几种指令</strong></h>
@@ -254,8 +254,17 @@
 <p>关于以上各个指令对应的解析, 可参考<code>ejs</code>源码根目录<code>lib/ejs.js</code>文件中的<code>scanLine</code>函数.</p>
 </blockquote>
 <p>从中可得知<code>&lt;%=</code>指令会将变量内容中一些特殊字符先转义，再原封不动的输出，所以本人无论怎么修改主题配置文件中aboutme对象的值，其输出内容都会是原封不动的aboutme对象的值。为了让其输出内容可以有相应的特殊格式，就不能让其转义，只能用<code>&lt;%-</code>指令，将其修改为<code>&lt;div id=&quot;js-aboutme&quot;&gt;&lt;%-theme.aboutme%&gt;&lt;/div&gt;</code>，这样就能使输出内容可以自定义特殊格式，本人最后在aboutme对象的内容中需要换行的地方添加了<code>&lt;br /&gt;</code>，实测如此修改后可以换行。</p>
-<h3 id="2、给左栏添加滚动条。"><a href="#2、给左栏添加滚动条。" class="headerlink" title="2、给左栏添加滚动条。"></a><font color="#FA8072">2、给左栏添加滚动条。</font></h3><p><strong>需求描述：</strong>SPFK主题是双栏的主题。因为左栏主要是用来显示一些菜单和头像等内容，这些内容也不多，所以原作者就没有添加滚动条。但是由于本人添加了个本地搜索功能，在刚开始文章少的时候还不受影响，但是随着文章的增多，搜索功能就会影响左栏的布局，这是就必须添加一个滚动条了。本以为添加滚动条很简单，就是添加一个<code>overflow: auto;</code>，谁知道还没这么简单╮(╯﹏╰）╭。</p>
+<h3 id="2、给左栏添加滚动条"><a href="#2、给左栏添加滚动条" class="headerlink" title="2、给左栏添加滚动条"></a><font color="#FA8072">2、给左栏添加滚动条</font></h3><p><strong>需求描述：</strong>SPFK主题是双栏的主题。因为左栏主要是用来显示一些菜单和头像等内容，这些内容也不多，所以原作者就没有添加滚动条。但是由于本人添加了个本地搜索功能，在刚开始文章少的时候还不受影响，但是随着文章的增多，搜索功能就会影响左栏的布局，这是就必须添加一个滚动条了。本以为添加滚动条很简单，就是添加一个<code>overflow: auto;</code>，谁知道还没这么简单╮(╯﹏╰）╭。</p>
 <p><strong>解决办法：</strong>本人对问题的定位没问题，就是修改主题文件夹下的<code>\source\css\_partial\main.styl</code>文件中<em>.left-col</em>样式，问题在于怎么修改，本想直接在其中加入<code>overflow: auto;</code>，按道理说问题就能解决的，但是本人去搜索试试，发现搜索框上方的头像，文字等全部消失了，滚动条没起到作用，而下方的菜单可以通过滚动条看到。于是本人觉得可能是div上界没撑开，而超出的地方却隐藏了，但下界为什么能撑开，本人这里还是很不明白?_?。既然是这里隐藏了，本人就去看相关标签有没有<code>overflow: hidden;</code>属性，谁知道要么是没有，要么是即是关闭了也没有作用，那问题应该不是出在这里。就只能是这些元素所在的子div里了，本人找到其子div属性<em>.intrude-less</em>，其中虽有overflow: auto;但没设置height属性，所以就不能发挥其作用，本人于是给它加上height属性，搜索后发现有两个滚动条，这显然不简约，于是本人把<em>.intrude-less</em>的overflow: auto;属性注释掉，没想到居然能完美解决问题，可能是因为加上高度属性之后就能撑大父元素div了吧（来自某业余前端的猜测(⊙_⊙)）。后面为了更美观，本人把下方菜单区域的div样式<em>.switch-area</em>高度min-height改小了一点，顺便也把主题文件夹下的<code>\layout\_partial\left-col.ejs</code>文件中首行注释掉<code>&lt;!-- &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt; --&gt;</code>。本人也曾想把height改为min-height，谁知道又出现相同的问题，不得不又改回去。虽然这次已经解决了问题，但有些细节问题还是不太明白，只有等以后前端水平上去了再去想了，如有大佬知道还望不吝赐教(&#94;人&#94;)。</p>
+<h3 id="3、修改打赏问题"><a href="#3、修改打赏问题" class="headerlink" title="3、修改打赏问题"></a><font color="#FA8072">3、修改打赏问题</font></h3><p><strong>问题描述：</strong>本人突然想玩一下那个打赏小东西，但照配置文件中指示的那样在文章开头ymal格式中加入<code>reward: true</code>属性，没有任何作用，于是去主题文件夹搜索reward属性相应的代码，结果是“找不到结果”（坑爹了这是，摔！（╯‵□′）╯︵┴─┴ ）。</p>
+<p><strong>解决办法：</strong>既然reward属性找不到就只有搜索reward_type属性，最终在主题文件夹下<code>\spfk_c\layout\_partial\article.ejs</code>文件中找到这样一条语句<code>&lt;% if ((theme.reward_type === 2 || (theme.reward_type === 1 &amp;&amp; post.toc)) &amp;&amp; !index){ %&gt;</code>，其下面就是打赏相关的代码，查看SPFK主题原作者介绍信息（<a href="https://luuman.github.io/2015/12/27/Hexo/HexoTheme/" target="_blank" rel="external">Hexo 主题：SPFK</a>）发现toc属性是用来显示目录的（一个用来打赏的代码怎么与文章目录相关了-_-#），所以上面的toc应该改成reward，修改后的代码为<code>&lt;% if ((theme.reward_type === 2 || (theme.reward_type === 1 &amp;&amp; post.reward)) &amp;&amp; !index){ %&gt;</code>，这时照配置文件中指示的那样在文章开头ymal格式中加入<code>reward: true</code>属性就能在相应的文章后面看到一个大大的“<strong>赏</strong>”字。</p>
+<p>本来写到这里应该打赏这玩意应该完结了，但本人无意中在该文件的下面发现这样一段代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;% if (!index &amp;&amp; post.toc != false &amp;&amp; !is_page())&#123; %&gt;</div><div class="line">    &lt;%- partial(&apos;_partial/toc&apos;) %&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>这是和toc（即文章目录）真正相关的代码，功能大概就是判断是否加载文章目录相关的代码，如果在文章开头设置<code>toc: false</code>，则该文章不会显示目录，但是如果在文章中不加toc属性，也会显示文章目录，但上面的打赏却不会显示，看起来<code>post.toc != false</code>和<code>post.toc</code>应该逻辑差不多，这里是本人感到十分奇怪的一个地方？后面查阅相关资料（<a href="http://www.w3school.com.cn/jsref/jsref_undefined.asp" target="_blank" rel="external">JavaScript undefined 属性</a>）得知:</p>
+<blockquote>
+<p>注释：null 表示无值，而 undefined 表示一个未声明的变量，或已声明但没有赋值的变量，或一个并不存在的对象属性。</p>
+</blockquote>
+<p>而本文这里因为没有在文章开头设置toc属性，所以其为<code>undefined</code>，其既不为false也不为true，只为undefined，当在<code>if</code>语句中做判断，会执行<code>else</code>分支，作<code>!</code>运算，结果则为：<code>true</code>。所以<code>if(post.toc)</code>不能执行其下代码，因为<code>post.toc</code>为undefined，不为true也不为false，而<code>if(post.toc != false)</code>能执行其下代码，因为<code>post.toc != false</code>为真。至于javascript中<code>if(a == ture)</code>和<code>if(a)</code>的区别具体为：前一种是a必须为1或者true才执行；而后一种只要a不为<code>false undefined null 0 -0 NaN &quot;&quot;</code>这7个中的其中任何一个都能执行。</p>
 <hr>
 <p>待续。。。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　先就写到这里，如后续修改中发现问题再继续记录吧↖(&#94;ω&#94;)↗。</p>
