@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Shaun Yuan&#39;s Blog">
 <meta property="og:description" content="前言　　本人目前还在使用对Hexo的主题SPFK自行魔改的那个主题（所谓的魔改也就是对照着black-blue主题修改了部分CSS，然后又添加了一个站内搜索功能(&amp;gt;&amp;#94;ω&amp;#94;&amp;lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T08:20:27.890Z">
+<meta property="og:updated_time" content="2017-10-13T13:31:52.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo添加各种小部件">
 <meta name="twitter:description" content="前言　　本人目前还在使用对Hexo的主题SPFK自行魔改的那个主题（所谓的魔改也就是对照着black-blue主题修改了部分CSS，然后又添加了一个站内搜索功能(&amp;gt;&amp;#94;ω&amp;#94;&amp;lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。">
@@ -174,7 +174,7 @@
                 
                 <section class="switch-part switch-part4">
                 
-                    <div id="js-aboutme">姓名：袁旭<br />CS小硕一名，学以致用，学习使我快乐！</div>
+                    <div id="js-aboutme">姓名：袁旭<br />CS小硕一名，学以致用，学习使我快乐！<br />Do the Right Thing, Wait to get fired.</div>
                 </section>
                 
 
@@ -310,7 +310,7 @@
 </li>
 <li><p>最后就是改css样式了，本以为这一步很简单，没想到这一步花费本人最多时间╮(╯_╰)╭，修改的样式位于主题文件夹下<code>\source\css_partial\main.styl</code>文件中，首先为switch-part5添加对应的样式，在.switch-part4样式后添加：</p>
  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.switch-part5&#123;</div><div class="line">        left: 400%;</div><div class="line">        width: 100%;</div><div class="line">    	//height: 200px;</div><div class="line">        //margin-left: 47px;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p> 做完这一步会发现3D地球显示不完全，下面会缺一点，所以还需要继续修改，修改过程如下：本人曾将该width减小（如上面代码中的注释），这样确实能让3D地球显示完全，但有点小，不是很好看；后面想到没显示完全可能是上层div（.switch-area）太小且设置了<code>overflow: hidden;</code>，于是这里本人首先增加了.switch-area的高度,这样确实能解决问题，但会使左栏的滚动条显示出来；所以本人接着尝试将.switch-area的<code>overflow: hidden;</code>注释掉，谁想注释掉之后出现了横向滚动条，这样更不好了，于是本人又更改为<code>overflow-x: hidden;</code>，谁想.switch-area又出现了竖直滚动条（感觉像拆东墙补西墙-_-|||），查阅<a href="http://blog.csdn.net/qiqingjin/article/details/50413691" target="_blank" rel="external">相关资料</a>得知若overflow-x为hidden，overflow-y不为hidden，则overflow-y将会自动重置为auto，所以这里不能这样改，但<code>overflow: hidden;</code>还是得注释掉，不然上层div撑不开，而且不增加高度的话，还是不能完全显示3D地球，因为超出就隐藏了嘛；因为注释掉之后会出现横向滚动条，而又不能修改.switch-area的overflow-x，所以就只能改更上层的div，这里本人突然想起上次给左栏添加滚动条时，在.left-col下添加了<code>overflow: auto;</code>，这次不如还修改这里，毕竟本人只想要竖直滚动条（其实不要滚动条却能滚动最好，但本人目前还没找到好的解决方案(╯﹏╰)b），不要横向滚动条，于是将其修改为：</p>
+<p> 做完这一步会发现3D地球显示不完全，下面会缺一点，所以还需要继续修改，修改过程如下：本人曾将该width减小（如上面代码中的注释），这样确实能让3D地球显示完全，但有点小，不是很好看；后面想到没显示完全可能是上层div（.switch-area）太小且设置了<code>overflow: hidden;</code>，于是这里本人首先增加了.switch-area的高度,这样确实能解决问题，但会使左栏的滚动条显示出来；所以本人接着尝试将.switch-area的<code>overflow: hidden;</code>注释掉，谁想注释掉之后出现了横向滚动条，这样更不好了，于是本人又更改为<code>overflow-x: hidden;</code>，谁想.switch-area又出现了竖直滚动条（感觉像拆东墙补西墙-_-|||），查阅相关资料（<a href="http://blog.csdn.net/qiqingjin/article/details/50413691" target="_blank" rel="external">CSS-overflow特性及总结</a>）得知若overflow-x为hidden，overflow-y不为hidden，则overflow-y将会自动重置为auto，所以这里不能这样改，但<code>overflow: hidden;</code>还是得注释掉，不然上层div撑不开，而且不增加高度的话，还是不能完全显示3D地球，因为超出就隐藏了嘛；因为注释掉之后会出现横向滚动条，而又不能修改.switch-area的overflow-x，所以就只能改更上层的div，这里本人突然想起上次给左栏添加滚动条时，在.left-col下添加了<code>overflow: auto;</code>，这次不如还修改这里，毕竟本人只想要竖直滚动条（其实不要滚动条却能滚动最好，但本人目前还没找到好的解决方案(╯﹏╰)b），不要横向滚动条，于是将其修改为：</p>
  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">overflow-y</span>: <span class="selector-tag">auto</span>;</div><div class="line"><span class="selector-tag">overflow-x</span>: <span class="selector-tag">hidden</span>;</div></pre></td></tr></table></figure>
 <p> 没想到这样也能解决问题，虽然还是会在左栏出现滚动条，但这样感觉比增加.switch-area的高度要好（嗯，应该要好吧(～ o ～)Y）。看以后能不能改成点击“<strong>访问情况</strong>”时才出现滚动条，点击其它列表则不出现滚动条（其实把滚动条隐藏最好，但网上那个两个div嵌套的方法本人尝试过会出现一些奇怪的问题，等以后再试试吧↖((&#94;ω^)↗）。</p>
 </li>
@@ -333,7 +333,7 @@
         <p><span>本文标题:</span><a href="/2017/09/15/Hexo添加各种小部件/">Hexo添加各种小部件</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年09月15日 - 20时23分</p>
-        <p><span>最后更新:</span>2017年10月12日 - 16时20分</p>
+        <p><span>最后更新:</span>2017年10月13日 - 21时31分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/09/15/Hexo添加各种小部件/" title="Hexo添加各种小部件">http://cniter.github.io/2017/09/15/Hexo添加各种小部件/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/15/Hexo添加各种小部件/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
