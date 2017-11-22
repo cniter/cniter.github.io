@@ -253,6 +253,7 @@ a {
 #container .left-col {
   background: url("../img/bg.jpg") #515457;
   width: 300px;
+  right: 0px;
   position: fixed;
   opacity: 1;
   -webkit-transition: all 0.2s ease-in;
@@ -291,9 +292,9 @@ a {
 }
 #container .mid-col {
   position: absolute;
-  right: 0;
+  left: 0;
   min-height: 100%;
-  left: 300px;
+  right: 300px;
   width: auto;
   overflow: hidden;
 }
@@ -2231,12 +2232,12 @@ a {
   width: 100%;
 }
 #scroll {
-  right: 0;
+  top: 40px;
 }
 .scroll {
   z-index: 999;
   position: fixed;
-  bottom: 40px;
+  right: 300px;
   text-align: center;
   line-height: 42px;
 }
@@ -2280,7 +2281,7 @@ a {
   opacity: 1;
 }
 #post-nav-button {
-  left: 300px;
+  bottom: 40px;
 }
 #post-nav-button a {
   border-bottom-color: transparent;
@@ -3360,7 +3361,7 @@ a.gitment-editor-footer-tip:hover {
   border-radius: 6px;
   width: 71px;
   height: 29px;
-  left: 217px;
+  right: 217px;
   border: none;
   background-color: #ee6252;
   top: 354px;
@@ -3375,7 +3376,7 @@ a.gitment-editor-footer-tip:hover {
 .toc-article {
   position: fixed;
   width: 256px;
-  left: 0;
+  right: 0;
   top: 370px;
   color: #999;
   bottom: 0.7em;

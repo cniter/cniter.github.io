@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Shaun Yuan&#39;s Blog">
 <meta property="og:description" content="前言　　本人目前还在使用对Hexo的主题SPFK自行魔改的那个主题（所谓的魔改也就是对照着black-blue主题修改了部分CSS，然后又添加了一个站内搜索功能(&amp;gt;&amp;#94;ω&amp;#94;&amp;lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-13T13:31:52.984Z">
+<meta property="og:updated_time" content="2017-11-22T11:40:14.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo添加各种小部件">
 <meta name="twitter:description" content="前言　　本人目前还在使用对Hexo的主题SPFK自行魔改的那个主题（所谓的魔改也就是对照着black-blue主题修改了部分CSS，然后又添加了一个站内搜索功能(&amp;gt;&amp;#94;ω&amp;#94;&amp;lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。">
@@ -273,12 +273,14 @@
           
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人目前还在使用对Hexo的主题<strong>SPFK</strong>自行魔改的那个主题（所谓的魔改也就是对照着<strong>black-blue</strong>主题修改了部分CSS，然后又添加了一个站内搜索功能(&gt;&#94;ω&#94;&lt;)），主题SPFK主体的东西其实都没改变。现在正逐渐将其完善中，遂有此文。</p>
 <a id="more"></a>
-<h2 id="添加QQ邮箱联系"><a href="#添加QQ邮箱联系" class="headerlink" title="添加QQ邮箱联系"></a>添加QQ邮箱联系</h2><p>　　进入<a href="http://openmail.qq.com/" target="_blank" rel="external">QQ邮箱开放平台</a>，点击“<strong>获取邮我按钮</strong>”，登录QQ之后继续点击该按钮，因为本人不需要其样式，只需要其链接即可，所以就默认样式，直接点击“<strong>获取代码</strong>”即可，本人默认的“<strong>HTML代码</strong>”为：</p>
+<h2 id="添加QQ邮箱联系"><a href="#添加QQ邮箱联系" class="headerlink" title="添加QQ邮箱联系"></a>添加QQ邮箱联系</h2><p><strong><em>添加日期：2017-9-15</em></strong></p>
+<p>　　进入<a href="http://openmail.qq.com/" target="_blank" rel="external">QQ邮箱开放平台</a>，点击“<strong>获取邮我按钮</strong>”，登录QQ之后继续点击该按钮，因为本人不需要其样式，只需要其链接即可，所以就默认样式，直接点击“<strong>获取代码</strong>”即可，本人默认的“<strong>HTML代码</strong>”为：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ"</span> <span class="attr">style</span>=<span class="string">"text-decoration:none;"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>提取其中的href，即<code>http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ</code>，将该链接添加到<strong>主题配置文件</strong>中，具体如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">subnav:</span></div><div class="line"><span class="attr">  mail:</span> <span class="string">"http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=qNvAyd3G0d3JxujOx9DFycHEhsvHxQ"</span></div></pre></td></tr></table></figure>
 <p>重新部署站点即可发现对应的邮箱图标，点击该图标可直接给本人发邮件。</p>
-<h2 id="添加QQ交谈链接"><a href="#添加QQ交谈链接" class="headerlink" title="添加QQ交谈链接"></a>添加QQ交谈链接</h2><p>　　进入<a href="http://shang.qq.com/v3/widget.html" target="_blank" rel="external">QQ推广</a>，点击上方的“<strong>推广工具</strong>”，若没登录QQ则先登录QQ，组件样式同样默认即可，这里需要注意的是，需要点击左边的“<strong>设置</strong>”，下滚页面，找到“<strong>安全级别设置</strong>”，如下</p>
+<h2 id="添加QQ交谈链接"><a href="#添加QQ交谈链接" class="headerlink" title="添加QQ交谈链接"></a>添加QQ交谈链接</h2><p><strong><em>添加日期：2017-9-15</em></strong></p>
+<p>　　进入<a href="http://shang.qq.com/v3/widget.html" target="_blank" rel="external">QQ推广</a>，点击上方的“<strong>推广工具</strong>”，若没登录QQ则先登录QQ，组件样式同样默认即可，这里需要注意的是，需要点击左边的“<strong>设置</strong>”，下滚页面，找到“<strong>安全级别设置</strong>”，如下</p>
 <blockquote>
 <h><strong>安全级别设置</strong></h>
 
@@ -290,7 +292,8 @@
 <p>提取其中的href，即<code>http://sighttp.qq.com/authd?IDKEY=b1afd83745b30922bc98e020847b86a5148d2114e62e8422</code>，将该链接添加到<strong>主题配置文件</strong>中，具体如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">subnav:</span></div><div class="line"><span class="attr">  QQ:</span> <span class="string">"http://sighttp.qq.com/authd?IDKEY=4faf682653b3b7f5f47b9cb6d2bb8b81de8fa7a8fb8cee12"</span></div></pre></td></tr></table></figure>
 <p>重新部署站点即可发现对应的QQ图标，点击该图标可直接给本人发临时QQ消息。</p>
-<h2 id="添加用户访问统计信息小工具——RevolverMaps"><a href="#添加用户访问统计信息小工具——RevolverMaps" class="headerlink" title="添加用户访问统计信息小工具——RevolverMaps"></a>添加用户访问统计信息小工具——RevolverMaps</h2><p>　　由于本人暂时不想搞SEO，所以就没有搞站点地图，更没有将本人的站点提交到百度和Google的站长平台上。但本人又想查看用户访问信息（是不是很矛盾o(╯□╰)o），而正好本人看到有个很酷炫的3D地球能满足本人的需求（其实很酷炫才是主要原因O(∩_∩)O~），所以本人决定将其加入本人的站点中（当做一部分装饰品๑乛◡乛๑）。该插件的名称为<a href="http://www.revolvermaps.com/?target=gallery" target="_blank" rel="external">RevolverMaps</a>，具体样式可以去其官网看，本人就不贴图了。设置完前三步之后，第四步让用户复制代码到自己的站点上，注意第四步会让你选“<strong>new map</strong>”还是“<strong>update</strong>”，由于本人是初次使用，当然是选择默认的“<strong>new map</strong>”，如果是以前使用过，就选择“<strong>update</strong>”，并将原来使用的script代码输入出现的文本框并提交，这样就只是更改3D地球样式而不会丢失用户访问信息数据。<br>　　具体添加方法为：将复制的script代码放入想显示的某个div中。本人得到的script代码为：</p>
+<h2 id="添加用户访问统计信息小工具——RevolverMaps"><a href="#添加用户访问统计信息小工具——RevolverMaps" class="headerlink" title="添加用户访问统计信息小工具——RevolverMaps"></a>添加用户访问统计信息小工具——RevolverMaps</h2><p><strong><em>添加日期：2017-10-12</em></strong></p>
+<p>　　由于本人暂时不想搞SEO，所以就没有搞站点地图，更没有将本人的站点提交到百度和Google的站长平台上。但本人又想查看用户访问信息（是不是很矛盾o(╯□╰)o），而正好本人看到有个很酷炫的3D地球能满足本人的需求（其实很酷炫才是主要原因O(∩_∩)O~），所以本人决定将其加入本人的站点中（当做一部分装饰品๑乛◡乛๑）。该插件的名称为<a href="http://www.revolvermaps.com/?target=gallery" target="_blank" rel="external">RevolverMaps</a>，具体样式可以去其官网看，本人就不贴图了。设置完前三步之后，第四步让用户复制代码到自己的站点上，注意第四步会让你选“<strong>new map</strong>”还是“<strong>update</strong>”，由于本人是初次使用，当然是选择默认的“<strong>new map</strong>”，如果是以前使用过，就选择“<strong>update</strong>”，并将原来使用的script代码输入出现的文本框并提交，这样就只是更改3D地球样式而不会丢失用户访问信息数据。<br>　　具体添加方法为：将复制的script代码放入想显示的某个div中。本人得到的script代码为：</p>
 <blockquote>
 <p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;amp;m=7&amp;amp;c=ff0000&amp;amp;cr1=ffffff&amp;amp;f=arial&amp;amp;l=49&quot; async=&quot;async&quot;&gt;&lt;/script&gt;</code></p>
 </blockquote>
@@ -333,7 +336,7 @@
         <p><span>本文标题:</span><a href="/2017/09/15/Hexo添加各种小部件/">Hexo添加各种小部件</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年09月15日 - 20时23分</p>
-        <p><span>最后更新:</span>2017年10月13日 - 21时31分</p>
+        <p><span>最后更新:</span>2017年11月22日 - 19时40分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/09/15/Hexo添加各种小部件/" title="Hexo添加各种小部件">http://cniter.github.io/2017/09/15/Hexo添加各种小部件/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/09/15/Hexo添加各种小部件/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -439,13 +442,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/" title="上一篇: 解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题">
+            <a href="/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/" title="后一篇: 解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/09/12/OpenCV中显著性检测算法的使用/" title="下一篇: OpenCV中显著性检测算法的使用">
+            <a href="/2017/09/12/OpenCV中显著性检测算法的使用/" title="前一篇: OpenCV中显著性检测算法的使用">
                 <i class="fa fa-angle-right"></i>
             </a>
         
