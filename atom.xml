@@ -587,7 +587,7 @@
     <link href="http://cniter.github.io/2017/09/16/Hexo%E7%9A%84SPFK%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%B0%8F%E8%AE%B0/"/>
     <id>http://cniter.github.io/2017/09/16/Hexo的SPFK主题修改小记/</id>
     <published>2017-09-16T10:26:23.000Z</published>
-    <updated>2017-11-22T13:09:20.620Z</updated>
+    <updated>2017-11-23T01:36:27.097Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。</p>
 <a id="more"></a>
@@ -618,7 +618,7 @@
 <p>其中cursor_0和cursor_1代表使用哪个指针，因为firefox和chrome不支持ani文件的指针（好像是ani文件有很大的漏洞），所以ani动态指针是用不了的，只能用cur格式的静态指针，而IE是可以加载ani格式的动态指针，所以本人这里就将两个指针文件全放上去了，首选加载动态指针；最后增加相应的代码调用cursor属性，加载指针文件，在主题文件夹下/layout/_partial/background.ejs文件末尾添加：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;% if (theme.cursor.on)&#123; %&gt;</div><div class="line">    &lt;style&gt;</div><div class="line">        body&#123;</div><div class="line">            background: #3f3f3f;</div><div class="line">            cursor: url(&lt;%- config.root %&gt;&lt;%- theme.cursor.cursor_0 %&gt;), url(&quot;&lt;%- config.root %&gt;&lt;%- theme.cursor.cursor_1 %&gt;&quot;), auto;</div><div class="line">        &#125;</div><div class="line">    &lt;/style&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
 <p>如此更新站点之后即可使用新鼠标指针样式，可能需要先进行<code>hexo clean</code>再发布。</p>
-<p>btw：这次修改是一个月之前的了，当时不知怎么的忘记记录了，还好本人的git提交记录比较详细，对应的提交记录为：<a href="https://github.com/cniter/cniter.github.io/commit/6c4fb2ddb930f739e2040a2b440106d21aebff04" target="_blank" rel="external">add a function – change cursor</a>和<a href="https://github.com/cniter/cniter.github.io/commit/d24d6d4f3292d7719f292599e6eebd54761c15e5" target="_blank" rel="external">update set cursor function</a> 。</p>
+<p><strong>BTW：</strong>这次修改是一个月之前的了，当时不知怎么的忘记记录了，还好本人的git提交记录比较详细，对应的提交记录为：<a href="https://github.com/cniter/cniter.github.io/commit/6c4fb2ddb930f739e2040a2b440106d21aebff04" target="_blank" rel="external">add a function – change cursor</a>和<a href="https://github.com/cniter/cniter.github.io/commit/d24d6d4f3292d7719f292599e6eebd54761c15e5" target="_blank" rel="external">update set cursor function</a> 。</p>
 <h3 id="4、修改打赏问题"><a href="#4、修改打赏问题" class="headerlink" title="4、修改打赏问题"></a><font color="#FA8072">4、修改打赏问题</font></h3><p><strong><em>修改日期：2017-10-13</em></strong></p>
 <p><strong>问题描述：</strong>本人突然想玩一下那个打赏小东西，但照配置文件中指示的那样在文章开头ymal格式中加入<code>reward: true</code>属性，没有任何作用，于是去主题文件夹搜索reward属性相应的代码，结果是“找不到结果”（坑爹了这是，摔！（╯‵□′）╯︵┴─┴ ）。</p>
 <p><strong>解决办法：</strong>既然reward属性找不到就只有搜索reward_type属性，最终在主题文件夹下<code>\spfk_c\layout\_partial\article.ejs</code>文件中找到这样一条语句<code>&lt;% if ((theme.reward_type === 2 || (theme.reward_type === 1 &amp;&amp; post.toc)) &amp;&amp; !index){ %&gt;</code>，其下面就是打赏相关的代码，查看SPFK主题原作者介绍信息（<a href="https://luuman.github.io/2015/12/27/Hexo/HexoTheme/" target="_blank" rel="external">Hexo 主题：SPFK</a>）发现toc属性是用来显示目录的（一个用来打赏的代码怎么与文章目录相关了-_-#），所以上面的toc应该改成reward，修改后的代码为<code>&lt;% if ((theme.reward_type === 2 || (theme.reward_type === 1 &amp;&amp; post.reward)) &amp;&amp; !index){ %&gt;</code>，这时照配置文件中指示的那样在文章开头ymal格式中加入<code>reward: true</code>属性就能在相应的文章后面看到一个大大的“<strong>赏</strong>”字。</p>
@@ -629,9 +629,12 @@
 <p>注释：null 表示无值，而 undefined 表示一个未声明的变量，或已声明但没有赋值的变量，或一个并不存在的对象属性。</p>
 </blockquote>
 <p>而本文这里因为没有在文章开头设置toc属性，所以其为<code>undefined</code>，其既不为false也不为true，只为undefined，当在<code>if</code>语句中做判断，会执行<code>else</code>分支，作<code>!</code>运算，结果则为：<code>true</code>。所以<code>if(post.toc)</code>不能执行其下代码，因为<code>post.toc</code>为undefined，不为true也不为false，而<code>if(post.toc != false)</code>能执行其下代码，因为<code>post.toc != false</code>为真。至于javascript中<code>if(a == ture)</code>和<code>if(a)</code>的区别具体为：前一种是a必须为1或者true才执行；而后一种只要a不为<code>false undefined null 0 -0 NaN &quot;&quot;</code>这7个中的其中任何一个都能执行。</p>
-<h3 id="5、交换内容栏和左侧栏位置"><a href="#5、交换内容栏和左侧栏位置" class="headerlink" title="5、交换内容栏和左侧栏位置"></a><font color="#FA8072">5、交换内容栏和左侧栏位置</font></h3><p><strong><em>修改日期：2017-11-22</em></strong></p>
+<h3 id="5、交换内容栏和左侧栏位置"><a href="#5、交换内容栏和左侧栏位置" class="headerlink" title="5、交换内容栏和左侧栏位置"></a><font color="#FA8072">5、交换内容栏和左侧栏位置</font></h3><p><strong><em>修改日期：2017-11-22 ~ 2017-11-23</em></strong></p>
 <p><strong>需求描述：</strong>本人最近逛网站时发现，好像一些博客网站基本都是把内容放在左侧，百度和google的搜索结果也是在左侧，可能是内容在左侧要好一点吧，于是本人略微修改之后，将内容放在左侧，而原来的左侧栏放到最右侧，好像是顺眼了一点（不排除是心理作用(ಡωಡ)），如果以后还觉得不错的话，再把相关的变量名换掉吧（此次修改仅仅是将CSS相关的值改变，div类名没变）。</p>
 <p><strong>解决办法：</strong>首先当然是定位左侧栏<code>.left-col</code>，它在主题文件夹下source/css/_partial/main.styl文件中，为其添加<code>right: 0px;</code>属性，使左侧栏靠右侧停放；在定位内容栏<code>.mid-col</code> ，将<code>right:0;</code>改成<code>left:0;</code>，将<code>left: 300px;</code>改成<code>right: left-col-width;</code>，使内容栏靠左侧停放，同时使其距离右侧有左侧栏的宽度。最后就是再修改其他一些小东西（比如目录按钮和目录内容div等）的css值，关于这个本人就细述了，反正也就是更改left、right、bottom以及top属性及其值，具体修改了哪些内容可以见本人github提交记录。</p>
+<p><strong>BTW：</strong>诶呀呀！昨天忘记测试手机端，今天用手机打开一看，手机端页面也距右边left-col-width宽度，这使得内容全挤在一起了，完全没法看ರ_ರ …。所以不得不添加手机端样式，定位手机端.mid-col，它在主题文件夹下/source/css/_partial/mobile.styl文件中，为其添加<code>right: 0;</code>属性值；后面看见回到顶部、回到底部的导航栏也有点问题，就在该文件中<code>/*导航*/</code>下面<code>.scroll</code>上面添加：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#scroll</span>&#123;</div><div class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使得该导航栏靠右停靠。</p>
 <hr>
 <p>待续。。。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　先就写到这里，如后续修改中发现问题再继续记录吧↖(&#94;ω&#94;)↗。</p>
@@ -1348,9 +1351,9 @@
       <category term="建站小记" scheme="http://cniter.github.io/categories/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
     
     
-      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
     
   </entry>
   

@@ -304,6 +304,7 @@ a {
   }
   #container .mid-col {
     left: 0;
+    right: 0;
   }
   #container #header .header-nav {
     position: relative;
@@ -558,6 +559,9 @@ a {
   }
   #container .toc-article a {
     color: #767676;
+  }
+  #container #scroll {
+    right: 0;
   }
   #container .scroll {
     bottom: 0;
