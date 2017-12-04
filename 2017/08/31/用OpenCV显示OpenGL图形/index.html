@@ -52,7 +52,7 @@
 </head>
 <body>
   <div id="container">
-    <div class="left-col">
+    <div class="right-col">
     <!-- <div class="overlay"></div> -->
 <div class="intrude-less">
     <header id="header" class="inner">
@@ -343,7 +343,7 @@
     var valueHide = "隐藏目录";
     var valueShow = "显示目录";
 
-    if ($(".left-col").is(":hidden")) {
+    if ($(".right-col").is(":hidden")) {
         $("#tocButton").attr("value", valueShow);
     }
     $("#tocButton").click(function() {
@@ -482,7 +482,7 @@
             var backgroundnum = 5;
             var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
             $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".right-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
         })
     </script>
 
