@@ -261,6 +261,9 @@ a {
   -ms-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   height: 100%;
+  overflow: hidden;
+}
+#container .right-col:hover {
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -2222,18 +2225,23 @@ a {
   background: #4d4d4d;
   color: #fff;
 }
+#header .switch-part3 div {
+  padding: 0 2px;
+}
 #header .switch-part4 {
   left: 300%;
   text-align: left;
   line-height: 30px;
 }
 #header .switch-part4 div {
-  padding: 0 12px;
+  padding: 0 2px;
   text-align: center;
 }
 #header .switch-part5 {
   left: 400%;
-  width: 100%;
+}
+#header .switch-part5 div {
+  padding: 0 2px;
 }
 #scroll {
   top: 40px;
@@ -2362,27 +2370,9 @@ color
   border: 2px solid transparent;
   border-bottom: 2px solid #d3d3d3;
   border-radius: 2px;
-  opacity: 0.7;
-  background: none;
-  outline: medium;
-}
-.search:hover {
-/* border: 2px solid lightgray; */
-  opacity: 1;
-  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-.search {
-  width: 68%;
-  height: 18px;
-  margin-top: 1px;
-  padding: 0;
-  font-family: inherit;
-  border: 2px solid transparent;
-  border-bottom: 2px solid #d3d3d3;
-  border-radius: 2px;
   opacity: 0.65;
   background: none;
+  outline: medium;
 }
 .search:hover {
   border: 2px solid #d3d3d3;
@@ -2453,7 +2443,7 @@ p.no-result {
   margin: 2em 0 2em 6%;
   padding-bottom: 0.5em;
   text-align: left;
-  color: #808080;
+  color: #4094c7;
   font-family: Times, Georgia, serif serif;
   border-bottom: 2px solid #d3d3d3;
 }

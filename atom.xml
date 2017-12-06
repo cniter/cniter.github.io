@@ -362,9 +362,9 @@
       <category term="Study" scheme="http://cniter.github.io/categories/Study/"/>
     
     
-      <category term="c/cpp" scheme="http://cniter.github.io/tags/c-cpp/"/>
-    
       <category term="opencv" scheme="http://cniter.github.io/tags/opencv/"/>
+    
+      <category term="c/cpp" scheme="http://cniter.github.io/tags/c-cpp/"/>
     
   </entry>
   
@@ -1356,9 +1356,9 @@
       <category term="建站小记" scheme="http://cniter.github.io/categories/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
     
     
-      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
-    
       <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="http://cniter.github.io/tags/github/"/>
     
   </entry>
   

@@ -6,7 +6,7 @@
   <title>TXT数据转OpenCV中的Mat数据 | Shaun Yuan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言　　本文是以前做的一个小东西的处理前奏，当时也记录过，现在把它翻出来重新看看。那个东西需要利用深度图，本人当时还没拿到Kinect，就在网上下了一些数据（http://eeeweba.ntu.edu.sg/computervision/people/home/renzhou/HandGesture.htm），该数据集包含了彩色图及对应的深度图，但是该数据集没有以图像形式存储深度值，而是用txt">
-<meta name="keywords" content="c&#x2F;cpp,opencv">
+<meta name="keywords" content="opencv,c&#x2F;cpp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TXT数据转OpenCV中的Mat数据">
 <meta property="og:url" content="http://cniter.github.io/2017/10/19/TXT数据转OpenCV中的Mat数据/index.html">
@@ -75,7 +75,7 @@
             </form> -->
 
             <form id="search-form"> <!-- 搜索框相关 -->
-                <input type="text" id="local-search-input" name="q" results="0" placeholder="Search..." class="search form-control" autocomplete="off" autocorrect="off"/>
+                <input type="text" id="local-search-input" name="q" results="0" placeholder=" Search..." class="search form-control" autocomplete="off" autocorrect="off"/>
                 <i class="fa fa-times" onclick="resetSearch()"></i> <!-- 清空/重置搜索框 -->
             </form>
             <div id="local-search-result"></div> <!-- 搜索结果区 -->
@@ -121,7 +121,9 @@
                         
                         <li>关于我</li>
                         
+                        
                         <li>访问情况</li>
+                        
                     </ul>
                 </div>
             </div>
@@ -164,7 +166,7 @@
                 <section class="switch-part switch-part3">
                     <div id="js-friends">
                     
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cniter.github.io/">github</a>
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://657122411.github.io">Tao&#39;s Site</a>
                     
                     </div>
                 </section>
@@ -178,9 +180,13 @@
                 </section>
                 
 
+                
+                
                 <section class="switch-part switch-part5">
-                    <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
+                
+                    <div><script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" defer="defer"></script></div>
                 </section>
+                
             </div>
         </div>
     </header>                
@@ -516,8 +522,7 @@ MathJax.Hub.Queue(function() {
 });
 </script>
 
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 
 
 <div class="scroll" id="scroll">
