@@ -5,18 +5,18 @@
   
   <title>OpenCV中滑动条和鼠标事件响应操作的使用小结 | Shaun Yuan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言　　既然在上文中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。">
+  <meta name="description" content="前言　　既然在上一篇中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。">
 <meta name="keywords" content="opencv">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV中滑动条和鼠标事件响应操作的使用小结">
 <meta property="og:url" content="http://cniter.github.io/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/index.html">
 <meta property="og:site_name" content="Shaun Yuan&#39;s Blog">
-<meta property="og:description" content="前言　　既然在上文中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。">
+<meta property="og:description" content="前言　　既然在上一篇中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-08T10:32:17.033Z">
+<meta property="og:updated_time" content="2017-12-07T08:07:55.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV中滑动条和鼠标事件响应操作的使用小结">
-<meta name="twitter:description" content="前言　　既然在上文中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。">
+<meta name="twitter:description" content="前言　　既然在上一篇中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。">
   
     <link rel="alternative" href="/atom.xml" title="Shaun Yuan&#39;s Blog" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/c-cpp/" style="font-size: 15px;">c/cpp</a> <a href="/tags/gfw/" style="font-size: 10px;">gfw</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 12.5px;">qt</a> <a href="/tags/record/" style="font-size: 10px;">record</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
+                        <a href="/tags/c-cpp/" style="font-size: 15px;">c/cpp</a> <a href="/tags/gfw/" style="font-size: 10px;">gfw</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/opencv/" style="font-size: 20px;">opencv</a> <a href="/tags/opengl/" style="font-size: 10px;">opengl</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 12.5px;">qt</a> <a href="/tags/record/" style="font-size: 12.5px;">record</a> <a href="/tags/tensorflow/" style="font-size: 10px;">tensorflow</a> <a href="/tags/unix-like/" style="font-size: 10px;">unix-like</a>
                     </div>
                 </section>
                 
@@ -277,7 +277,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　既然在<a href="https://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/">上文</a>中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　既然在<a href="https://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/">上一篇</a>中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。</p>
 <a id="more"></a>
 <h2 id="说明篇"><a href="#说明篇" class="headerlink" title="说明篇"></a>说明篇</h2><p>OpenCV中使用回调函数的两个函数为：</p>
 <ol>
@@ -336,7 +336,7 @@
         <p><span>本文标题:</span><a href="/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/">OpenCV中滑动条和鼠标事件响应操作的使用小结</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Shaun Yuan 的个人博客">Shaun Yuan</a></p>
         <p><span>发布时间:</span>2017年10月08日 - 17时06分</p>
-        <p><span>最后更新:</span>2017年10月08日 - 18时32分</p>
+        <p><span>最后更新:</span>2017年12月07日 - 16时07分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/" title="OpenCV中滑动条和鼠标事件响应操作的使用小结">http://cniter.github.io/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/</a>
             <span class="copy-path" data-clipboard-text="原文: http://cniter.github.io/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/　　作者: Shaun Yuan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -453,7 +453,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/12/PyQt5使用小结/">PyQt5使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/11/TensorFlow-Object-Detection-API使用小结/">TensorFlow Object Detection API使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/C语言中整型提升问题/">C语言中整型提升问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/TXT数据转OpenCV中的Mat数据/">TXT数据转OpenCV中的Mat数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/">OpenCV中滑动条和鼠标事件响应操作的使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/28/利用回调函数计算函数运行时间/">利用回调函数计算函数运行时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/论如何科学的上网/">论如何科学的上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/Hexo的SPFK主题修改小记/">Hexo的SPFK主题修改小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/">解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/">解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/15/Hexo添加各种小部件/">Hexo添加各种小部件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/OpenCV中显著性检测算法的使用/">OpenCV中显著性检测算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/10/OpenCV中Selective-Search算法的使用/">OpenCV中Selective Search算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Win10以树形结构显示文件目录结构/">Win10以树形结构显示文件目录结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/01/Hexo添加站内本地搜索/">Hexo添加站内本地搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/用OpenCV显示OpenGL图形/">用OpenCV显示OpenGL图形</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题/">解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/Hexo+GitHub搭建个人博客/">Hexo+GitHub搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/07/解决无法打开某个网页问题/">解决无法打开某个网页问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/12/PyQt5使用小结/">PyQt5使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/11/TensorFlow-Object-Detection-API使用小结/">TensorFlow Object Detection API使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/C语言中整型提升问题/">C语言中整型提升问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/19/TXT数据转OpenCV中的Mat数据/">TXT数据转OpenCV中的Mat数据</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/">OpenCV中滑动条和鼠标事件响应操作的使用小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/28/利用回调函数计算函数运行时间/">利用回调函数计算函数运行时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/22/论如何科学的上网/">论如何科学的上网</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/Hexo的SPFK主题修改小记/">Hexo的SPFK主题修改小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题/">解决Qt中Qlabel显示OpenCV的Mat数据图像产生扭曲现象问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题/">解决OpenCV-2.4.11调用摄像头显示拍摄视频出错问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/15/Hexo添加各种小部件/">Hexo添加各种小部件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/OpenCV中显著性检测算法的使用/">OpenCV中显著性检测算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/10/OpenCV中Selective-Search算法的使用/">OpenCV中Selective Search算法的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Win10以树形结构显示文件目录结构/">Win10以树形结构显示文件目录结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/01/Hexo添加站内本地搜索/">Hexo添加站内本地搜索</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/用OpenCV显示OpenGL图形/">用OpenCV显示OpenGL图形</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Win10＋VS2013＋CMake-gui编译和配置OpenCV-3-2-0/">Win10＋VS2013＋CMake-gui编译和配置OpenCV-3.2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题/">解决写上篇文档“Hexo+GitHub搭建个人博客”遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/Hexo+GitHub搭建个人博客/">Hexo+GitHub搭建个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/hello-world/">Hello World</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

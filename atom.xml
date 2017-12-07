@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cniter.github.io/"/>
-  <updated>2017-11-15T12:11:44.003Z</updated>
+  <updated>2017-12-07T08:17:15.329Z</updated>
   <id>http://cniter.github.io/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决无法打开某个网页问题</title>
+    <link href="http://cniter.github.io/2017/12/07/%E8%A7%A3%E5%86%B3%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E6%9F%90%E4%B8%AA%E7%BD%91%E9%A1%B5%E9%97%AE%E9%A2%98/"/>
+    <id>http://cniter.github.io/2017/12/07/解决无法打开某个网页问题/</id>
+    <published>2017-12-07T08:06:53.000Z</published>
+    <updated>2017-12-07T08:17:15.329Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人最近在某台Win10的电脑中打开网页<a href="https://www.typora.io/" target="_blank" rel="external">https://www.typora.io/</a> 时出现了问题，一直出现无法连接现象。</p>
+<a id="more"></a>
+<h2 id="问题篇"><a href="#问题篇" class="headerlink" title="问题篇"></a>问题篇</h2><p>Chrome中出现：</p>
+<blockquote>
+<p><strong>未连接到互联网</strong></p>
+<p>请试试以下办法：</p>
+<ul>
+<li>检查网线、调制解调器和路由器</li>
+<li>重新连接到 Wi-Fi 网络</li>
+<li><a href="javascript:diagnoseErrors()" target="_blank" rel="external">运行 Windows 网络诊断</a></li>
+</ul>
+<p>DNS_PROBE_FINISHED_NO_INTERNET</p>
+</blockquote>
+<p>Firefox中出现：</p>
+<blockquote>
+<p>我们无法连接至 www.typora.io 的服务器。<br>如果确定此网址正确，您可以尝试：</p>
+<ul>
+<li>过会儿再重试。</li>
+<li>检查您的网络连接是否正常。</li>
+<li>如果您部署有网络防火墙，请检查 Firefox 是否已被授权访问网络。</li>
+</ul>
+</blockquote>
+<p>手机和其它设备在同一网络下能正常连接，打开host文件也没发现域名被劫持的情况，挂代理也能连接上。</p>
+<h2 id="解决方案篇"><a href="#解决方案篇" class="headerlink" title="解决方案篇"></a>解决方案篇</h2><p>本人尝试过的方法：</p>
+<ol>
+<li><p>刷新DNS缓存：在命令行界面中输入<code>ipconfig /flushdns</code>，无效；</p>
+</li>
+<li><p>改DNS服务器：把电脑的dns修改为首选8.8.8.8，备用114.114.114.114，和将首选改成8.8.4.4均无效；</p>
+</li>
+<li><p>Disable Path MTU discovery，具体操作方法为：</p>
+<blockquote>
+<p>单击“开始”，单击“运行”，键入 regedit，然后单击“确定”。</p>
+<p>在注册表中找到下面的项：  <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters</code></p>
+<p>找到<code>EnablePMTUDiscovery</code>，将其值改为0，如果没找到，则在“编辑”菜单上，指向“新建”，然后单击“DWORD 值”，键入 EnablePMTUDiscovery，然后按 Enter，在“编辑”菜单上，单击“修改”，在“数值数据”框中，键入 0，然后单击“确定”。</p>
+<p>退出注册表编辑器，然后重新启动计算机。</p>
+</blockquote>
+</li>
+<li><p>设置MTU值，将其调小，完美解决。具体操作方法为：以管理员身份运行命令提示符，在命令行界面输入<code>netsh interface ipv4 show subinterfaces</code>，查看传入字节和传出字节的接口，修改对应接口的MTU的值，具体命令为：<code>netsh interface ipv4 set subinterface &quot;对应接口名&quot; mtu=值 store=persistent</code>，其中<strong>对应接口名</strong>和<strong>值</strong>需要替换成相应修改的东西。</p>
+</li>
+</ol>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　将MTU值调小，可能会造成网速变慢，但本人又无法去改变其它的东西，既然不能改变其它，只能改变自己喽╮(╯﹏╰)╭。但本人这里觉得奇怪的是：别人的电脑设置默认MTU的值为1500也能访问啊，无奈（╯‵□′）╯︵┴─┴。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://www.zhihu.com/question/23627621" target="_blank" rel="external">电脑上部分网页打不开，但是手机可以，如何解决？</a></p>
+<p>[2] <a href="https://jingyan.baidu.com/article/ad310e80ff9bf81849f49ea9.html" target="_blank" rel="external">mtu值怎样设置才网速最快</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;　　本人最近在某台Win10的电脑中打开网页&lt;a href=&quot;https://www.typora.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.typora.io/&lt;/a&gt; 时出现了问题，一直出现无法连接现象。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Problems" scheme="http://cniter.github.io/categories/Problems/"/>
+    
+    
+      <category term="record" scheme="http://cniter.github.io/tags/record/"/>
+    
+  </entry>
   
   <entry>
     <title>PyQt5使用小结</title>
@@ -373,9 +438,9 @@
     <link href="http://cniter.github.io/2017/10/08/OpenCV%E4%B8%AD%E6%BB%91%E5%8A%A8%E6%9D%A1%E5%92%8C%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6%E5%93%8D%E5%BA%94%E6%93%8D%E4%BD%9C%E7%9A%84%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%BB%93/"/>
     <id>http://cniter.github.io/2017/10/08/OpenCV中滑动条和鼠标事件响应操作的使用小结/</id>
     <published>2017-10-08T09:06:29.000Z</published>
-    <updated>2017-10-08T10:32:17.033Z</updated>
+    <updated>2017-12-07T08:07:55.731Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　既然在<a href="https://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/">上文</a>中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。</p>
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　既然在<a href="https://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/">上一篇</a>中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。</p>
 <a id="more"></a>
 <h2 id="说明篇"><a href="#说明篇" class="headerlink" title="说明篇"></a>说明篇</h2><p>OpenCV中使用回调函数的两个函数为：</p>
 <ol>
@@ -426,7 +491,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;　　既然在&lt;a href=&quot;https://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/&quot;&gt;上文&lt;/a&gt;中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。&lt;/p&gt;
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;　　既然在&lt;a href=&quot;https://cniter.github.io/2017/09/28/%E5%88%A9%E7%94%A8%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E5%87%BD%E6%95%B0%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4/&quot;&gt;上一篇&lt;/a&gt;中提到了回调函数，本人就干脆把OpenCV中较常使用的两个使用回调函数的函数使用方法也一并记录下来吧。&lt;/p&gt;
     
     </summary>
     
@@ -581,9 +646,9 @@
       <category term="Study" scheme="http://cniter.github.io/categories/Study/"/>
     
     
-      <category term="gfw" scheme="http://cniter.github.io/tags/gfw/"/>
-    
       <category term="record" scheme="http://cniter.github.io/tags/record/"/>
+    
+      <category term="gfw" scheme="http://cniter.github.io/tags/gfw/"/>
     
   </entry>
   
@@ -1388,35 +1453,6 @@
     
     
       <category term="github" scheme="http://cniter.github.io/tags/github/"/>
-    
-      <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://cniter.github.io/2017/08/26/hello-world/"/>
-    <id>http://cniter.github.io/2017/08/26/hello-world/</id>
-    <published>2017-08-26T08:16:16.000Z</published>
-    <updated>2017-08-26T08:35:19.866Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
     
       <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
     
