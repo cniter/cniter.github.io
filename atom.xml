@@ -362,9 +362,9 @@
       <category term="Study" scheme="http://cniter.github.io/categories/Study/"/>
     
     
-      <category term="opencv" scheme="http://cniter.github.io/tags/opencv/"/>
-    
       <category term="c/cpp" scheme="http://cniter.github.io/tags/c-cpp/"/>
+    
+      <category term="opencv" scheme="http://cniter.github.io/tags/opencv/"/>
     
   </entry>
   
@@ -592,7 +592,7 @@
     <link href="http://cniter.github.io/2017/09/16/Hexo%E7%9A%84SPFK%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%B0%8F%E8%AE%B0/"/>
     <id>http://cniter.github.io/2017/09/16/Hexo的SPFK主题修改小记/</id>
     <published>2017-09-16T10:26:23.000Z</published>
-    <updated>2017-11-23T01:36:27.097Z</updated>
+    <updated>2017-12-07T01:15:37.447Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本人一直在对Hexo的SPFK主题进行持续修改以符合本人自己的需求，在修改当中也会遇到一些小问题，以防遇到重复问题，特此记录所遇小问题，至于大问题可能会另外开篇。</p>
 <a id="more"></a>
@@ -640,6 +640,37 @@
 <p><strong>BTW：</strong>诶呀呀！昨天忘记测试手机端，今天用手机打开一看，手机端页面也距右边left-col-width宽度，这使得内容全挤在一起了，完全没法看ರ_ರ …。所以不得不添加手机端样式，定位手机端.mid-col，它在主题文件夹下/source/css/_partial/mobile.styl文件中，为其添加<code>right: 0;</code>属性值；后面看见回到顶部、回到底部的导航栏也有点问题，就在该文件中<code>/*导航*/</code>下面<code>.scroll</code>上面添加：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#scroll</span>&#123;</div><div class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>使得该导航栏靠右停靠。</p>
+<h3 id="6、更新站点部分CSS文件和代码结构"><a href="#6、更新站点部分CSS文件和代码结构" class="headerlink" title="6、更新站点部分CSS文件和代码结构"></a><font color="#FA8072">6、更新站点部分CSS文件和代码结构</font></h3><p><strong><em>修改日期：2017-12-04 ~ 2017-12-06</em></strong></p>
+<p><strong>更新日志：</strong></p>
+<ol>
+<li><p>本人将left-col相关的东西（比如css样式和ejs文件）全部重名为right-col，毕竟经过几天的适应，感觉放在右侧还不错，就干脆也将其重命名算了，所以原左侧栏left-col从现在开始就完全变成右侧栏right-col了；</p>
+</li>
+<li><p>原来的本地搜索框有两个.search样式，本次修改将两个.search样式合并了，删除重复的样式，只留下一个合并后的.search样式；本人同时还优化了一下本地搜索功能的结构，将原来主题配置文件中的search_box属性删掉，给search属性添加一个on的属性来代替search_box属性，这样让结构不那么混乱，只由一个search属性决定本地搜索功能的开启和关闭及功能的实现，而不是像以前那样由search_box属性决定右侧栏搜索框的显示，而search属性决定本地搜索功能的实现；</p>
+</li>
+<li><p>更改右侧栏right-col的overflow样式，原来是右侧栏right-col垂直超出滚动，水平超出隐藏，这样在屏幕比较窄的情况在右侧会出现两条滚动条，很不美观。现在本人将overflow样式改成<code>&amp;:hover {overflow-y: auto; overflow-x: hidden;}</code>，这样只有在鼠标指针悬浮在右侧栏right-col上时才会再右侧栏出现滚动条，这样虽然不能从根本上解决问题，但稍微缓解了一下，等以后再看能不能彻底解决滚动条的问题ರ_ರ …；</p>
+</li>
+<li><p>本人以前添加RevolverMaps这个小部件的时候只是简单粗暴的添加div及对应的样式，完全没考虑到主题的扩展性和易修改性。于是本人将其改成配置文件的形式，在主题配置文件中添加<code>visual_visitor</code>属性，只要将其值设置为<a href="http://www.revolvermaps.com/" target="_blank" rel="external">RevolverMaps官网</a>获取的那串script code，eg：</p>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;//ra.revolvermaps.com/0/0/8.js?i=0lpycb5p234&amp;amp;m=7&amp;amp;c=ff0000&amp;amp;cr1=ffffff&amp;amp;f=arial&amp;amp;l=49&quot; async=&quot;async&quot;&gt;&lt;/script&gt;</code>，即可在右侧栏菜单下的访问情况中看到一个3D地球实时显示访客的位置信息，本人为了优化异步访问信息，将其中的<code>async=&quot;async&quot;</code>改成<code>defer=&quot;defer&quot;</code>，这样好像能优化加载次序。这两者的区别可参考<a href="https://segmentfault.com/q/1010000000640869" target="_blank" rel="external">defer和async的区别</a>，好像是都能异步加载，只是async是该script加载完立即执行，而defer是该script加载完之后在整个页面结束加载之前执行，也就是最后执行的；</p>
+</li>
+<li><p>最后还修改了MathJax的CDN地址及配置属性。MathJax的配置属性可参考<a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/configuration.html#id3" target="_blank" rel="external">加载和配置MathJax</a>，具体如下：</p>
+<blockquote>
+<p>第一种配置Mahtjax的方法就是使用配置文件。MathJax附带了很多种预制配置文件。它们存储在<code>MathJax/config</code> 目录。主要有其中以下几个：</p>
+<ul>
+<li><code>default.js</code>：这个文件包含了所有MathJax可用的配置选项，并附有注释和说明，你可以编辑它们来满足你的需要。</li>
+<li><code>TeX-AMS-MML_HTMLorMML.js</code>：允许使用 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-tex" target="_blank" rel="external"><em>TeX</em></a>, <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-latex" target="_blank" rel="external"><em>LaTeX</em></a>, 或者<a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-mathml" target="_blank" rel="external"><em>MathML</em></a> 符号书写公式。如果浏览器支持就处理为MathML，否则就使用Html和Css渲染。</li>
+<li><code>TeX-AMS_HTML.js</code>：允许使用 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-tex" target="_blank" rel="external"><em>TeX</em></a> 或者 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-latex" target="_blank" rel="external"><em>LaTeX</em></a> 符号书写公式。使用Html和Css渲染。</li>
+<li><code>MML_HTMLorMML.js</code>：允许使用 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-mathml" target="_blank" rel="external"><em>MathML</em></a> 符号书写公式。如果浏览器支持就处理为MathML，否则就使用Html和Css渲染。</li>
+<li><code>AM_HTMLorMML.js</code>：允许使用 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-asciimath" target="_blank" rel="external"><em>AsciiMath</em></a> 符号书写。如果浏览器支持就处理为MathML，否则就使用Html和Css渲染。</li>
+<li><code>TeX-AMS-MML_SVG.js</code>：允许使用 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-tex" target="_blank" rel="external"><em>TeX</em></a>, <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-latex" target="_blank" rel="external"><em>LaTeX</em></a>, 或者<a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-mathml" target="_blank" rel="external"><em>MathML</em></a> 符号书写公式。使用SVG产生输出。</li>
+<li><code>TeX-MML-AM_HTMLorMML.js</code>：允许使用 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-tex" target="_blank" rel="external"><em>TeX</em></a>, <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-latex" target="_blank" rel="external"><em>LaTeX</em></a>,<a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-mathml" target="_blank" rel="external"><em>MathML</em></a>,或者 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-asciimath" target="_blank" rel="external"><em>AsciiMath</em></a> 符号书写公式。如果浏览器支持就处理为MathML，否则就使用Html和Css渲染。</li>
+</ul>
+<p>第一个文件是提供给你修改的。它基本上包含了MathJax的所有配置选项，同时有注释解释。其他的文件就是我们联合配置文件。它们不仅仅配置Mathjax,还预加载了一些配置所需的文件。这些文件内容在 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/common-configurations" target="_blank" rel="external">联合配置</a> 中有详细的解释。</p>
+</blockquote>
+<p>原来的CDN地址<strong><em>cdn.mathjax.org</em></strong>已经在2017-04-30日关闭，所以必须更新CDN地址，其推荐的CDN地址为<strong><em>cdnjs.cloudflare.com/ajax/libs/mathjax</em></strong>，而新的MathJax也提供一种一种新的配置文件<code>TeX-MML-AM_CHTML</code>（允许使用 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-tex" target="_blank" rel="external"><em>TeX</em></a>, <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-latex" target="_blank" rel="external"><em>LaTeX</em></a>,<a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-mathml" target="_blank" rel="external"><em>MathML</em></a>或者 <a href="http://mathjax-chinese-doc.readthedocs.io/en/latest/glossary.html#term-asciimath" target="_blank" rel="external"><em>AsciiMath</em></a> 符号书写公式，使用CommonHTML产生输出），新的MathJax推荐使用的就是这种配置文件，因为它计划在V3.0将HTML-CSS输出格式丢弃，只留下CommonHTML和SVG这两种输出格式。而且新的CDN地址不支持<code>/latest/MathJax.js</code>这种格式，必须指定一个确定的版本，截止本人此次修改日期之前，最新的版本为2.7.2，所以比较推荐的一种加载格式为：</p>
+<p><code>&lt;script type=&quot;text/javascript&quot; async src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;&lt;/script&gt;</code> 。</p>
+<p>​</p>
+</li>
+</ol>
 <hr>
 <p>待续。。。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>　　先就写到这里，如后续修改中发现问题再继续记录吧↖(&#94;ω&#94;)↗。</p>
@@ -1356,9 +1387,9 @@
       <category term="建站小记" scheme="http://cniter.github.io/categories/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
     
     
-      <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
-    
       <category term="github" scheme="http://cniter.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
     
   </entry>
   
