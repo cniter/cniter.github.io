@@ -127,9 +127,9 @@
       <category term="Study" scheme="http://cniter.github.io/categories/Study/"/>
     
     
-      <category term="opencv" scheme="http://cniter.github.io/tags/opencv/"/>
-    
       <category term="c/cpp" scheme="http://cniter.github.io/tags/c-cpp/"/>
+    
+      <category term="opencv" scheme="http://cniter.github.io/tags/opencv/"/>
     
   </entry>
   
