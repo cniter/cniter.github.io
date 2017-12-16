@@ -195,9 +195,9 @@
       <category term="Study" scheme="http://cniter.github.io/categories/Study/"/>
     
     
-      <category term="gfw" scheme="http://cniter.github.io/tags/gfw/"/>
-    
       <category term="record" scheme="http://cniter.github.io/tags/record/"/>
+    
+      <category term="gfw" scheme="http://cniter.github.io/tags/gfw/"/>
     
   </entry>
   
@@ -467,9 +467,9 @@
       <category term="建站小记" scheme="http://cniter.github.io/categories/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
     
     
-      <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
-    
       <category term="github" scheme="http://cniter.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="http://cniter.github.io/tags/hexo/"/>
     
   </entry>
   
