@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[C++数组中的坑]]></title>
+    <url>posts/fc1165b7.html</url>
+    <content type="text"><![CDATA[前言 在写快排的时候偶然发现了 C++ 数组中的一个坑，具体表现为：对数组元素进行无临时变量的自交换时竟然会将数组该元素置为 0，这应该是 C++ 的一个 BUG 了。交换函数篇 据参考资料 [1] 中， C++ 的交换函数可以有如下三种写法：12345678910111213141516171819202122// 第一种：使用模板，创建临时变量template &lt;class T&gt; void swap(T &amp;a, T &amp;b)&#123; T temp(a); a = b; b = temp;&#125;// 第二种：无临时变量，针对int,double等内建数值类型的基本运算（以double为例）void swap(double &amp;a, double &amp;b)&#123; a = a + b; b = a - b; a = a - b;&#125;// 第三种：无临时变量，针对int的异或运算void swap(int &amp;a, int &amp;b)&#123; // a ^= b ^= a ^= b; a = a ^ b; b = b ^ a; a = a ^ b;&#125; 其中，第一种是通用的交换方法，无论做什么交换都能用第一种，但需要创建一个临时对象；而第二种不需要创建一个临时对象，只能用在 int，double 等内建数值类型上，且存在溢出的风险；第三种同样不需要创建临时对象，只能用在 int 类型上，由于采用位运算，所以不存在溢出的风险，且效率最高。BUG 复现篇 bug 复现代码如下：12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;iostream&gt;template &lt;class T&gt; void swap_1(T &amp;a, T &amp;b)&#123; T temp(a); a = b; b = temp;&#125;void swap_2(int &amp;a, int &amp;b)&#123; a = a + b; b = a - b; a = a - b;&#125;void swap_3(int &amp;a, int &amp;b)&#123; a ^= b ^= a ^= b;&#125;int main(int argc, char *argv[])&#123; int data[] = &#123; 0, 3, 8, 2, 9, 4, 6, 1, 7, 5 &#125;; int a = 1, b = 2, c = 3; swap_1&lt;int&gt;(data[a], data[b]); printf("%d\t%d\n", data[a], data[b]); // 输出 8 3 swap_1&lt;int&gt;(data[a], data[a]); printf("%d\t%d\n", data[a], data[a]); // 输出 8 8 swap_2(data[a], data[b]); printf("%d\t%d\n", data[a], data[b]); // 输出 3 8 swap_2(data[a], data[a]); printf("%d\t%d\n", data[a], data[a]); // ***输出 0 0*** swap_3(data[b], data[c]); printf("%d\t%d\n", data[b], data[c]); // 输出 2 8 swap_3(data[b], data[b]); printf("%d\t%d\n", data[b], data[b]); // ***输出 0 0*** std::swap(data[4], data[5]); printf("%d\t%d\n", data[4], data[5]); // 输出 4 9 std::swap(data[4], data[4]); printf("%d\t%d\n", data[4], data[4]); // 输出 4 4 return 0;&#125; 目前没有找到什么好的解决方案，只能老老实实的用第一种创建一个临时变量的交换方法，或者在交换之前先判断一下是不是同一个元素，若不为同一个元素，才进行交换，否则不交换，即避免自交换。后记 刚开始出现这个问题的时候，本人还纳闷了，怎么写个快排把数组元素都改变了，刚开始根本没想到这茬，还以为是本人代码的问题，倒着检查了好几遍，换第一种交换方式以及换个冒泡排序用一样的交换方式进行排序输出结果都没问题，后面使出终极调试法，一个个的输出看看才知道原来是自交换的锅。 如果有大佬知道为什么会出现这个问题还望不吝赐教 ◔ ‸◔?。参考资料[1] 谈谈C++中的swap函数]]></content>
+      <categories>
+        <category>Problems</category>
+      </categories>
+      <tags>
+        <tag>c/cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Android开发环境配置]]></title>
     <url>posts/cafdd60d.html</url>
     <content type="text"><![CDATA[由于一些历史原因，本篇配置的 Android 开发环境所需的软件对应版本号为：jdk-7u80-windows-x64、android-studio-bundle-162.4069837-windows（Android Studio 2.3.3 带 Android SDK 版），系统环境为 Win10-1607。前言 没想到，时隔两年之后又要重新捡起 Java，还要学基本没怎么做过的 Android，而且还是在这节骨眼上，真是造化弄人 _(´ཀ`」 ∠)_。Java 环境篇 先在 Oracle Java Archive 下载对应的 Java 版本，下载完成后去 这里 校验对应的 Hash 值（若是其它 JDK 版本，则只需将 url 末尾的 7u80 改成相应的版本号即可），并安装，安装时需要注意，在安装完 JDK 之后，该安装器还会继续弹出让安装 JRE 的窗口，此时直接点取消即可，因为 JDK 中已包含 JRE ，所以没必要也不需要再继续安装，安装了之后，就相当于有两个 JRE ，还可能会为以后的工作造成一些麻烦。具体系统环境变量配置如下（若没有相应的变量名则新建）：变量名变量值JAVA_HOMEC:\Program Files\Java\jdk1.7.0_80 （PS：此为JDK安装目录，后面不能加分隔符分号）CLASSPATH.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar; （PS：最前面的 .; 必须要有）Path%JAVA_HOME%\bin;%JAVA_HOME%\jre;配置完之后，键入 Win+R ==》cmd ==》 Enter，在终端输入 “java -version”，“java”，“javac” ，这几个命令，若有正确的响应，则表示配置成功。Android 篇※注： 在安装和配置 Android Studio 时最好先自行找好梯子，这其中有一些步骤可能需要连接外网。 自然还是先在这里（http://www.android-studio.org/）下载安装 Android Studio ，为避免再下载安装配置 SDK 的麻烦，推荐直接下载带 SDK 版本的 Android Studio 。直接默认安装，其中安装 SDK 的时间略长。安装完成之后，推荐把 SDK 目录下的 tools 和 platform-tools 子目录也添加到系统的 PATH 环境变量中。 在第一次打开 Android Studio 的时候，可能需要连接外网以更新 SDK ，所以需要自行设置好代理，更新又要花一段时间 ╮(╯▽╰)╭，当然也可以选择不更新，不更新的办法为：在AS启动前，打开安装目录，请先将bin目录的idea.properties文件中增加一行：disable.android.first.run=true就行了，避免第一次打开AS时自动重新下载SDK。 第一次运行时，首先需要配置 SDK 路径和 JDK 路径，配置 SDK 路径方法为：“Configure” —&gt; “SDK Manager”，编辑 “Android SDK location” ，其会自动找到安装的 SDK 路径；配置 JDK 路径方法为：“Configure” —&gt; “Project Defaults” —&gt; “Project Structure”，编辑 “JDK location”（这里它有个默认内置的 jre，但推荐还是使用自己的 JDK）。 Android Studio 默认的编辑器方案无法更改字体（若真想在默认的方案上更改字体，可以先将其另存为一个新方案），而且个人认为其默认的主题（配色，字体等）不好看，所以推荐自行去 Color Themes 选择合适的主题。最终本人选择 Wombat 主题。至于导入主题的方法为：“Configure” —&gt; “Import Settings”，将下载好的 jar 包导入即可。 为了测试方便，就直接装了个 网易MuMu模拟器 ，用起来感觉还可以，至于 Android Studio 连接 MuMu 模拟器的方法为：先打开 MuMu 模拟器，在 Android Studio 底下的 Terminal（终端） 中输入命令：adb connect 127.0.0.1:7555 ，响应 connected to 127.0.0.1:7555 则说明连接成功，这时就能愉快的使用 MuMu 模拟器调试 Android app 了。后记 以后有碰到什么坑再继续记录吧 ╮(╯▽╰)╭。参考资料[1] Android Studio安装配置、环境搭建详细步骤及基本使用[2] 第一次使用Android Studio时你应该知道的一切配置（http://www.cnblogs.com/smyhvae/category/587732.html）[3] Android Studio连接不到MuMu模拟器]]></content>
@@ -390,8 +401,8 @@
         <category>建站小记</category>
       </categories>
       <tags>
-        <tag>github</tag>
         <tag>hexo</tag>
+        <tag>github</tag>
       </tags>
   </entry>
   <entry>
