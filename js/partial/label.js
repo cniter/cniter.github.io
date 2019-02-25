@@ -1,0 +1,1 @@
+let resetLabelStyle=function(){let e=$(".label a");e.css({"font-size":"12px"});for(let l=0,t=e.length;l<t;l++){let t=e.eq(l).html().length%5+1;e[l].className="",e.eq(l).addClass("color"+t)}};export default resetLabelStyle;
