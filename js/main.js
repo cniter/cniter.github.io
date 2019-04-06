@@ -1,1 +1,1 @@
-import resetLabelStyle from"./partial/label.js";import articleShowMore from"./partial/article.js";import copyClipboard from"./widget/copy.js";$(document).ready(function(){resetLabelStyle(),articleShowMore(),copyClipboard()});
+import resetLabelStyle from"./partial/label.js";import articleShowMore from"./partial/article.js";import copyClipboard from"./widget/copy.js";import cursorTrail from"./widget/cursorTrail.js";import clickHalo from"./widget/clickHalo.js";cursorTrail(),clickHalo(),$(document).ready(function(){resetLabelStyle(),articleShowMore(),copyClipboard()});
