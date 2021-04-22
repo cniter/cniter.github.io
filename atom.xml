@@ -38,6 +38,28 @@
   </entry>
   
   <entry>
+    <title>2020年小结</title>
+    <link href="http://cniter.github.io/posts/28416d7c.html"/>
+    <id>http://cniter.github.io/posts/28416d7c.html</id>
+    <published>2021-02-12T12:15:16.000Z</published>
+    <updated>2021-04-22T15:09:29.648Z</updated>
+    
+    <content type="html"><![CDATA[<p>　　社畜不易，行者多难，披荆斩棘，前路莫测，步履不停。</p><a id="more"></a><h2 id="前言">前言</h2><p>　　20 年，也算是正式步入社畜生活的第一年，新鲜感自然少不了，但也没持续很长时间。这一年中基本都在学习，工作中生活中都在熟悉新事物新模式。</p><h2 id="技术篇">技术篇</h2><p>　　开始独立负责项目，从无到有写完了一个产品，做了半个地图可视化项目，图形学相关知识从完全不会到熟练使用 Shader 做简单特效，学习新语言使用新工具，这就是 Shaun 过去一年在工作中的写照。</p><p>　　在产品中，Shaun 基本独立完成了调研设计编码的全过程，这款网页版的 OpenDrive 路网编辑器，让 Shaun 基本熟悉的前端开发的主流框架和打包流程，甚至基于这款编辑器继续引申出两个 SDK，虽然开发模式和真正的前端有所区别（Shaun 是把 Typescript 当 C# 用的，将网页程序当客户端程序开发），但感觉现在的浏览器完全能撑的住，完全可以将更多的计算和存储任务直接在前端全部做完，但同时也感到了纯前端的无力，没有后端，前端网页能呈现的数据和效果确实有限，网页的内存有限制，webgl 渲染的三角形也有限制，只能做些小东西，大场景就很难施展。路网编辑器中涉及的前端技术栈也有很多，主要是现在无论开发一个什么应用，都不可能从语言最底层的 api 写起，总会用到别人写好的库，熟悉，吸收，再修改，用着用着就需要自己写了，从用轮子到造轮子，从而产生更多的轮子，也算是一种良性循环。</p><p>　　半个地图可视化项目，主要用的 mapbox-gl + geoserver 显示地图，做完这个项目，同时也基本了解了国内的百度和高德两家的地图突然变好看了的原因，其背后的技术也同样源自于 mapbox，一家真正小而美的公司，定义了一套前端渲染地图的数据标准（Vector Tile），在非 3D 地图上，这套标准就是业内通用的标准了，如今的导航地图用的都是这套前端渲染技术，美观又高效。</p><h2 id="生活篇">生活篇</h2><p>　　整个 20 年出去玩的时间也不多，工作地所在能玩的地方基本也玩的差不多了，大部分时间都是宅在屋里看电影，学技术，感觉就非常平淡，也没啥特别好说的。20年，开始学习理财，锻炼买入卖出的感觉，由于整个 20 年股市一片良好，以至于 Shaun 这个新手也赚了些钱，但由于本钱不多，赚的也非常有限，赚大钱的机会，要么拿不住，要么下不去手，最终都失之交臂，这样一来，赚的就更少了，不过，股市中赚到的钱终究只是个数字，到手的才是赚到的，没到手是赚是亏还不好说，作为新手而言，Shaun 也就当玩玩而已，亏也不多，主要是锻炼自己的感觉或承受能力，反正理财是一辈子的事，不急于这一时。</p><h2 id="总结">总结</h2><p>　　生活一年如一日的平淡如水，依旧独自前行，由于疫情的原因，出去看看都嫌太麻烦，只能周边走走，着实无聊，好在工作上的东西对 Shaun 来说是新的知识，稍微有点挑战，每解决一个问题，总会带来一些成就感，冲淡些许无聊，可这成就感越来越少了，或许哪天成就感完全消失，就是 Shaun 换个新环境的时候。</p><div style="text-align:center;font-family:Allura,Consolas,Helvetica,Tahoma,Arial,Microsoft YaHei,微软雅黑,SimSun,宋体,Heiti,黑体,sans-serif;font-size:1.3em;color:#4094c3;font-weight:700;margin:.5em auto">20 年获得技能：<strong><em>触类旁通</em></strong><br>20 年获得成就：<strong><em>独挡一面</em></strong></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　社畜不易，行者多难，披荆斩棘，前路莫测，步履不停。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Life" scheme="http://cniter.github.io/categories/Life/"/>
+    
+    
+      <category term="record" scheme="http://cniter.github.io/tags/record/"/>
+    
+  </entry>
+  
+  <entry>
     <title>时空查询之ECQL</title>
     <link href="http://cniter.github.io/posts/489fa7b3.html"/>
     <id>http://cniter.github.io/posts/489fa7b3.html</id>
@@ -239,9 +261,9 @@
     
       <category term="note" scheme="http://cniter.github.io/tags/note/"/>
     
-      <category term="container" scheme="http://cniter.github.io/tags/container/"/>
-    
       <category term="unix-like" scheme="http://cniter.github.io/tags/unix-like/"/>
+    
+      <category term="container" scheme="http://cniter.github.io/tags/container/"/>
     
   </entry>
   
@@ -395,28 +417,6 @@
     <summary type="html">
     
       &lt;p&gt;　　人生总算是告一段落了，虽然没取得好成绩，但总归要奔向新的起点，迎接新的挑战。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Life" scheme="http://cniter.github.io/categories/Life/"/>
-    
-    
-      <category term="record" scheme="http://cniter.github.io/tags/record/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2020年小结</title>
-    <link href="http://cniter.github.io/posts/28416d7c.html"/>
-    <id>http://cniter.github.io/posts/28416d7c.html</id>
-    <published>2020-02-12T12:15:16.000Z</published>
-    <updated>2021-04-22T14:52:43.015Z</updated>
-    
-    <content type="html"><![CDATA[<p>　　社畜不易，行者多难，披荆斩棘，前路莫测，步履不停。</p><a id="more"></a><h2 id="前言">前言</h2><p>　　20 年，也算是正式步入社畜生活的第一年，新鲜感自然少不了，但也没持续很长时间。这一年中基本都在学习，工作中生活中都在熟悉新事物新模式。</p><h2 id="技术篇">技术篇</h2><p>　　开始独立负责项目，从无到有写完了一个产品，做了半个地图可视化项目，图形学相关知识从完全不会到熟练使用 Shader 做简单特效，学习新语言使用新工具，这就是 Shaun 过去一年在工作中的写照。</p><p>　　在产品中，Shaun 基本独立完成了调研设计编码的全过程，这款网页版的 OpenDrive 路网编辑器，让 Shaun 基本熟悉的前端开发的主流框架和打包流程，甚至基于这款编辑器继续引申出两个 SDK，虽然开发模式和真正的前端有所区别（Shaun 是把 Typescript 当 C# 用的，将网页程序当客户端程序开发），但感觉现在的浏览器完全能撑的住，完全可以将更多的计算和存储任务直接在前端全部做完，但同时也感到了纯前端的无力，没有后端，前端网页能呈现的数据和效果确实有限，网页的内存有限制，webgl 渲染的三角形也有限制，只能做些小东西，大场景就很难施展。路网编辑器中涉及的前端技术栈也有很多，主要是现在无论开发一个什么应用，都不可能从语言最底层的 api 写起，总会用到别人写好的库，熟悉，吸收，再修改，用着用着就需要自己写了，从用轮子到造轮子，从而产生更多的轮子，也算是一种良性循环。</p><p>　　半个地图可视化项目，主要用的 mapbox-gl + geoserver 显示地图，做完这个项目，同时也基本了解了国内的百度和高德两家的地图突然变好看了的原因，其背后的技术也同样源自于 mapbox，一家真正小而美的公司，定义了一套前端渲染地图的数据标准（Vector Tile），在非 3D 地图上，这套标准就是业内通用的标准了，如今的导航地图用的都是这套前端渲染技术，美观又高效。</p><h2 id="生活篇">生活篇</h2><p>　　整个 20 年出去玩的时间也不多，工作地所在能玩的地方基本也玩的差不多了，大部分时间都是宅在屋里看电影，学技术，感觉就非常平淡，也没啥特别好说的。20年，开始学习理财，锻炼买入卖出的感觉，由于整个 20 年股市一片良好，以至于 Shaun 这个新手也赚了些钱，但由于本钱不多，赚的也非常有限，赚大钱的机会，要么拿不住，要么下不去手，最终都失之交臂，这样一来，赚的就更少了，不过，股市中赚到的钱终究只是个数字，到手的才是赚到的，没到手是赚是亏还不好说，作为新手而言，Shaun 也就当玩玩而已，亏也不多，主要是锻炼自己的感觉或承受能力，反正理财是一辈子的事，不急于这一时。</p><h2 id="总结">总结</h2><p>　　生活一年如一日的平淡如水，依旧独自前行，由于疫情的原因，出去看看都嫌太麻烦，只能周边走走，着实无聊，好在工作上的东西对 Shaun 来说是新的知识，稍微有点挑战，每解决一个问题，总会带来一些成就感，冲淡些许无聊，可这成就感越来越少了，或许哪天成就感完全消失，就是 Shaun 换个新环境的时候。</p><div style="text-align:center;font-family:Allura,Consolas,Helvetica,Tahoma,Arial,Microsoft YaHei,微软雅黑,SimSun,宋体,Heiti,黑体,sans-serif;font-size:1.3em;color:#4094c3;font-weight:700;margin:.5em auto">20 年获得技能：<strong><em>触类旁通</em></strong><br>20 年获得成就：<strong><em>独挡一面</em></strong></div>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;　　社畜不易，行者多难，披荆斩棘，前路莫测，步履不停。&lt;/p&gt;
     
     </summary>
     
