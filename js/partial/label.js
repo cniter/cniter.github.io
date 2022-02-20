@@ -1,1 +1,1 @@
-let resetLabelStyle=function(){let e=$(".label a");for(let l=0,t=e.length;l<t;l++){let t=e.eq(l).html().length%5+1;e[l].className="",e.eq(l).addClass("color"+t)}};export default resetLabelStyle;
+let resetLabelStyle=function(){let t=$(".label a");for(let e=0,l=t.length;e<l;e++){var a=t.eq(e).html().length%5+1;t[e].className="",t.eq(e).addClass("color"+a)}};export default resetLabelStyle;
