@@ -6571,4 +6571,50 @@ v = \frac{V_1 × V_2 · V_0 }{V_1 × V_2 · V_3}
         <tag>golang</tag>
       </tags>
   </entry>
+  <entry>
+    <title>LLM 本地部署运行初体验</title>
+    <url>/posts/49bd1c83.html</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>　　最近看到这么一个工具——<strong><a href="https://github.com/dwqs/ollama-ocr">ollama-ocr</a></strong>，利用本地大模型直接进行 OCR，试用了一下，感觉效果还不错，联想之前看到的一个项目——<strong><a href="https://github.com/Byaidu/PDFMathTranslate">PDFMathTranslate</a></strong>，感觉本地大模型已经非常成熟了，部署使用也越来越简单了。</p>
+<span id="more"></span>
+<h2 id="配置篇">配置篇</h2>
+<p>　　硬件：M3 MBP，10 核 GPU（Metal 3），16G 内存</p>
+<p>　　系统&amp;软件：<a href="https://ipsw.me/download/Mac15,10/23F79">macOS Sonoma 14.5</a>，<a href="https://ollama.com/download">Ollama</a> 0.5.4，<a href="https://anythingllm.com/desktop">AnythingLLM</a> 1.7.2；</p>
+<h2 id="体验篇">体验篇</h2>
+<h3 id="ollama-篇">ollama 篇</h3>
+<p>　　第一次启动 Ollama 时，会出现安装「command line」的引导界面，输入电脑用户密码安装即可，安装命令行之后，可以直接点击「Finish」，之后通过终端命令 <code>ollama</code> 操作 Ollama，毕竟 Ollama 没有提供 UI 界面，当然也有很多<a href="https://ollama.readthedocs.io/quickstart/#web">三方的界面</a>。</p>
+<p>　　之后在终端中直接运行 <code>ollama run llama3.2:3b</code>，等待模型拉取完成后，即可直接与模型对话。之后可以在 <a href="https://ollama.com/search">Ollama 官网 Models</a> 搜索尝试更多模型。</p>
+<p>命令解析：</p>
+<ul>
+<li>ollama pull [model:tag]：拉取模型；</li>
+<li>ollama run [model:tag]：运行拉取的模型，若没有，会自动拉取之后运行；</li>
+<li>ollama list：查看全部已拉取的模型；</li>
+<li>ollama show [model:tag]：显示模型信息；</li>
+<li>ollama rm [model:tag]：删除已拉取的模型；</li>
+<li>ollama ps：查看正在运行的模型；</li>
+<li>ollama stop [model:tag]：停止正在运行的模型；</li>
+</ul>
+<p>　　Mac 中 ollama 拉取的模型文件默认放在 <code>~/.ollama/models</code> 目录中。</p>
+<p>　　Ollama 默认服务地址端口是：<code>127.0.0.1:11434</code>，Mac 中查看进程监听的端口号命令为 <code>lsof -nP -p &lt;pid&gt;</code>。</p>
+<p>　　默认情况下，运行模型后，如果 5 分钟未与模型进行交互，将会自动停止该模型。</p>
+<p>　　Mac 启动 Ollama 后，会在菜单栏上出现一个羊驼图标，但有时这个图标会被“刘海”挡住，导致无法退出 Ollama，这时可以使用 <code>osascript -e 'tell app "Ollama" to quit'</code> 命令退出 Ollama。</p>
+<p>　　对于开发者，若需要更改默认端口，需修改环境变量：<code>export OLLAMA_HOST=0.0.0.0:6006</code>（如此可将 ollama 的默认端口修改为 6006），之后通过 <code>ollama serve</code> 命令启动 Ollama，通过该命令启动的不会在菜单栏上出现羊驼图标。若出现跨域问题，同样需要修改环境变量：<code>export OLLAMA_ORIGINS="*"</code>。</p>
+<h3 id="anythingllm-篇">AnythingLLM 篇</h3>
+<p>　　AnythingLLM 有两种安装模式，一种是桌面版，一种是 Docker 版，桌面版只能本地使用，Docker 版相当于是服务版，支持多用户云端使用。本次选用的桌面版，基本的 RAG 功能也都有。<a href="https://docs.anythingllm.com/installation-desktop/overview#docker-vs-desktop-version">Docker vs Desktop Version</a></p>
+<p>　　第一次启动 AnythingLLM 时，有一些设置引导，设置「LLM 偏好」时选择 Ollama，其他的都默认即可。创建工作空间之后就可以上传本地文件，建立自己的知识库。</p>
+<p>　　Shaun 在使用中感觉，AnythingLLM 响应还是比较慢，分析/提炼/归纳/总结本地文档的速度有限。可能是机器配置还是有点低了。</p>
+<h2 id="后记">后记</h2>
+<p>　　本地部署 LLM 的好处在于无数据泄漏问题，对于个人使用而言，轻量级的模型也差不多够用了，但即使已经轻量化了，本地运行大模型还是有点吃力，在 Shaun 的电脑上运行 <a href="https://ollama.com/library/phi4:14b">phi4:14b</a> 略显勉强（8 tok/s）。Mac 的内存和显存是共享的，后续如果买新的，有部署 LLM 的需求，最好把内存拉满，由于模型文件也相对较大，有条件的可以把 SSD 也拉满。希望后续大模型的推理能够进一步轻量化，效果也更好，真正实现人人都能使用。</p>
+<p>　　自 GPT-3 出现以来，也就短短 4 年不到，从大规模的高性能 GPU 集群到单机部署，从胡言乱语到精准命中，各行各业都迎来了 LLM 的冲击，在可预见的未来，LLM 将深刻影响到每一个人，这种影响无关好坏，单纯只是时代的浪潮，就 Shaun 而言，能做的也就是利用现有的机器资源，尽量多享受一下 LLM 带来的便利。</p>
+<h2 id="参考资料">参考资料</h2>
+<p>1、<a href="https://blog.csdn.net/sheex2012/article/details/138339166">基于Ollama+AnythingLLM搭建本地私有知识库系统</a></p>
+<p>2、<a href="http://xiaodongq.github.io/2024/06/20/ollama-ai-models/">ollama搭建本地个人知识库</a></p>
+]]></content>
+      <categories>
+        <category>Study</category>
+      </categories>
+      <tags>
+        <tag>llm</tag>
+      </tags>
+  </entry>
 </search>
