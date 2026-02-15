@@ -3,7 +3,7 @@ const config={SIM_RESOLUTION:128,DYE_RESOLUTION:1440,CAPTURE_RESOLUTION:512,DENS
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 50;
+        z-index: -1;
         pointer-events: none;
         width: 100%;
         height: 100%;
