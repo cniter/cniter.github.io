@@ -272,6 +272,7 @@
 <li>『末日蟑螂』，作者：伟岸蟑螂。很多剧情非常刻意，甚至刻意的恶心，双商也是忽上忽下，去掉那些刻意的剧情，也能说是好文了，末日及进化路线也算是能自圆其说。</li>
 <li>『地狱电影院』，作者：黑色火种。无论是恐怖电影还是小说，都需要傻子才能推进剧情，虽然作者很任性，认不清衣食父母，逻辑也不太清晰，吃书的情节也很多，夹带的私货也不少，但氛围和设定确实有一手，看贴吧上的中二合集也很有意思。作者的想法很多，可惜没法驾驭超长篇故事。</li>
 <li>『从斩妖除魔开始长生不死』，作者：陆月十九。还行，轻松，爽点到位。</li>
+<li>『谁让他修仙的』，作者：最白的乌鸦。很轻松搞笑的一本书。</li>
 </ul>
 <h2 id="后记">后记</h2>
 <p>　　以后有看过或回想起看过的作品再继续更新吧 （↖(^ ω ^)↗）。</p>
@@ -6836,6 +6837,73 @@ v = \frac{V_1 × V_2 · V_0 }{V_1 × V_2 · V_3}
       <tags>
         <tag>llm</tag>
         <tag>toy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>go服务所有接口请求超时问题</title>
+    <url>/posts/81018aee.html</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>　　最近，新接手的一个 5 年前的 go 服务偶发性响应报错 “context deadline exceeded”，一旦有一个请求出现这个问题，所有向这个服务发送的请求都会返回超时错误，包括所有接口，且无法自行恢复，服务进程还存活但已经无法响应任何请求，彻底 hang 住了，只能重启服务。</p>
+<span id="more"></span>
+<p>　　服务所用的框架为 Echo，数据库为 PG，连接驱动为 jackc/pgx。</p>
+<h2 id="问题篇">问题篇</h2>
+<p>　　这个问题之前也算是碰到过，不过之前的服务用的是 GoFrame V1，当时已经排查出问题是出在数据库交互逻辑，因为日志中显示请求能正常收到，唯独是查询数据库没有结果输出，当时隐约猜到是事务逻辑出了问题，在处理请求开始，就先开启了事务，这一般都是不合理的，后面用最小化原则优化了事务，在真正执行写入操作时才开启事务，写入完成就关闭，优化事务操作之后，之前的那个服务就再没出过 “context deadline exceeded” 问题，但没有继续深究原因，只能说是技术人的直觉解决了这个问题。</p>
+<p>　　现在又碰到了这个问题，趁着目前业务还不算忙，正好深入研究一下，由于有之前的经验，很快就定位了也是事务问题，代码写法和之前差不多，也是收到请求后，立马就开启了事务。起初以为是 Go 连接 PG 数据库驱动的通用问题，但一想，如果是通用问题，那这种 bug 应该早就有人反馈修复了。于是在 lib/pq 和 jackc/pgx 的 issue 上搜索，也算是运气好，正好看到个三周前的 <a href="https://github.com/jackc/pgx/issues/2499">issue</a>，完美复现了这个超时现象，并且有<a href="https://github.com/jackc/pgx/issues/2499#issuecomment-3904468547">大佬完美解释</a>了这个问题。</p>
+<h2 id="原因篇">原因篇</h2>
+<p>　　issue 中示例代码已经很清楚了，这里再引用一下：</p>
+<blockquote>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false"data-lang="GO"><div class="code-copy"></div><figure class="highlight hljs go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 连接池初始化，连接池默认配置 MaxConns = 10</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">(dburl <span class="keyword">string</span>)</span> <span class="params">(*pgxpool.Pool, error)</span></span> &#123;</span><br><span class="line">    dbpool, err := pgxpool.New(context.Background(), dburl)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>, fmt.Errorf(<span class="string">&quot;failed to connect db: %w&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dbpool, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Repository 结构体</span></span><br><span class="line"><span class="keyword">type</span> Repository <span class="keyword">struct</span> &#123;</span><br><span class="line">    pgclient *pgxpool.Pool</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试方法，相当于一次请求</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(repo *Repository)</span> <span class="title">Test</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="params">(err error)</span></span> &#123;</span><br><span class="line">    ctx, cancel := context.WithTimeout(context.Background(), time.Second)</span><br><span class="line">    <span class="keyword">defer</span> cancel()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开启事务 - 获取一个连接</span></span><br><span class="line">    tx, beginErr := repo.pgclient.Begin(ctx)</span><br><span class="line">    <span class="keyword">if</span> beginErr != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> beginErr</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            tx.Rollback(ctx)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        tx.Commit(ctx)</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> c <span class="keyword">int</span></span><br><span class="line">    <span class="comment">// 问题所在：使用连接池执行查询，而非事务对象</span></span><br><span class="line">    <span class="comment">// 这会尝试获取另一个连接</span></span><br><span class="line">    err = repo.pgclient.QueryRow(ctx, <span class="string">&quot;SELECT COUNT(*) FROM achievements&quot;</span>).Scan(&amp;c)</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>　　压测调用代码：</p>
+<div class="highlight-wrap"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="false"data-lang="GO"><div class="code-copy"></div><figure class="highlight hljs go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123; <span class="comment">// MaxConns = 10，恰好等于连接池大小</span></span><br><span class="line">    <span class="keyword">go</span> repository.Test(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</blockquote>
+<p>　　表面上看代码逻辑清晰：开启事务、执行查询、提交或回滚。但深入排查就会发现，这段代码会造成死锁，问题出在查询那行代码上——使用了 <code>repo.pgclient.QueryRow()</code> 而非 <code>tx.QueryRow()</code>。示例代码的 Test 方法需要两个连接才能完成操作：1、 <code>repo.pgclient.Begin(ctx)</code> —— 获取第一个连接，用于开启事务；2、 <code>repo.pgclient.QueryRow(ctx, ...)</code> —— 尝试获取第二个连接，用于执行查询。当 10 个 goroutine 同时执行 Test 方法时：</p>
+<table>
+<thead>
+<tr class="header">
+<th>阶段</th>
+<th>状态</th>
+<th>连接池剩余</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>初始</td>
+<td>连接池有 10 个连接</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>阶段一</td>
+<td>每个 goroutine 调用 Begin()，各获取 1 个连接</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>阶段二</td>
+<td>所有 goroutine 尝试 QueryRow()，需要再获取 1 个连接</td>
+<td>等待中...</td>
+</tr>
+</tbody>
+</table>
+<p>　　每个 goroutine 都持有一个连接，等待另一个连接。但没有 goroutine 能释放连接——因为释放连接需要完成查询和事务，而完成查询需要另一个连接。这就是经典的<strong>死锁</strong>场景，相互等待。</p>
+<p>　　该问题能稳定复现，主要原因也与 Go 调度器的行为有关。Go 调度器是协作式的，当一个 goroutine 执行网络 I/O（如向 PostgreSQL 发送 <code>BEGIN</code>）时，运行时会将其停放（park），让其他 goroutine 运行。这导致所有 goroutine 几乎同时执行到 <code>Begin()</code>，拿到第一个连接后同时被停放，唤醒时连接池已空，全部进入等待状态。</p>
+<p>业务上最佳实践为：</p>
+<ul>
+<li>事务内的查询使用同一个连接，即使用本事务对象进行查询，不要用另外的数据库对象查询；</li>
+<li>无特殊情况，理论上应遵循事务最小化原则，只有在真正执行 DML 操作时，才开启事务，完成后，立马关闭事务，DQL 操作不应使用事务对象执行。</li>
+</ul>
+<p>当然，数据库连接驱动也可以进一步优化：</p>
+<ul>
+<li>可以在连接池设置超时参数，如果有进程连接时间过长，则主动释放；</li>
+<li>连接等待时间过长，返回错误；</li>
+<li>主动发现 context 超时后，pgclient.QueryRow 直接返回错误。</li>
+</ul>
+<h2 id="后记">后记</h2>
+<p>　　这个问题本质上不是 pgx 的 bug，而是对事务使用方式的误解。事务与特定的数据库连接绑定，事务内的操作应该在同一个连接上执行，这不是 pgx 特有的规则，几乎所有数据库事务都是如此。在使用事务时，牢记一个原则：<strong>事务内部永远使用事务对象的方法</strong>。</p>
+]]></content>
+      <categories>
+        <category>Problems</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
       </tags>
   </entry>
 </search>
