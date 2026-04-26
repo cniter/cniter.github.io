@@ -1,0 +1,1 @@
+loadScript("https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js",()=>{new Typed("#typed-signature",{strings:["悟已往之不谏，知来者之可追 ^3000","寄蜉蝣于天地，渺沧海之一粟 ^3000","亦余心之所善兮，虽九死其犹未悔 ^3000","有人辞官归故里，有人星夜赶科场 ^3000","Die with my boots on ^3000"],typeSpeed:70,startDelay:300,loop:!0})});
